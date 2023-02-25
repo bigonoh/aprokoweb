@@ -661,11 +661,11 @@ $utilities: (
       }
     }
 
-    // ===== height in view width =====
+    // ===== height in view height =====
 
     @for $i from 0 to 101 {
       .hv-#{$i}{
-        height: $i + vw;
+        height: $i + vh;
       }
     }
     

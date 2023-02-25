@@ -1,0 +1,26 @@
+.login-left {
+    background-color: #FF8F66;
+    opacity: 96%;
+    background-image: url('../../../assets/img/side-image.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+
+    
+}
+
+.login-right {
+    .login-form-wrapper {
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .remember-me {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .login-btn {
+        width: 100% !important;
+    }
+}
+
