@@ -1,0 +1,48 @@
+.error-modal-wrap {
+  width: 45rem;
+  height: 30rem;
+  background-color: var(--white-color);
+  border-radius: 1.5rem;
+  padding: 3rem 0rem;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 0rem;
+  overflow: hidden;
+
+  & > * {
+    padding: 0rem 3rem;
+  }
+
+  .title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #020202;
+    text-align: left;
+  }
+
+  .text {
+    text-align: left;
+    margin-top: 1rem;
+    color: #676767;
+  }
+
+  .btn-wrap {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background-color: #f7f8f7;
+    border-radius: unset;
+    padding: 2rem 3rem;
+
+    & > *:last-child {
+      padding: 1.4rem 3rem !important;
+    }
+
+    .cancel {
+      margin-right: 3rem;
+      color: #676767;
+      cursor: pointer;
+    }
+  }
+}

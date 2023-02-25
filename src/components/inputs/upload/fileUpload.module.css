@@ -1,0 +1,147 @@
+.upload {
+  /* width: 755px; */
+  height: fit-content;
+  background: #ffffff;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  border: 1px dashed #cccccc;
+  border-radius: 1.2rem;
+}
+
+.uploadBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.upload label {
+  background: rgba(255, 255, 255, 0) !important;
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  /* justify-content: space-between; */
+  align-items: center;
+  padding: 2rem;
+  gap: 1rem;
+  color: var(--raven-black);
+}
+
+.title {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.8rem;
+  line-height: 2.3rem;
+  letter-spacing: -0.04em;
+  color: #000000;
+  padding-left: 2rem;
+}
+
+.fileUpload {
+  /* width: 72.3rem; */
+  height: 5.6rem;
+  left: 1.6rem;
+  top: 60px;
+  margin-left: 1.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-right: 1rem;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  background: #f7f8f7;
+  border-radius: 0.8rem;
+}
+
+.fileOutput div:nth-child(1) {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.fileOutput div:nth-child(2) {
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 2rem;
+  letter-spacing: -0.04em;
+  color: #000000;
+}
+
+.fileOutput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#drop_zone {
+  height: fit-content;
+  background: #f9f9f9;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  border: 1px dashed #cccccc;
+  border-radius: 1.2rem;
+}
+
+#uploadBtn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+#previewImage {
+  display: flex;
+  width: 5rem;
+  height: 5rem;
+}
+
+#previewImage img {
+  border-radius: 0.8rem;
+  width: 100%;
+}
+
+#filePreview {
+  display: flex;
+  margin-top: 3rem;
+  justify-content: space-between;
+}
+
+#fileOutput {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+#fileOutput p {
+  font-weight: 800;
+  font-size: 1.4rem;
+  line-height: 2.3rem;
+  letter-spacing: -0.04em;
+
+  color: #000000;
+}
+
+#fileOutput small {
+  font-weight: 400;
+  font-size: 1.2rem;
+  line-height: 140%;
+  display: flex;
+  letter-spacing: -0.02em;
+  color: #676767;
+}
+#deleteBtn {
+  display: flex;
+  align-items: center;
+  width: 107px;
+  height: 3.4rem;
+  background: rgba(255, 15, 0, 0.1);
+  border-radius: 6.4rem;
+  font-weight: 600;
+  font-size: 1.4rem;
+  justify-content: center;
+
+  text-align: center;
+  letter-spacing: -0.03em;
+
+  color: #ff0f00;
+}

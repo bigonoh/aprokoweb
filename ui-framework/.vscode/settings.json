@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        // "**/.parent": true,
+        "../.parent": true
+    }
+}

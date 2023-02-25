@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        // "**/.parent": true,
+        "../ui-framework/.parent": true
+    }
+}

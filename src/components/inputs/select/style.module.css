@@ -1,0 +1,69 @@
+.selectContain {
+  position: relative;
+  /* width: 100%; */
+}
+
+.selectInput {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding-left: 1.6rem;
+  padding-right: 1.6rem; */
+  gap: 1rem;
+  text-align: center;
+  background: #ffffff;
+  border: 0.05rem solid #cccccc;
+  border-radius: 1.2rem;
+  /* height: 5.5rem; */
+  padding: 1.3rem;
+}
+
+.preview {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  white-space: nowrap;
+}
+
+.placeholder {
+  font-weight: 400;
+  font-size: 1.4rem;
+  letter-spacing: -0.04em;
+  color: #b3b3b3;
+}
+
+.optionsContain {
+  height: max-content;
+  z-index: 11;
+  margin-top: 1rem;
+  background: #ffffff;
+  border: 0.5px solid #cccccc;
+  border-radius: 1.2rem;
+  box-shadow: 0 0.4rem 3rem rgba(0, 0, 0, 0.1);
+  position: absolute;
+}
+
+.options {
+  height: max-content;
+  padding: 1.6rem;
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.options:disabled {
+  background: #fff;
+  color: #ccc;
+  cursor: no-drop;
+}
+
+.options:hover {
+  background-color: #b3b3b312;
+  cursor: pointer;
+}
+
+.label {
+  display: flex;
+  gap: 1.6rem;
+  align-items: center;
+}

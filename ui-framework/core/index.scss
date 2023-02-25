@@ -1,0 +1,24 @@
+// import google font
+  @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+  
+// variables & functions
+@import 'functions';
+@import 'variables';
+
+// base & layout
+@import 'base';
+@import 'breakpoints';
+@import 'grid';
+
+// colors
+@import 'colors';
+
+
+// components (buttons, card, navbar)
+@import 'components/card';
+@import 'components/button';
+@import 'components/navbar';
+@import 'components';
+
+//utilities (margin, padding, opacity)
+@import 'utilities';

@@ -1,0 +1,12 @@
+.footer{
+    padding: 5rem;
+    background-color: #1C100B;
+    height: 30rem;
+    .footer_content {
+        justify-content: space-between;
+       
+        div:last-child {
+            padding-right: 10rem;
+        }
+    }
+}

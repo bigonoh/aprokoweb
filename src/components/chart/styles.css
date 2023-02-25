@@ -1,0 +1,20 @@
+#legend li span {
+  width: 3.6rem;
+  height: 1.2rem;
+  display: inline-block;
+  margin: 0 5px 0.8rem 0;
+  vertical-align: -9.4rem;
+}
+#legend ul {
+  list-style: none;
+  font: 1.2rem Verdana;
+  white-space: nowrap;
+}
+
+.chartjsLegend li span {
+  display: inline-block;
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 5px;
+  border-radius: 2.5rem;
+}

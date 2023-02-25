@@ -1,0 +1,221 @@
+.mainSlide {
+  height: 100vh;
+  position: relative;
+  background: #ffffff;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  align-items: flex-start;
+  width: 40rem;
+  box-shadow: 0 0.4rem 3rem rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  padding: 3rem;
+  overflow-y: scroll;
+  z-index: 9999;
+  padding-top: 7rem;
+  overflow-x: hidden;
+
+  // &::-webkit-scrollbar {
+  //   display: none;
+  // }
+}
+
+.mainSlide::-webkit-scrollbar:horizontal {
+  display: none;
+}
+
+/* width */
+.mainSlide::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+/* Track */
+.mainSlide::-webkit-scrollbar-track {
+  -webkit-box-shadow: none !important;
+  background-color: transparent !important;
+}
+
+/* Handle */
+.mainSlide::-webkit-scrollbar-thumb {
+  background: #020202;
+  border-radius: 30rem;
+}
+
+/* Handle on hover */
+.mainSlide::-webkit-scrollbar-thumb:hover {
+  background: #020202;
+}
+
+.slideLeft {
+  animation: moveRightBoxAnime 0.5s backwards;
+}
+
+.slideOut {
+  animation: moveOutAnime 0.5s forwards;
+}
+
+.overlay {
+  position: fixed;
+  visibility: hidden;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.408);
+  backdrop-filter: blur(2.9px);
+  animation: ease-in-out;
+  -webkit-backdrop-filter: blur(2.9px);
+  -webkit-animation: opacity 100ms cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+  animation: opacity 100ms cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+  -webkit-transform: translateX(0);
+  transition-timing-function: opacity 0.5s
+    cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+  transform: translateX(0);
+  transition: opacity 50ms;
+  z-index: 9999;
+  -webkit-transition: opacity 0.5s ease-in-out;
+  -moz-transition: opacity 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.icon-box {
+  width: 4rem;
+  height: 4rem;
+  background-color: #f7f8f7;
+  border-radius: 50%;
+  margin-right: 1.5rem;
+  display: grid;
+  place-items: center;
+  transition: all 0.3s;
+
+  .icon {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .img-box {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}
+
+.cancel {
+  position: relative;
+  font-weight: 600;
+  font-size: 2.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border-radius: 50%;
+  width: 5rem;
+  height: 5rem;
+  background: #f7f8f7;
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+}
+
+.mainSlide h2 {
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 3rem;
+  padding-top: 2.5rem;
+  letter-spacing: -0.05em;
+  color: #020202;
+}
+
+.mainSlide small {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 140%;
+  text-align: start;
+  letter-spacing: -0.03em;
+  color: #676767;
+  padding-top: 1rem;
+}
+
+.title_contain {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  justify-content: space-between;
+  > div:last-child {
+    color: black !important;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+}
+
+.children {
+  color: black;
+  margin-top: 1rem;
+  width: 100%;
+  height: max-content;
+}
+
+.steps {
+  display: flex;
+  width: 100%;
+  margin-top: 1.5rem;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.steps p {
+  padding-top: 5px;
+  //   width: 94.5px;
+  display: flex;
+  justify-content: space-between;
+  background: #cccccc;
+  border-radius: 1.2rem;
+}
+
+.stepsActive {
+  padding-top: 5px;
+  width: 94.5px;
+  display: flex;
+  justify-content: space-between;
+  background: #020202 !important;
+  border-radius: 1.2rem;
+}
+
+.stepsInactive {
+  padding-top: 5px;
+  width: 94.5px;
+  display: flex;
+  justify-content: space-between;
+  background: #e5e6e6 !important;
+  border-radius: 1.2rem;
+}
+
+.stepsDone {
+  padding-top: 5px;
+  width: 94.5px;
+  display: flex;
+  justify-content: space-between;
+  background: #1ace37 !important;
+  border-radius: 1.2rem;
+}
+
+@keyframes moveRightBoxAnime {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes moveOutAnime {
+  100% {
+    transform: translateX(100%);
+  }
+  0% {
+    transform: translateX(0%);
+  }
+}

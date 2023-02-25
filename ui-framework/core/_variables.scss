@@ -1,0 +1,61 @@
+
+//theme colors
+$primary: #0B8376 !default;
+$secondary: #755AE2 !default;
+$error: #FF0F00 !default;
+$info: #f6c31c !default;
+$white: #F7F8F7;
+$black: #020202;
+$accent-primary: #FFE7D6 !default;
+$accent-secondary: #FFE7D6 !default;
+
+//color palette
+$colors: (
+"primary": $primary,
+"secondary": $secondary,
+"accent-primary": $accent-primary,
+"accent-secondary": $accent-secondary,
+"error": $error,
+"info": $info,
+"white": #F7F8F7,
+"green": #0B8376,
+"purple": #755AE2,
+"orange": #EA872D,
+"black": #020202,
+"deep-green": #014345
+);
+
+
+
+// spacing 
+$base-padding: 1rem;
+$base-margin: 1rem;
+
+// borders
+$base-border-thickness: 1px;
+$base-border-radius: 0.8rem;
+$border-primary-color: #CCCCCC;
+$border-secondary-color:  #df4209a1;
+
+$border-colors: (
+"primary": $border-primary-color,
+"secondary": $border-secondary-color,
+"error": $error,
+"info": $info,
+"white": #F7F8F7,
+"green": #0B8376,
+"purple": #755AE2,
+"orange": #EA872D,
+"black": #020202,
+"light-gray": #FAFAFA,
+"deep-green": #014345
+);
+
+//box-shadow
+$base-box-shadow: 1px 3px 5px rgba(0, 0, 0, 10%);
+
+//font-size 
+$base-font-size: 1rem;
+$font-size-sm: $base-font-size * 0.75;
+$font-size-xl: $base-font-size * 1.5;
+$font-weight: thin,normal, lighter, light, bold, bolder, 100, 200, 300, 400, 500, 600, 700, 800,  900;

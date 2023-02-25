@@ -1,0 +1,11 @@
+.invite_banner {
+    height: max-content;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: 90% center;
+    background-image: url('../../src/assets/img/banner.png');
+
+    h5 {
+        text-transform: uppercase;
+    }
+}
