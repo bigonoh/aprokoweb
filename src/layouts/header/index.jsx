@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../../assets/img/logo.svg'
 import { icons } from '../../assets/icons/icons';
-import { FaBell } from '../../../node_modules/react-icons/fa/index.esm';
+import { FaBell } from 'react-icons/fa';
 require('./style.css')
 
 function DashboardHeader() {
