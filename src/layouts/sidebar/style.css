@@ -1,0 +1,51 @@
+.main_sidebar_wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  background-color: #1C100B;
+  position: relative;
+}
+.main_sidebar_wrapper .menu-item {
+  background-color: rgba(240, 240, 240, 0.1176470588);
+  cursor: pointer;
+  position: relative;
+}
+.main_sidebar_wrapper .menu-item:hover {
+  background-color: rgba(240, 240, 240, 0.1882352941);
+  transition: background 0.5s;
+}
+.main_sidebar_wrapper .menu_footer {
+  position: absolute;
+  bottom: 0;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 89%;
+  align-items: center;
+  background-color: white;
+  border-top-left-radius: 130px;
+  border-bottom-left-radius: 130px;
+}
+.main_sidebar_wrapper .menu_footer .avatar-sm {
+  align-items: center;
+  border: double 0.5em transparent;
+  border-radius: 50%;
+  background-image: linear-gradient(white, white), linear-gradient(to right, green, orange);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+.main_sidebar_wrapper .menu_footer .profile-box p {
+  font-size: small;
+  font-weight: 600;
+}
+.main_sidebar_wrapper .menu_footer .profile-box span {
+  background-color: rgba(173, 146, 59, 0.188);
+  width: 100%;
+  font-size: 1.4rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+.main_sidebar_wrapper .menu_footer .profile-box span:hover {
+  background-color: rgba(142, 169, 7, 0.1882352941);
+  transition: background 0.5s;
+}/*# sourceMappingURL=style.css.map */

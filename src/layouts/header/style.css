@@ -1,0 +1,20 @@
+.dashboard_header_wrap {
+  position: absolute;
+  top: 0;
+  height: 5rem;
+  width: 100vw;
+  background-color: white;
+  justify-content: flex-end;
+  border-bottom: 0.5px solid #cccccc;
+}
+.dashboard_header_wrap .notification_icon {
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: aliceblue;
+  padding: 0.5rem;
+  border-radius: 50%;
+}
+.dashboard_header_wrap .notification_icon .notification {
+  width: 2rem;
+  height: 2rem;
+}/*# sourceMappingURL=style.css.map */
