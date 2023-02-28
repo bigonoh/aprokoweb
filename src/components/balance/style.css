@@ -1,0 +1,58 @@
+.balance {
+  height: 248px;
+  width: 366px;
+}
+.balance .mainBalance {
+  position: relative;
+  height: 228px;
+  background-color: #FFE7D6;
+  border-radius: 8px;
+  display: flex;
+}
+.balance .mainBalance .left {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+}
+.balance .mainBalance .left h2 {
+  font-size: 32px;
+  font-weight: normal;
+}
+.balance .mainBalance .left p {
+  font-size: 16px;
+}
+.balance .mainBalance .right {
+  position: absolute;
+  margin-top: 63.6%;
+  right: 9.56%;
+  left: 79.23%;
+  bottom: 14.04%;
+}
+.balance .details {
+  display: flex;
+  margin-top: 20px;
+}
+.balance .details .withdrawn, .balance .details .pending {
+  display: flex;
+  background-color: #F0F0F0;
+  width: 175px;
+  height: 60px;
+  border-radius: 8px;
+  margin-right: 10px;
+}
+.balance .details .withdrawn p, .balance .details .withdrawn h2, .balance .details .pending p, .balance .details .pending h2 {
+  font-size: 14px;
+}
+.balance .details .withdrawn .left, .balance .details .pending .left {
+  position: center;
+  margin: 20px;
+  margin-right: 0px;
+}
+.balance .details .withdrawn .left.icon, .balance .details .pending .left.icon {
+  color: #DF4309;
+}
+.balance .details .withdrawn .right, .balance .details .pending .right {
+  margin: 5px;
+  margin-top: 15px;
+}/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,89 @@
+.balance{
+    height: 248px;
+    width: 366px;
+
+    .mainBalance{
+        position: relative;
+        height: 228px;
+        background-color: #FFE7D6;
+        border-radius: 8px;
+        display: flex;
+
+        .left{
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-content: space-around;
+
+        h2{
+            font-size:32px;
+            font-weight: normal;
+        }
+
+        p{
+            font-size: 16px;
+        }
+
+    }
+
+    .right{
+        position: absolute;
+        margin-top: 63.6%;
+        right: 9.56%;
+        left: 79.23%;
+        bottom: 14.04%;
+     }   
+
+    }
+
+    .details{
+        display: flex;
+        margin-top: 20px;
+
+        .withdrawn , .pending {
+            display: flex;
+            background-color: #F0F0F0;
+            width: 175px;
+            height: 60px;
+            border-radius: 8px;
+            margin-right: 10px;
+
+            p, h2{
+                font-size: 14px;
+            }
+
+            .left{
+                position: center;
+                margin: 20px;
+                margin-right: 0px;
+                
+             &.icon{   
+                color:#DF4309;
+             }
+            }
+
+            .right{
+                margin:5px;
+                margin-top: 15px; 
+            }
+
+        }
+
+
+        // .pending{
+        //     background-color: #F0F0F0;
+        //     width: 175px;
+        //     height: 60px;
+        //     border-radius: 8px;
+        //     margin-left: 10px;
+
+        //     p, h2{
+        //         font-size: 12px;
+        //     } 
+
+        //     .left, .right{
+        //         margin: 10px;
+        //     }
+        
+    }
+}

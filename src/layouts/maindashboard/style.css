@@ -1,0 +1,32 @@
+.mainDashboard {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+}
+.mainDashboard .top {
+  display: flex;
+}
+.mainDashboard .top .topBalance {
+  position: relative;
+  margin-right: 100px;
+}
+.mainDashboard .top .topBalance .submit {
+  position: absolute;
+  margin-top: 80px;
+  width: 362px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #3FA302;
+  border: none;
+}
+.mainDashboard .top .topWidget {
+  margin-left: 70px;
+}
+.mainDashboard .bottom {
+  display: flex;
+  margin-top: 40px;
+}
+.mainDashboard .bottom .bottomWidget {
+  margin-top: 50px;
+  margin-left: 100px;
+}/*# sourceMappingURL=style.css.map */

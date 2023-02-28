@@ -1,0 +1,59 @@
+.widget {
+  border: 1px solid black;
+  border-color: #999999;
+  border-radius: 8px;
+  height: 496px;
+  width: 517px;
+  position: relative;
+}
+.widget h2 {
+  margin: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  font: manrope;
+  color: #999999;
+}
+.widget .wrapper {
+  position: absolute;
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  align-content: space-evenly;
+  height: 314px;
+  width: 417px;
+  font-size: 16px;
+}
+.widget .wrapper .comment {
+  margin-bottom: auto;
+}
+.widget .wrapper .comment p {
+  margin-bottom: 10px;
+}
+.widget .wrapper .comment .button {
+  align-content: space-between;
+}
+.widget .wrapper .comment .button button {
+  width: 119px;
+  height: 38px;
+  border-radius: 8px;
+  background-color: rgba(63, 163, 2, 0.2509803922);
+  margin-right: 20px;
+  border: none;
+}
+.widget .wrapper .comment .button .info {
+  margin-left: 20px;
+  background-color: transparent;
+  border: 1px solid #999999;
+}
+.widget .viewMore {
+  border-top: 1px solid black;
+  border-radius: 8px;
+  border-color: #999999;
+  margin-top: 400px;
+}
+.widget .viewMore p {
+  text-align: center;
+  padding: 10px;
+}/*# sourceMappingURL=style.css.map */

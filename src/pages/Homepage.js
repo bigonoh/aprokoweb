@@ -14,7 +14,7 @@ function Homepage() {
             <div className="hero-layer"></div>
             <div className="hero-body">
             <header className="hero-navbar flex justify-between pt-10 pb-10 container-140">
-            <div className="nav-right gap-10 text-sm justify-center align-center flex">
+            <div className="nav-right gap-10 text-sm just ify-center align-center flex">
                 <figure>
                     <img src={logo}  alt="" />
                 </figure>

@@ -1,0 +1,43 @@
+.mainDashboard{
+    display: flex;
+    flex-direction: column;
+    margin: 30px;
+
+    .top{
+        display: flex;
+
+        .topBalance{
+            position: relative;
+            margin-right: 100px;
+
+        .submit{
+            position: absolute;
+            margin-top: 80px;
+            width: 362px;
+            height: 40px;
+            border-radius: 8px;
+            background-color: #3FA302;
+            border: none;
+            }
+
+        }
+
+        .topWidget{
+            margin-left: 70px;
+        }
+    }
+
+    .bottom{
+        display: flex;
+        margin-top: 40px;
+
+
+        .bottomWidget{
+            margin-top: 50px;
+            margin-left: 100px;
+        }
+
+       
+    }
+}
+

@@ -1,10 +1,12 @@
 import React from 'react'
+import MainDashboard from '../../layouts/maindashboard/MainDashboard'
 import DashboardLayout from '../../layouts/DashboardLayout'
 
 function DashboardHome() {
   return (
     <DashboardLayout>
-        The main dashboard
+      
+        <MainDashboard/>
     </DashboardLayout>
   )
 }

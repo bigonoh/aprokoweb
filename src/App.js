@@ -11,6 +11,7 @@ import PrivateRoute from "./components/auth/PrivateRoute";
 import { Helmet } from "react-helmet";
 import { Toaster } from "react-hot-toast";
 import Homepage from "./pages/Homepage";
+import DashboardHome from "./pages/dashboard/DashboardHome";
 
 function App() {
   const location = useLocation();
@@ -70,6 +71,11 @@ function App() {
               location={location}
               path="/"
               element={<Homepage />}
+            ></Route>
+            <Route
+              location={location}
+              path="dashboard"
+              element={<DashboardHome />}
             ></Route>
             <Route
               location={location}
