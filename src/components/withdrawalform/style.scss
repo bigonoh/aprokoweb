@@ -1,0 +1,45 @@
+.withdrawalForm{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 446px;
+    width: 387px;
+    gap: 30px;
+
+    .tittle{
+        font-size:20px;
+        font-weight: 400; 
+        margin-bottom: 5px;
+        margin-right: 275px;
+
+    }
+    .account{
+        font-size:20px;
+        font-weight: 400; 
+        margin-bottom: 5px;
+        margin-right: 250px;
+
+    }
+
+    .amount, .pass{
+        margin-right: 300px;
+        font-size:20px;
+        font-weight: 400; 
+        margin-bottom: 5px;
+        }
+
+    .text{
+        width: 387px;
+        margin-bottom: 20px;
+          
+    }
+
+    .button{
+        margin-top: 20px;
+        width: 387px;
+        height: 40px;
+        border-radius: 8px;
+        background-color: #3FA302;
+        border: none;
+      }
+}

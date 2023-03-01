@@ -18,6 +18,8 @@
 .balance .mainBalance .left h2 {
   font-size: 32px;
   font-weight: normal;
+  margin-top: 20px;
+  margin-bottom: 40px;
 }
 .balance .mainBalance .left p {
   font-size: 16px;

@@ -7,7 +7,7 @@ const Balance = () => {
     <div className='balance'>
         <div className='mainBalance'>
         <div className='left'>
-        {icons.coin}
+        {icons.salary}
 <h2>NGN 15,000</h2>
 <p>Aporoko Pay Balance</p>
                 </div>
