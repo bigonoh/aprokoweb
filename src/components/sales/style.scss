@@ -1,0 +1,42 @@
+.sales{
+    position: relative;
+    flex-direction: column;
+    background-color: #F5F5F5;
+    width: 308px;
+    height: 228px;
+    border-radius: 12px;
+
+    .wrapper{
+        font-family:Manrope ;
+        position: absolute;
+        margin: 50px;
+
+    .wave{
+        margin-left: 2rem;
+        height: 38px;
+        width: 85px;
+        
+
+    }
+
+    .sale{
+
+        p{
+         margin: 20px;
+         margin-bottom: 10px;   
+        font-size: 1.6rem;
+        color: #676767;
+        }
+
+        span{   
+           font-size: 3.2rem;
+           font-weight: 400;
+           letter-spacing: -0.05em;
+           line-height: 44px; 
+           margin-left: 20px;
+           }
+        
+    }
+}
+}
+

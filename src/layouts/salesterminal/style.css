@@ -1,0 +1,73 @@
+.salesTerminal {
+  margin: 3rem;
+}
+.salesTerminal .text {
+  margin-left: 1rem;
+  margin-top: 12.4rem;
+}
+.salesTerminal .text .heading {
+  font-size: 2rem;
+}
+.salesTerminal .top {
+  display: flex;
+  flex-direction: row;
+  margin-top: 9.6rem;
+  margin-bottom: 1rem;
+}
+.salesTerminal .top .mainBalance {
+  position: relative;
+  height: 228px;
+  background-color: #FFE7D6;
+  border-radius: 8px;
+  display: flex;
+}
+.salesTerminal .top .mainBalance .left {
+  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: space-around;
+}
+.salesTerminal .top .mainBalance .left h2 {
+  font-size: 32px;
+  font-weight: normal;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+.salesTerminal .top .mainBalance .left p {
+  font-size: 16px;
+}
+.salesTerminal .top .mainBalance .right {
+  position: absolute;
+  margin-top: 63.6%;
+  right: 9.56%;
+  left: 79.23%;
+  bottom: 14.04%;
+}
+.salesTerminal .top .saleCard {
+  margin-right: 6rem;
+  margin-left: 6rem;
+}
+
+.middle {
+  display: flex;
+}
+.middle .searchIcon {
+  position: absolute;
+  margin-left: 84rem;
+  margin-top: 1rem;
+  z-index: 1;
+}
+.middle .search {
+  margin-left: 0.3rem;
+  width: 88.7rem;
+  height: 5rem;
+  border: 1px solid #F5F5F5;
+  border-radius: 8px;
+  position: relative;
+}
+.middle .dates {
+  width: 17.6rem;
+  margin-left: 4.3rem;
+  border-radius: 0.8rem;
+  border: 1px solid #F5F5F5;
+}/*# sourceMappingURL=style.css.map */

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';  
 require('./style.css')
 import SellInfo from  '../../components/sellinfo/SellInfo'
 import Balance from '../../components/balance/Balance'
