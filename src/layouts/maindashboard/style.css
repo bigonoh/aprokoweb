@@ -1,21 +1,15 @@
 .mainDashboard {
   display: flex;
   flex-direction: column;
-  margin: 30px;
 }
 .mainDashboard .top {
   display: flex;
 }
 .mainDashboard .top .topBalance {
-  position: relative;
   margin-right: 100px;
 }
 .mainDashboard .top .topBalance .submit {
-  position: absolute;
-  margin-top: 80px;
-  width: 362px;
-  height: 40px;
-  border-radius: 8px;
+  border-radius: 0.8rem;
   background-color: #3FA302;
   border: none;
 }

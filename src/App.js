@@ -12,7 +12,7 @@ import { Helmet } from "react-helmet";
 import { Toaster } from "react-hot-toast";
 import Homepage from "./pages/Homepage";
 import DashboardHome from "./pages/dashboard/DashboardHome";
-
+require('./App.css')
 function App() {
   const location = useLocation();
   setAuthToken();

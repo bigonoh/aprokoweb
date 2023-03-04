@@ -1,28 +1,28 @@
 .balance {
-  height: 248px;
-  width: 366px;
+  height: 24.8rem;
+  width: 36.6rem;
 }
 .balance .mainBalance {
   position: relative;
-  height: 228px;
+  height: 22.8rem;
   background-color: #FFE7D6;
   border-radius: 8px;
   display: flex;
 }
 .balance .mainBalance .left {
-  margin: 20px;
+  margin: 3rem;
   display: flex;
   flex-direction: column;
   align-content: space-around;
 }
 .balance .mainBalance .left h2 {
-  font-size: 32px;
+  font-size: 3.2rem;
   font-weight: normal;
-  margin-top: 20px;
-  margin-bottom: 40px;
+  margin-top: 2rem;
+  margin-bottom: 4rem;
 }
 .balance .mainBalance .left p {
-  font-size: 16px;
+  font-size: 1.6rem;
 }
 .balance .mainBalance .right {
   position: absolute;
@@ -33,28 +33,42 @@
 }
 .balance .details {
   display: flex;
-  margin-top: 20px;
+  margin-top: 3rem;
+  width: 100%;
+  justify-content: space-between;
 }
 .balance .details .withdrawn, .balance .details .pending {
   display: flex;
   background-color: #F0F0F0;
-  width: 175px;
-  height: 60px;
-  border-radius: 8px;
-  margin-right: 10px;
+  border-radius: 0.8rem;
+  padding: 1rem;
+  align-items: center;
 }
-.balance .details .withdrawn p, .balance .details .withdrawn h2, .balance .details .pending p, .balance .details .pending h2 {
-  font-size: 14px;
+.balance .details .withdrawn p, .balance .details .pending p {
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1.9rem;
+  color: #929191;
+}
+.balance .details .withdrawn h2, .balance .details .pending h2 {
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 19px;
+  color: #212121;
 }
 .balance .details .withdrawn .left, .balance .details .pending .left {
-  position: center;
-  margin: 20px;
-  margin-right: 0px;
+  align-items: flex-start;
+  display: flex;
+}
+.balance .details .withdrawn .left svg, .balance .details .pending .left svg {
+  width: 70%;
 }
 .balance .details .withdrawn .left.icon, .balance .details .pending .left.icon {
   color: #DF4309;
 }
 .balance .details .withdrawn .right, .balance .details .pending .right {
-  margin: 5px;
-  margin-top: 15px;
+  align-items: start;
+  display: flex;
+  flex-direction: column;
+  text-align: flex-start;
 }/*# sourceMappingURL=style.css.map */

@@ -8,8 +8,8 @@ const Balance = () => {
         <div className='mainBalance'>
         <div className='left'>
         {icons.salary}
-<h2>NGN 15,000</h2>
-<p>Aporoko Pay Balance</p>
+        <h2>NGN 15,000</h2>
+          <p>Aporoko Pay Balance</p>
                 </div>
                 <div className='right'>
                 {icons.vector}
@@ -22,7 +22,7 @@ const Balance = () => {
                 {icons.wave}
                 </div>
                 <div className='right'>
-                <p>withdrawn</p>
+                <p>Withdrawn</p>
                 <h2>NGN 25,000</h2>
                 </div>
             </div>
@@ -31,7 +31,7 @@ const Balance = () => {
             {icons.wave}
                 </div>
                 <div className='right'>
-                <p>pending</p> 
+                <p>Pending</p> 
                 <h2>NGN 6,000</h2> 
             </div>
         </div>

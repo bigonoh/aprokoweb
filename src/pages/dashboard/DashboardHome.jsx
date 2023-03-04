@@ -6,8 +6,8 @@ import RequestLayout from '../../layouts/requestlayout/RequestLayout'
 function DashboardHome() {
   return (
     <DashboardLayout>
-      <RequestLayout/>
-        {/* <MainDashboard/> */}
+      {/* <RequestLayout/> */}
+        <MainDashboard/>
     </DashboardLayout>
   )
 }

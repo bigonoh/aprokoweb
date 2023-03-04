@@ -16,7 +16,7 @@ const MainDashboard = () => {
         <div className='top'>
             <div className='topBalance'>
                 <Balance />
-                <button className='submit'>Request Withdrawal</button>
+                <button className='text-white btn-secondary'>Request Withdrawal</button>
             </div>
             <div className='topwidget'>  
        <Widget/>

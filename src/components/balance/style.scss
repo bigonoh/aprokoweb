@@ -1,29 +1,29 @@
 .balance{
-    height: 248px;
-    width: 366px;
+    height: 24.8rem;
+    width: 36.6rem;
 
     .mainBalance{
         position: relative;
-        height: 228px;
+        height: 22.8rem;
         background-color: #FFE7D6;
         border-radius: 8px;
         display: flex;
 
         .left{
-            margin: 20px;
+            margin: 3rem;
             display: flex;
             flex-direction: column;
             align-content: space-around;
 
         h2{
-            font-size:32px;
+            font-size:3.2rem;
             font-weight: normal;
-            margin-top: 20px;
-            margin-bottom: 40px;
+            margin-top: 2rem;
+            margin-bottom: 4rem;
         }
 
         p{
-            font-size: 16px;
+            font-size: 1.6rem;
         }
 
     }
@@ -40,24 +40,41 @@
 
     .details{
         display: flex;
-        margin-top: 20px;
+        margin-top: 3rem;
+        width: 100%;
+        justify-content: space-between;
 
         .withdrawn , .pending {
             display: flex;
             background-color: #F0F0F0;
-            width: 175px;
-            height: 60px;
-            border-radius: 8px;
-            margin-right: 10px;
+            border-radius: 0.8rem;
+            padding: 1rem;
+            align-items: center;
 
-            p, h2{
-                font-size: 14px;
+            p {
+                font-weight: 400;
+                font-size: 1.4rem;
+                line-height: 1.9rem;
+                color: #929191;
+            }
+
+            h2 {
+                font-weight: 400;
+                font-size: 1.4rem;
+                line-height: 19px;
+                
+                color: #212121;
+                
             }
 
             .left{
-                position: center;
-                margin: 20px;
-                margin-right: 0px;
+               align-items: flex-start;
+               display: flex;
+
+               svg {
+                width: 70%;
+               }
+                
                 
              &.icon{   
                 color:#DF4309;
@@ -65,8 +82,10 @@
             }
 
             .right{
-                margin:5px;
-                margin-top: 15px; 
+                align-items: start;
+               display: flex;
+               flex-direction: column; 
+               text-align: flex-start;  
             }
 
         }
