@@ -1,0 +1,31 @@
+.sales {
+  position: relative;
+  flex-direction: column;
+  background-color: #F5F5F5;
+  width: 30.8rem;
+  height: 22.8rem;
+  border-radius: 1.2rem;
+}
+.sales .wrapper {
+  font-family: Manrope;
+  position: absolute;
+  margin: 5rem;
+}
+.sales .wrapper .wave {
+  margin-left: 2rem;
+  height: 3.8rem;
+  width: 8.5rem;
+}
+.sales .wrapper .sale p {
+  margin: 2rem;
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  color: #676767;
+}
+.sales .wrapper .sale span {
+  font-size: 3.2rem;
+  font-weight: 400;
+  letter-spacing: -0.05em;
+  line-height: 4.4rem;
+  margin-left: 2rem;
+}/*# sourceMappingURL=style.css.map */

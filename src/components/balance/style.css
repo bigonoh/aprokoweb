@@ -1,6 +1,10 @@
 .balance {
-  height: 24.8rem;
+  height: -moz-fit-content;
+  height: fit-content;
   width: 36.6rem;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
 }
 .balance .mainBalance {
   position: relative;
@@ -41,7 +45,7 @@
   display: flex;
   background-color: #F0F0F0;
   border-radius: 0.8rem;
-  padding: 1rem;
+  padding: 1rem 2rem;
   align-items: center;
 }
 .balance .details .withdrawn p, .balance .details .pending p {

@@ -5,11 +5,14 @@ import { ButtonPrimary } from '../components/buttons/ButtonReuse';
 import Select from 'react-select';
 import { icons } from '../assets/icons/icons';
 import Footer from '../components/global/footer/Footer';
+import { useNavigate } from 'react-router-dom';
 require('./style.css')
 function Homepage() {
 
+    const navigate= useNavigate()
+
   return (
-    <div>
+    <div style={{overflow: 'auto'}}>
         <div style={{backgroundImage: `url(${heroBg})`}} className="hero-section-80">
             <div className="hero-layer"></div>
             <div className="hero-body">
@@ -31,13 +34,13 @@ function Homepage() {
             </div>
 
             <div className="flex gap-10">
-                <button className='col-30 btn-outlined-primary-sm text-white'>
+                <button onClick={() => navigate('/dashboard')} className='col-30 btn-outlined-primary-sm text-white'>
                     Ask Aprokopay
                 </button>
-                <button className='col-30 btn-outlined-primary-sm text-white'>
+                <button onClick={() => navigate('/sell')} className='col-30 btn-outlined-primary-sm text-white'>
                     Sell info
                 </button>
-                <button className='col-30 btn-primary-sm text-white'>
+                <button onClick={() => navigate('/login')} className='col-30 btn-primary-sm text-white'>
                     Login
                 </button>
                 {/* <ButtonPrimary

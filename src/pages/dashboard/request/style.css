@@ -1,0 +1,32 @@
+.create_post_wrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.create_post_wrapper .create_card {
+  width: 80%;
+  margin-top: 3rem;
+  box-shadow: 0px 4px 39px -3px rgba(136, 136, 136, 0.1);
+}
+.create_post_wrapper .header {
+  padding: 3rem;
+  border-bottom: 0.1rem solid #eee;
+}
+.create_post_wrapper .post_body {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  flex-direction: column;
+  padding: 3rem;
+  justify-content: flex-start;
+}
+.create_post_wrapper .post_body .input-container {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 1.4rem;
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: start;
+}/*# sourceMappingURL=style.css.map */

@@ -1,4 +1,13 @@
+.dashboard_layout_wrapper {
+    overflow: hidden;
+    height: 100vh;
+}
+
 .layout_children {
     overflow: auto;
-    height: 100vh;
+    height: 100%;
+    width: 100%;
+    padding-right: 5rem;
+    display: flex;
+    justify-content: center;
 }
