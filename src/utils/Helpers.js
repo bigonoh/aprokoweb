@@ -15,7 +15,7 @@ export const reactSelectStyleTable = {
   }),
   option: (provided, state) => ({
     ...provided,
-    backgroundColor: state.isSelected ? "#020202" : "white",
+    backgroundColor: state.isSelected ? "#DE430A" : "white",
   }),
 };
 

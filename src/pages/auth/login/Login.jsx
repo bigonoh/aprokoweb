@@ -1,9 +1,39 @@
-import React from 'react'
+import { RavenButton, RavenInputField } from 'raven-bank-ui'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import logo from '../../../assets/img/logo.svg'
+import { loginUser } from '../../../redux/user'
 
 require('./style.css')
 
 function Login() {
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const [formData, setFormData] = useState({
+    email: '',
+    password: ''
+  })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const obj = { ...formData, [name]: value };
+    setFormData(obj);
+  };
+
+  const handleSubmit = async () => {
+    let payload = {
+      email: formData.email,
+      password: formData.password
+    }
+    let data = await dispatch(loginUser(payload))
+    if (data.payload.status === 'success') {
+      navigate('/dashboard')
+    }
+  }
+
   return (
     <div className='flex wv-100 hv-100'>
         <div className="wp-30 login-left ">
@@ -21,13 +51,27 @@ function Login() {
           </div>
 
           <div className="flex mt-50 gap-30 login-form-wrapper wp-50 flex-column">
-            <div className="flex align-f-start flex-column wp-100 gap-10">
+          <div className="flex align-f-start flex-column wp-100 gap-10">
             <label className='text-b'>Email*</label>
-            <input type="text" className="form-control" />
+            <RavenInputField 
+            type="email"
+            name="email"
+            onChange={handleChange}
+            color={'black-light'}
+            value={formData.email}
+            placeholder={'Enter your email'}
+            />
             </div>
             <div className="flex align-f-start flex-column wp-100 gap-10">
             <label className='text-b'>Password*</label>
-            <input type="text" className="form-control" />
+            <RavenInputField 
+            type="password"
+            color={'black-light'}
+            onChange={handleChange}
+            value={formData.password}
+            name="password"
+            placeholder={'Enter secure password'}
+            />
             </div>
 
             <div className="flex remember-me align-center">
@@ -36,9 +80,7 @@ function Login() {
             </div>
 
             <div className='wp-100 mt-30'>
-              <button className="btn-primary-md text-md text-700 text-white login-btn">
-                Login
-              </button>
+              <RavenButton label="Login"  onClick={handleSubmit} className="btn-primary-md text-md text-700 login-btn"  color="orange"/>
             </div>
 
             <div className="flex gap-10">

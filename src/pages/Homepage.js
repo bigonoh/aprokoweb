@@ -6,10 +6,32 @@ import Select from 'react-select';
 import { icons } from '../assets/icons/icons';
 import Footer from '../components/global/footer/Footer';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getLocations } from '../redux/home';
+import { reactSelectStyleTable } from '../utils/Helpers';
 require('./style.css')
 function Homepage() {
 
     const navigate= useNavigate()
+
+    const dispatch = useDispatch()
+
+ 
+    useEffect(() => {
+        dispatch(getLocations())
+    }, [])
+    
+    const { location } = useSelector((state) => state.home);
+
+      // format select option for react select
+  const formatSelectOption = (param) => {
+    const list = param.map((chi) => {
+      const { locals, name } = chi.states;
+      return { label: name, value: name , locals: locals};
+    });
+    return list;
+  };
 
   return (
     <div style={{overflow: 'auto'}}>
@@ -59,7 +81,9 @@ function Homepage() {
                 type="text"/>
                 <Select
                 placeholder="Choose your location"
+                styles={reactSelectStyleTable}
                 className='select-react' 
+                    options={formatSelectOption(location)}
                 />
                 <div className="grid-center bg-white cursor-pointer curved p-10">
                     {icons.search}

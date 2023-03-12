@@ -5,24 +5,24 @@ import setAuthToken from "../utils/auth";
 import { toast } from "react-hot-toast";
 import { customErrorId, customSuccessId } from "../utils/Helpers";
 
-export const createTransactionPin = createAsyncThunk(
-  "admin/create-transaction-pin",
+export const getLocations = createAsyncThunk(
+  "public/get_location",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.post("", payload);
-      //       // console.log("register", data);
 
-      if (!data.success) {
+      const  {data}  = await axios.get("/locations", payload);
+
+      if (!data) {
         // toast.error(data.message, {
         //   theme: 'colored'
         // });
         // return thunkAPI.rejectWithValue(data);
       }
-      if (data.success) {
+      if (data) {
         //   toast.success(data.data.message, {
         //     theme: "colored",
         //   });
-        // await thunkAPI.dispatch(login(data));
+        await thunkAPI.dispatch(setLocation(data));
         //   return thunkAPI.rejectWithValue(data);
       }
     } catch (err) {
@@ -38,161 +38,29 @@ export const createTransactionPin = createAsyncThunk(
   }
 );
 
-export const bvnAndNinVerification = createAsyncThunk(
-  "admin/bvn-nin-verification",
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await axios.post("", payload);
-      // console.log("register", data);
-
-      if (!data.success) {
-        // toast.error(data.message, {
-        //   theme: 'colored'
-        // });
-        // return thunkAPI.rejectWithValue(data);
-      }
-      if (data.success) {
-        //   toast.success(data.data.message, {
-        //     theme: "colored",
-        //   });
-        // await thunkAPI.dispatch(login(data));
-        //   return thunkAPI.rejectWithValue(data);
-      }
-    } catch (err) {
-      // ;
-      if (err.response.data.status === "fail" && err.response.status !== 401) {
-        toast.error(err.response.data.message, {
-          theme: "colored",
-          position: "top-right"
-        });
-      }
-      return thunkAPI.rejectWithValue(err);
-    }
-  }
-);
-
-export const cacVerification = createAsyncThunk(
-  "admin/cac-verification",
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await axios.post("", payload);
-      // console.log("register", data);
-
-      if (!data.success) {
-        // toast.error(data.message, {
-        //   theme: 'colored'
-        // });
-        // return thunkAPI.rejectWithValue(data);
-      }
-      if (data.success) {
-        //   toast.success(data.data.message, {
-        //     theme: "colored",
-        //   });
-        // await thunkAPI.dispatch(login(data));
-        //   return thunkAPI.rejectWithValue(data);
-      }
-    } catch (err) {
-      // ;
-      if (err.response.data.status === "fail" && err.response.status !== 401) {
-        toast.error(err.response.data.message, {
-          theme: "colored",
-          position: "top-right"
-        });
-      }
-      return thunkAPI.rejectWithValue(err);
-    }
-  }
-);
-
-export const businessInfomationVerification = createAsyncThunk(
-  "admin/business-info-verification",
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await axios.post("", payload);
-      // console.log("register", data);
-
-      if (!data.success) {
-        // toast.error(data.message, {
-        //   theme: 'colored'
-        // });
-        // return thunkAPI.rejectWithValue(data);
-      }
-      if (data.success) {
-        //   toast.success(data.data.message, {
-        //     theme: "colored",
-        //   });
-        // await thunkAPI.dispatch(login(data));
-        //   return thunkAPI.rejectWithValue(data);
-      }
-    } catch (err) {
-      // ;
-      if (err.response.data.status === "fail" && err.response.status !== 401) {
-        toast.error(err.response.data.message, {
-          theme: "colored",
-          position: "top-right"
-        });
-      }
-      return thunkAPI.rejectWithValue(err);
-    }
-  }
-);
-
-export const addressVerification = createAsyncThunk(
-  "admin/address-verification",
-  async (payload, thunkAPI) => {
-    try {
-      const { data } = await axios.post("", payload);
-      // console.log("register", data);
-
-      if (!data.success) {
-        // toast.error(data.message, {
-        //   theme: 'colored'
-        // });
-        // return thunkAPI.rejectWithValue(data);
-      }
-      if (data.success) {
-        //   toast.success(data.data.message, {
-        //     theme: "colored",
-        //   });
-        // await thunkAPI.dispatch(login(data));
-        //   return thunkAPI.rejectWithValue(data);
-      }
-    } catch (err) {
-      // ;
-      if (err.response.data.status === "fail" && err.response.status !== 401) {
-        toast.error(err.response.data.message, {
-          theme: "colored",
-          position: "top-right"
-        });
-      }
-      return thunkAPI.rejectWithValue(err);
-    }
-  }
-);
 
 export const home = createSlice({
   name: "home",
   initialState: {
-    // user: JSON.parse(localStorage.getItem("user")),
+    location: [],
     isAuth: false,
     loading: false,
     // token: JSON.parse(localStorage.getItem('token')) ,
   },
   reducers: {
-    setUser: (state, action) => {
-      localStorage.setItem("user", JSON.stringify(action.payload));
+    setLocation: (state, action) => {
       state.isAuth = true;
-      state.user = action.payload;
+      state.location = action.payload;
     },
   },
   extraReducers: {
-    [createTransactionPin.pending]: (state) => {
+    [getLocations.pending]: (state) => {
       state.loading = true;
     },
-    [createTransactionPin.fulfilled]: (state) => {
+    [getLocations.fulfilled]: (state) => {
       state.loading = false;
     },
-    [createTransactionPin.rejected]: (state) => {
+    [getLocations.rejected]: (state) => {
       // localStorage.removeItem("token");
       state.loading = false;
       state.isAuth = false;
@@ -202,6 +70,6 @@ export const home = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { login, setUser } = home.actions;
+export const { setLocation, setUser } = home.actions;
 
 export default home.reducer;

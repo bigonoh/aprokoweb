@@ -1,0 +1,11 @@
+.w.invite_banner {
+  height: -moz-max-content;
+  height: max-content;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: 90% center;
+  background-image: url("../../../src/assets/img/banner.png");
+}
+.w.invite_banner h5 {
+  text-transform: uppercase;
+}/*# sourceMappingURL=style.css.map */

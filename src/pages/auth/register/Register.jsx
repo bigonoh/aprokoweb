@@ -1,14 +1,50 @@
 import React from 'react'
+import { useState } from 'react'
 import logo from '../../../assets/img/logo.svg'
-
+import {RavenButton, RavenInputField } from 'raven-bank-ui'
+import { useDispatch } from 'react-redux'
+import { registerUser } from '../../../redux/user'
+import { useNavigate } from 'react-router-dom';
 require('./style.css')
 
 function Register() {
+  
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const [formData, setFormData] = useState({
+    email: '',
+    name: '',
+    phone_no: '',
+    password: ''
+  })
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    const obj = { ...formData, [name]: value };
+    setFormData(obj);
+  };
+
+  const handleSubmit = async () => {
+    let payload = {
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone_no.replace(/\s/g, ''),
+      password: formData.password
+    }
+    let data = await dispatch(registerUser(payload))
+    if (data.payload.status === 'success') {
+      navigate('/dashboard')
+    }
+  }
+  
+
+
   return (
     <div className='flex wv-100 hv-100'>
         <div className="wp-30 register-left ">
 
-        </div>
+        </div> 
 
         <div className="wp-70 register-right flex flex-column ml-20 pl-50 mt-20 ">
           <figure className="w-90">
@@ -23,25 +59,52 @@ function Register() {
           <div className="flex mt-50 gap-30 register-form-wrapper wp-50 flex-column">
             <div className="flex align-f-start flex-column wp-100 gap-10">
             <label className='text-b'>Name*</label>
-            <input type="text" className="form-control" />
+            <RavenInputField 
+            type="text"
+            color={'black-light'}
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder={'Adechukwu Ciroma'}
+            />
             </div>
             <div className="flex align-f-start flex-column wp-100 gap-10">
             <label className='text-b'>Email*</label>
-            <input type="text" className="form-control" />
+            <RavenInputField 
+            type="email"
+            name="email"
+            onChange={handleChange}
+            color={'black-light'}
+            value={formData.email}
+            placeholder={'Enter your email'}
+            />
+            </div>
+            <div className="flex align-f-start flex-column wp-100 gap-10">
+            <label className='text-b'>Phone Number*</label>
+            <RavenInputField 
+            type="phone"
+            name="phone_no"
+            onChange={handleChange}
+            color={'black-light'}
+            value={formData.phone_no}
+            placeholder={'Enter phone number'}
+            />
             </div>
             <div className="flex align-f-start flex-column wp-100 gap-10">
             <label className='text-b'>Password*</label>
-            <input type="text" className="form-control" />
-            </div>
-            <div className="flex align-f-start flex-column wp-100 gap-10">
-            <label className='text-b'>Confirm Password*</label>
-            <input type="text" className="form-control" />
+            <RavenInputField 
+            type="password"
+            color={'black-light'}
+            onChange={handleChange}
+            value={formData.password}
+            name="password"
+            placeholder={'Enter secure password'}
+            />
             </div>
 
             <div className='wp-100 mt-30'>
-              <button className="btn-primary-md text-md text-700 text-white register-btn">
-                Register
-              </button>
+              <RavenButton onClick={handleSubmit} className="btn-primary-md text-md text-700 text-white register-btn" label="Register" color="orange"/>
+
             </div>
 
             <div className="flex gap-10">
