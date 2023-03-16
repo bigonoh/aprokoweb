@@ -11,7 +11,11 @@
   height: 22.8rem;
   background-color: #FFE7D6;
   border-radius: 8px;
+  flex-direction: column;
   display: flex;
+}
+.balance .mainBalance .btn-add-money {
+  width: 100%;
 }
 .balance .mainBalance .left {
   margin: 3rem;
@@ -23,17 +27,17 @@
   font-size: 3.2rem;
   font-weight: normal;
   margin-top: 2rem;
-  margin-bottom: 4rem;
 }
 .balance .mainBalance .left p {
   font-size: 1.6rem;
 }
 .balance .mainBalance .right {
-  position: absolute;
-  margin-top: 63.6%;
-  right: 9.56%;
-  left: 79.23%;
-  bottom: 14.04%;
+  flex-direction: row;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 2rem;
+  gap: 2rem;
 }
 .balance .details {
   display: flex;
@@ -75,4 +79,68 @@
   display: flex;
   flex-direction: column;
   text-align: flex-start;
+}
+
+.modal_content_wrapper .modal_title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.modal_content_wrapper .modal_title p {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+.modal_content_wrapper .modal_title small {
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #929191;
+}
+.modal_content_wrapper .payment_details {
+  background: #FFFFFF;
+  padding: 2rem;
+  margin-top: 2rem;
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 4px 22px rgba(208, 213, 221, 0.25);
+  border-radius: 16px;
+}
+.modal_content_wrapper .payment_details .note {
+  background: #FFF6ED;
+  border-radius: 100px;
+  font-size: 1rem;
+  font-weight: 400;
+  width: -moz-fit-content;
+  width: fit-content;
+  text-align: center;
+  padding: 0.8rem 2rem;
+  color: #EA872D;
+}
+.modal_content_wrapper .payment_details .bank {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+.modal_content_wrapper .payment_details .bank p:first-child {
+  color: #929191;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.modal_content_wrapper .payment_details .bank p:nth-child(2) {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #EA872D;
+}
+.modal_content_wrapper .payment_details .bank p:last-child {
+  color: #929191;
+  font-size: 1.2rem;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.modal_content_wrapper .amount_contain {
+  margin-top: 2rem;
 }/*# sourceMappingURL=style.css.map */

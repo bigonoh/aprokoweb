@@ -26,12 +26,13 @@
   margin-top: 4rem;
 }
 .mainDashboard .left-dashboard .widget {
-  border: 0.01rem solid rgba(204, 204, 204, 0.8);
   border-radius: 0.8rem;
   height: 49.6rem;
   position: relative;
   overflow: hidden;
   width: 100%;
+  background-color: white;
+  box-shadow: 0px 4px 39px -3px rgba(136, 136, 136, 0.1);
 }
 .mainDashboard .left-dashboard .widget h2 {
   margin: 2rem;
@@ -40,7 +41,6 @@
   color: black;
 }
 .mainDashboard .left-dashboard .widget .wrapper {
-  position: absolute;
   margin: 2rem;
   height: -moz-min-content;
   height: min-content;
@@ -48,12 +48,14 @@
   flex-direction: column;
   align-items: flex-start;
   overflow: auto;
-  align-content: space-evenly;
-  height: 31.4rem;
+  gap: 2rem;
+  width: 100%;
+  height: 100%;
 }
 .mainDashboard .left-dashboard .widget .wrapper .comment:not(:last-child) {
   border-bottom: 0.05rem solid #cccccc;
   padding-bottom: 2rem;
+  width: 100%;
 }
 .mainDashboard .left-dashboard .widget .wrapper .comment {
   margin-bottom: auto;
@@ -61,11 +63,13 @@
   font-size: 1.2rem !important;
   width: 100%;
   display: flex;
+  padding-right: 2rem;
   flex-direction: column;
   gap: 2rem;
 }
 .mainDashboard .left-dashboard .widget .wrapper .comment .button {
-  align-content: space-between;
+  justify-content: space-between;
+  display: flex;
 }
 .mainDashboard .left-dashboard .widget .wrapper .comment .button button {
   width: 119px;

@@ -9,7 +9,7 @@ import PrivateRoute from "./components/auth/PrivateRoute";
 // import { getUser } from "./redux/user";
 // import { ToastContainer } from "react-toastify";
 import { Helmet } from "react-helmet";
-import { Toaster } from "react-hot-toast";
+import { RavenToast } from "raven-bank-ui";
 import Homepage from "./pages/Homepage";
 import DashboardHome from "./pages/dashboard/DashboardHome";
 require('./App.css')
@@ -100,7 +100,7 @@ function App() {
             {/* auth route group end */}
           </Routes>
       </div>
-      <Toaster />
+      <RavenToast />
     </Provider>
   );
 }

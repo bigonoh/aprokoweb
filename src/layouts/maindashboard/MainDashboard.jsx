@@ -1,14 +1,14 @@
 import React from 'react'
-import { Link } from 'react-router-dom';  
 require('./style.css')
-import SellInfo from  '../../components/sellinfo/SellInfo'
 import Balance from '../../components/balance/Balance'
-import Widget from    '../../components/widget/Widget'
 import { icons } from '../../assets/icons/icons';
-import Table from 'rc-table';
+import { useSelector } from 'react-redux';
+import { formatNumWithCommaNaira } from '../../utils/Helpers';
+import { useState } from 'react';
+import { RavenModal } from 'raven-bank-ui';
 
 
-const MainDashboard = () => {
+const MainDashboard = ({trx}) => {
    const styles = {
     button: {
       backgroundColor: 'blue'}, };
@@ -17,6 +17,9 @@ const MainDashboard = () => {
         { name: 'Purchase of information from jack', age: 28, address: 'some where', key: '1' },
         { name: 'Rose', age: 36, address: 'some where', key: '2' },
       ];
+
+      const { infos } = useSelector((state) => state.info);
+      const posts = infos?.results
 
   return (
     <div className='mainDashboard'>
@@ -49,22 +52,22 @@ const MainDashboard = () => {
                   <thead>
                     <tr>
                     <th>Summary</th>
-                    <th>Date</th>
+                    <th>Amount</th>
                     </tr>
                     
                   </thead>
                   <tbody>
-                    {data?.map((chi, idx) => {
+                    {trx?.map((chi, idx) => {
                       return (
                         <tr key={idx}>
                           <td>
                             <div className="table_content_wrap">
-                            {chi.name}
+                            {chi.purpose}
                             </div>
                           </td>
                           <td>
                             <div className="table_content_wrap">
-                            {chi.age}
+                            {formatNumWithCommaNaira(String(chi.amount )) }
                             </div>
                           </td>
                       
@@ -86,27 +89,17 @@ const MainDashboard = () => {
             <div className='widget'>
             <h2>Latest Posts</h2>
             <div className="wrapper">
-            <div className='comment'>
-            <p>I know so and so who sells so and so in so and so location Iron and leather work...</p>
-            <div className='button'>
-                <button>N200</button>
-                <button className='info'>More info</button> 
-            </div>
-            </div>
-            <div className='comment'>
-            <p>I know so and so who sells so and so in so and so location Iron and leather work...</p>
-            <div className='button'>
-                <button>N200</button>
-                <button className='info'>More info</button> 
-            </div>
-            </div>
-            <div className='comment'>
-            <p>I know so and so who sells so and so in so and so location Iron and leather work...</p>
-            <div className='button'>
-                <button>N200</button>
-                <button className='info'>More info</button> 
-            </div>
-            </div>
+              {posts?.map((chi, idx) => {
+                return(
+                  <div key={idx} className='comment'>
+                  <p>{chi?.title}</p>
+                  <div className='button'>
+                      <button>{formatNumWithCommaNaira(String(chi?.price))}</button>
+                      <button className='info'>More info</button> 
+                  </div>
+                  </div>
+                )
+              })}
 
             </div>
             </div>
@@ -125,6 +118,7 @@ const MainDashboard = () => {
                     </btn>
             </div>
        </div>
+      
     </div>
   )
 }

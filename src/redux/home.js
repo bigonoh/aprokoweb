@@ -1,9 +1,7 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../utils/axios";
-import setAuthToken from "../utils/auth";
-import { toast } from "react-hot-toast";
-import { customErrorId, customSuccessId } from "../utils/Helpers";
+import { toast } from "raven-bank-ui";
 
 export const getLocations = createAsyncThunk(
   "public/get_location",
@@ -68,6 +66,7 @@ export const home = createSlice({
     },
   },
 });
+
 
 // Action creators are generated for each case reducer function
 export const { setLocation, setUser } = home.actions;

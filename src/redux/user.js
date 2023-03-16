@@ -1,9 +1,8 @@
 /* eslint-disable jsx-a11y/alt-text */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "../utils/axios";
-import { toast } from "react-hot-toast";
+import { toast } from "raven-bank-ui";
 import setAuthToken from "../utils/auth";
-import { useNavigate } from "react-router-dom";
 
 
 export const registerUser = createAsyncThunk(
@@ -164,7 +163,7 @@ export const resendEmail = createAsyncThunk(
 );
 
 export const getUser = createAsyncThunk(
-  "register/get-user",
+  "dashboard/get-user",
   async (payload, thunkAPI) => {
     try {
       // console.log(payload);
@@ -176,17 +175,17 @@ export const getUser = createAsyncThunk(
           theme: "colored",
       
         });
+
+        console.log(data)
         // return thunkAPI.rejectWithValue(data);
       }
       if (data.status === "success") {
         // console.log("resend otp", data);
-        const business1 = data?.data?.business;
-        const account_details1 = data?.data?.account_details;
-        const user1 = data?.data?.user;
-        await thunkAPI.dispatch(setUser(user1));
-        await thunkAPI.dispatch(setBusiness(business1));
-        await thunkAPI.dispatch(setAccountDetails(account_details1));
-        return thunkAPI.rejectWithValue(data);
+        const user = data?.data?.user;
+        const wallet = data?.data?.wallet;
+        await thunkAPI.dispatch(setUser(user));
+        await thunkAPI.dispatch(setWallet(wallet));
+        return data;
       }
     } catch (err) {
       // ;
@@ -219,6 +218,7 @@ export const loginUser = createAsyncThunk(
           position: "top-center",
           
         });
+
         return;
       }
       if (data?.data?.status !== "success") {
@@ -241,10 +241,12 @@ export const loginUser = createAsyncThunk(
         toast.success(data?.data?.message, {
           theme: "colored",
           position: "top-right",
-      
           
         });
-        await thunkAPI.dispatch(login(data?.data));
+
+        console.log(data.data.data, 'unim')
+        await thunkAPI.dispatch(setUser(data?.data.data.user));
+        await thunkAPI.dispatch(login(data?.data.data.tokens.access.token));
         return (data?.data);
       }
     } catch (err) {
@@ -414,13 +416,10 @@ export const user = createSlice({
   name: "user",
   initialState: {
     user: [],
-    business: [],
+    wallet: [],
     account_details: [],
     isAuth: false,
     loading: false,
-    loadUser: false,
-    loadUpdate: false,
-    loadLogout: false,
     token: localStorage?.getItem('token') ,
   },
   reducers: {
@@ -428,12 +427,8 @@ export const user = createSlice({
       state.user = action.payload;
       state.isAuth = true;
     },
-    setBusiness: (state, action) => {
-      state.business = action.payload;
-      state.isAuth = true;
-    },
-    setAccountDetails: (state, action) => {
-      state.account_details = action.payload;
+    setWallet: (state, action) => {
+      state.wallet = action.payload;
       state.isAuth = true;
     },
     login: (state, action) => {
@@ -566,7 +561,7 @@ export const user = createSlice({
       state.loadLogout = false;
     },
     [logoutUser.rejected]: (state) => {
-      // localStorage.removeItem("token");
+      // localStorage.removeItem("toke`n");
       state.loadLogout = false;
       state.isAuth = false;
       state = null;
@@ -576,6 +571,6 @@ export const user = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { login, setUser, setBusiness, setAccountDetails } = user.actions;
+export const { login, setUser, setWallet, setAccountDetails } = user.actions;
 
 export default user.reducer;

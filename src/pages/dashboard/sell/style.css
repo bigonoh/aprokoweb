@@ -1,6 +1,8 @@
 .create_post_wrapper {
   display: flex;
   width: 100%;
+  height: -moz-max-content;
+  height: max-content;
   justify-content: center;
 }
 .create_post_wrapper .create_card {
@@ -12,6 +14,14 @@
   padding: 3rem;
   border-bottom: 0.1rem solid #eee;
 }
+.create_post_wrapper .header h6 {
+  color: rgb(25, 25, 25);
+}
+.create_post_wrapper .header p {
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: rgb(126, 126, 126);
+}
 .create_post_wrapper .post_body {
   display: flex;
   align-items: flex-start;
@@ -19,6 +29,14 @@
   flex-direction: column;
   padding: 3rem;
   justify-content: flex-start;
+}
+.create_post_wrapper .post_body .grouped-input-container {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
 }
 .create_post_wrapper .post_body .input-container {
   width: 70%;

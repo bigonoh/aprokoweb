@@ -17,7 +17,7 @@ function Sidebar() {
                 Dashboard
             </div>
             <div onClick={() => navigate('/buy')} className="p-15 curved text-md menu-item text-white">
-                Buy
+                Ask Aprokopay
             </div>
             <div onClick={() => navigate('/sell')} className="p-15 curved text-md menu-item text-white">
                 Sell

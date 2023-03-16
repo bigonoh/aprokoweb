@@ -1,8 +1,6 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 import React, { useEffect, useRef, useState } from "react";
 import popStyles from "./styles.module.css";
-import RavenBlack from "../../../assets/raven-black-logo";
-import ravenSuccess from "../../../assets/new_success_img.png";
 import { ButtonPrimary } from "../../buttons/ButtonReuse";
 import { isMobile } from "../../../utils/DetectMobile";
 
@@ -123,65 +121,7 @@ function Popup(props) {
       className={popStyles.overlay}
     >
       <div className={popStyles.popup}>
-        <div className={popStyles.topCard}>
-          <div className={popStyles.top_image}>
-            <img src={ravenSuccess} alt="" />
-          </div>
-        </div>
-        <div className={popStyles.bottomCard}>
-          <h3>{props.title ? props.title : "Onetin Purchase Succesful"}</h3>
-          <small>
-            {props.summary
-              ? props.summary || props.sub
-              : "Your one tin one tin was succesfull and an email of your reciept has been sent to the email provided to this account"}
-          </small>
-          {props.link && (
-            <div className={popStyles.copyWrapper}>
-              <span style={{ display: "flex" }}>
-                <p style={{ width: "20rem", overflow: "hidden" }}>
-                  {props.link}
-                </p>
-                <p>...</p>
-              </span>
-              <div onClick={() => copyLink()}>{isCopied}</div>
-            </div>
-          )}
-          <div
-            className={`${popStyles.actBtn} ${
-              props.disableAnotherAction ? popStyles.actBtn2 : undefined
-            }`}
-          >
-            <ButtonPrimary
-              width="100%"
-              btnStyle="james"
-              label={props.btnLabel ? props.btnLabel : "Back to somewhere"}
-              action={() => closeHandler()}
-            />
-          </div>
-          {!props.disableAnotherAction && (
-            <>
-              <div className={popStyles.another_action}>
-                <div></div>
-                <span>Perform Another Action</span>
-                <div></div>
-              </div>
-              <div className={popStyles.more_actions}>
-                <div>
-                  <p>{buy_airtime}</p>
-                  <p>Buy Airtime</p>
-                </div>
-                <div>
-                  <p>{buy_data}</p>
-                  <p>Buy Data</p>
-                </div>
-                <div>
-                  <p>{request_money}</p>
-                  <p>Request Money</p>
-                </div>
-              </div>
-            </>
-          )}
-        </div>
+
       </div>
     </div>
   );

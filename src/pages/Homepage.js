@@ -9,7 +9,10 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getLocations } from '../redux/home';
-import { reactSelectStyleTable } from '../utils/Helpers';
+import { formatNumWithoutCommaNaira, reactSelectStyleTable } from '../utils/Helpers';
+import { getInfos } from '../redux/info';
+import { RavenModal } from 'raven-bank-ui';
+import { useState } from 'react';
 require('./style.css')
 function Homepage() {
 
@@ -17,21 +20,36 @@ function Homepage() {
 
     const dispatch = useDispatch()
 
+    const [view, onView] = useState({
+        active: false,
+        content: ''
+    })
+
+    const {content} = view
+
  
     useEffect(() => {
         dispatch(getLocations())
+        dispatch(getInfos({limit: '5'}))
+        // dispatch(getUser())
     }, [])
     
-    const { location } = useSelector((state) => state.home);
+    const { location } = useSelector((state) => state?.home);
+    const { infos } = useSelector((state) => state?.info);
+    const { user } = useSelector((state) => state?.user);
 
+    const posts = infos?.results
       // format select option for react select
   const formatSelectOption = (param) => {
-    const list = param.map((chi) => {
+    param = param ? param : [{}]
+    const list = param?.map((chi) => {
       const { locals, name } = chi.states;
       return { label: name, value: name , locals: locals};
     });
     return list;
   };
+
+//   console.log(infos)
 
   return (
     <div style={{overflow: 'auto'}}>
@@ -62,8 +80,8 @@ function Homepage() {
                 <button onClick={() => navigate('/sell')} className='col-30 btn-outlined-primary-sm text-white'>
                     Sell info
                 </button>
-                <button onClick={() => navigate('/login')} className='col-30 btn-primary-sm text-white'>
-                    Login
+                <button onClick={() => navigate(user.length > 0 ? "/dashboard" : "/login")} className='col-30 btn-primary-sm text-white'>
+                   {user.length > 0 ? "Dashboard" : "Login"}
                 </button>
                 {/* <ButtonPrimary
                 btnStyle="btn-primary-lg"
@@ -94,87 +112,50 @@ function Homepage() {
     
         </div>
         {/* End of Hero Section, Begin info quick view section */}
-        <section className=" mt-20 p-10  flex flex-column">
+        {posts?.map((chi, idx) => {
 
-            {/* cards start here */}
-                <div className="flex mt-10 pb-20 mb-10 pr-50 pl-50   border-b-primary justify-between">
-                    <div className="flex align-center gap-30">
-                            <img className="avatar rounded bg-primary-light-8" src="https://api.dicebear.com/5.x/adventurer/svg?seed=Casper" alt="d" />
-                            <div className="flex wp-75 flex-column gap-20 align-start">
-                                <span className='text-md'>
-                                I know so and so who sells so and so in so and so location Iron and leather work...
-                                </span>
-                                <div className="flex gap-20">
-                                    <button className="btn-outlined-secondary">
-                                        N200
-                                    </button>
-                                    <button className="btn-outlined-secondary">
-                                        See More
-                                    </button>
+            const { selling, price, title, } = chi
+
+            return (
+                <section key ={idx}  className=" mt-20 p-10  flex flex-column">
+
+                {/* cards start here */}
+                    <div className="flex mt-10 pb-20 mb-10 pr-50 pl-50   border-b-primary justify-between">
+                        <div className="flex align-center gap-30">
+                                <img className="avatar rounded bg-primary-light-8" src="https://api.dicebear.com/5.x/adventurer/svg?seed=Casper" alt="d" />
+                                <div className="flex wp-75 flex-column gap-20 align-start">
+                                    <span className='text-md'>
+                                    {title}
+                                    </span>
+                                    <div className="flex gap-20">
+                                        <button className="btn-outlined-secondary">
+                                            {formatNumWithoutCommaNaira(String(price))}
+                                        </button>
+                                        <button onClick={() => onView({
+                                            active: true,
+                                            content: chi
+                                        })} className="btn-outlined-secondary">
+                                            See More
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
+                        </div>
+                        <button className={`${selling ? "btn-primary" :"btn-secondary"} text-white`}>
+                             {selling ? "Buy Info" : 'Answer'}
+                        </button>
+          
                     </div>
-                    <button className="btn-secondary text-white">
-                        Buy Info
-                    </button>
- 
-                </div>
-
-                <div className="flex mt-10 pb-20 mb-10 pr-50 pl-50   border-b-primary justify-between">
-                    <div className="flex align-center gap-30">
-                            <img className="avatar rounded bg-primary-light-8" src="https://api.dicebear.com/5.x/adventurer/svg?seed=Casper" alt="d" />
-                            <div className="flex wp-75 flex-column gap-20 align-start">
-                                <span className='text-md'>
-                                I know so and so who sells so and so in so and so location Iron and leather work...
-                                </span>
-                                <div className="flex gap-20">
-                                    <button className="btn-outlined-secondary">
-                                        N200
-                                    </button>
-                                    <button className="btn-outlined-secondary">
-                                        See More
-                                    </button>
-                                </div>
-                            </div>
-                    </div>
-                    <button className="btn-secondary text-white">
-                        Buy Info
-                    </button>
- 
-                </div>
-
-                <div className="flex mt-10 pb-20 mb-10 pr-50 pl-50   border-b-primary justify-between">
-                    <div className="flex align-center gap-30">
-                            <img className="avatar rounded bg-primary-light-8" src="https://api.dicebear.com/5.x/adventurer/svg?seed=Casper" alt="d" />
-                            <div className="flex wp-75 flex-column gap-20 align-start">
-                                <span className='text-md'>
-                                I know so and so who sells so and so in so and so location Iron and leather work...
-                                </span>
-                                <div className="flex gap-20">
-                                    <button className="btn-outlined-secondary">
-                                        N200
-                                    </button>
-                                    <button className="btn-outlined-secondary">
-                                        See More
-                                    </button>
-                                </div>
-                            </div>
-                    </div>
-                    <button className="btn-secondary text-white">
-                        Buy Info
-                    </button>
- 
-                </div>
-             {/* cards end here here */}
-
-             <div className="align-center mt-30 justify-center  flex">
-                <button className="btn-primary text-white">
+          
+                 
+            </section>
+            )
+        })}
+         <div className="align-center mt-30 justify-center  flex">
+                <button onClick={() => navigate('/informations')} className="btn-primary text-white">
                     See More
                 </button>
              </div>
-
-             
-        </section>
+  
 
         {/* how aproko pay works section */}
         <section className="flex flex-column bg-accent-primary mt-30 curved-top pt-30 pb-20 mb-20">
@@ -244,9 +225,6 @@ function Homepage() {
         </div>
 
         
-        
-
-
              </div>
              {/* end of grid */}
                 <div className="flex mt-50 wp-100 justify-center">
@@ -329,7 +307,34 @@ function Homepage() {
         </section>
 
          {/* <======= Middle Section Ends ======> */}
+         <RavenModal
+      visble={view.active}
+      btnColor="black-light"
+      btnLabel={'Pay'}
+      onBtnClick={() => onView({
+        active: false,
+        content: ''
+      })}
+      onClose={() => onView({
+        active: false,
+        content: ''
+      })}
+      >
+    <div className="modal_content_wrapper">
+          <div className="modal_title">
+            <p>{ content?.title}</p>
+            <small>{content?.description}</small>
+            </div>
+
+            <div className="meta_content">
+            {/* <p><b>City: </b>{content?.location[0]?.city}</p> */}
+            {/* <p><b>State: </b>{content?.location[0]?.state}</p> */}
+            <p><b>Price: </b>{content?.price}</p>
+            </div>
+
         
+            </div>
+      </RavenModal>
         {/* Footer section begins */}
         <Footer />
     </div>
