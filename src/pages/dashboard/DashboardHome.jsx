@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react'
 import MainDashboard from '../../layouts/maindashboard/MainDashboard'
 import DashboardLayout from '../../layouts/DashboardLayout'
-import RequestLayout from '../../layouts/requestlayout/RequestLayout'
-import SalesTerminal from '../../layouts/salesterminal/SalesTerminal'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUser } from '../../redux/user'
 import { getInfos } from '../../redux/info'
@@ -16,7 +14,7 @@ function DashboardHome() {
 
   useEffect(() => {
     dispatch(getInfos({limit: '5'}))
-    dispatch(getTrx({limit: '10'})) 
+    dispatch(getTrx({limit: '5', sort: 'asc'})) 
 }, [])
 
   useEffect(() => {

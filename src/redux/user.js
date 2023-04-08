@@ -29,7 +29,7 @@ export const registerUser = createAsyncThunk(
         });
         // console.log(data, 'from this point');
         await thunkAPI.dispatch(login(data?.data?.tokens?.access?.token));
-        // return thunkAPI.rejectWithValue(data);
+        await localStorage.setItem('user', JSON.stringify(data?.data.data.user));
         return data;
 
         
@@ -244,8 +244,8 @@ export const loginUser = createAsyncThunk(
           
         });
 
-        console.log(data.data.data, 'unim')
         await thunkAPI.dispatch(setUser(data?.data.data.user));
+        await localStorage.setItem('user', JSON.stringify(data?.data.data.user));
         await thunkAPI.dispatch(login(data?.data.data.tokens.access.token));
         return (data?.data);
       }
@@ -415,7 +415,7 @@ export const logoutUser = createAsyncThunk(
 export const user = createSlice({
   name: "user",
   initialState: {
-    user: [],
+    user: JSON.parse(localStorage.getItem("user")),
     wallet: [],
     account_details: [],
     isAuth: false,

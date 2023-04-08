@@ -85,9 +85,12 @@ function Login() {
 
             <div className="flex gap-10">
               <p>Dont have an account?</p>
-              <p className="text-primary text-700">
+              <div style={{cursor: 'pointer'}} onClick={() => navigate('/register')}>
+              <p  className="text-primary text-700">
                 Sign up
               </p>
+              </div>
+             
             </div>
            
           </div>

@@ -34,7 +34,7 @@ const PrivateRoute = () => {
           isLoggingOut = true; // disallow re-entrant calls
           try {
             if (
-              error?.response?.status === 401 ||
+              // error?.response?.status === 401 ||
               error?.response?.data?.message === "Please authenticate"
             ) {
               toast.info( 

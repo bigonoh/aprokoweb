@@ -57,17 +57,17 @@ const MainDashboard = ({trx}) => {
                     
                   </thead>
                   <tbody>
-                    {trx?.map((chi, idx) => {
+                    {trx?.results?.map((chi, idx) => {
                       return (
                         <tr key={idx}>
                           <td>
                             <div className="table_content_wrap">
-                            {chi.purpose}
+                            {chi?.purpose}
                             </div>
                           </td>
                           <td>
                             <div className="table_content_wrap">
-                            {formatNumWithCommaNaira(String(chi.amount )) }
+                            {formatNumWithCommaNaira(String(chi?.amount )) }
                             </div>
                           </td>
                       

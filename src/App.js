@@ -3,7 +3,7 @@ import { auth_routes_group } from "./routes/auth";
 import { dashboard_route_group } from "./routes/dashboard";
 import React, { useEffect } from "react";
 import store from "./redux/store";
-import { Provider, useDispatch } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import setAuthToken from "./utils/auth";
 import PrivateRoute from "./components/auth/PrivateRoute";
 // import { getUser } from "./redux/user";
@@ -12,19 +12,19 @@ import { Helmet } from "react-helmet";
 import { RavenToast } from "raven-bank-ui";
 import Homepage from "./pages/Homepage";
 import DashboardHome from "./pages/dashboard/DashboardHome";
+import { admin_panel_route_group } from './routes/admin/index';
 require('./App.css')
 function App() {
   const location = useLocation();
   setAuthToken();
+  
+  const { user } = useSelector((state) => state?.user);
 
-  // useEffect(() => {
-
-  // }, [])
 
   //initialize electricity bill on time confirmation
 
   return (
-    <Provider store={store}>
+    <>
       {/* <ElectricityOntime /> */}
       <div className="App">
         {/* <Helmet>
@@ -74,11 +74,6 @@ function App() {
             ></Route>
             <Route
               location={location}
-              path="dashboard"
-              element={<DashboardHome />}
-            ></Route>
-            <Route
-              location={location}
               path="*"
               element={<Navigate to="/" />}
             ></Route>
@@ -98,10 +93,22 @@ function App() {
               );
             })}
             {/* auth route group end */}
+
+            {/* admin route group start */}
+            {admin_panel_route_group.map((route, idx) => {
+
+              if (user?.role !== 'admin') return;
+              return (
+                <Route element={<PrivateRoute />} key={idx}>
+                  <Route location={location} key={idx} exact {...route} />;
+                </Route>
+              );
+            })}
+            {/* admin route group end */}
           </Routes>
       </div>
       <RavenToast />
-    </Provider>
+    </>
   );
 }
 

@@ -1,7 +1,33 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import DashboardLayout from '../../../layouts/DashboardLayout'
+import './styles.css';
+import { icons } from '../../../assets/icons/icons';
+import { formatNumWithCommaNaira } from '../../../utils/Helpers';
+import { RavenPagination, RavenTable, RavenTableRow } from 'raven-bank-ui';
+import { useDispatch, useSelector } from 'react-redux';
+import { getSales } from '../../../redux/info';
+import {DateTime} from 'luxon'
 
 function Sales() {
+
+  const dispatch = useDispatch()
+  const [page, setPage] = useState(1)
+
+  useEffect(() => {
+        let payload = {
+          page: page,
+          limit: 20
+        }
+        dispatch(getSales(payload))
+  }, [page])
+
+  const { sales } = useSelector((state) => state?.info);
+
+  const sale = sales?.results
+  
+
+  const headerList = ["TITLE", "BUYER", "AMOUNT", " DATE"];
+
   return (
     <DashboardLayout>
     <div className="sales_wrapper">
@@ -15,7 +41,7 @@ function Sales() {
           <div className="stat">
             <span>
               <p>Total Income</p>
-              <h6>{formatNumWithCommaNaira('5000')}</h6>
+              <h6>{formatNumWithCommaNaira(String(sales?.amount))}</h6>
             </span>
             <figure>
               {icons.chart}
@@ -24,18 +50,18 @@ function Sales() {
 
           <div className="stat">
             <span>
-              <p>Total Income</p>
+              <p>Total Withdrawal</p>
               <h6>{formatNumWithCommaNaira('5000')}</h6>
             </span>
             <figure>
-              {icons.chart}
+              {icons.chart2}
             </figure>
           </div>
 
           <div className="stat_minimal">
             <span>
               <p>Informations Sold:</p>
-              <h6>{`23`}</h6>
+              <h6>{sales?.totalResults}</h6>
             </span>
             <span>
               <p>Informations Bought:</p>
@@ -49,38 +75,43 @@ function Sales() {
                    {/* table start */}
                    <div className="table-wrap">
               <RavenTable headerList={headerList} action>
-                {bodyList.map((chi, idx) => {
-                  const { amount, date, direction, narration, status, type } =
+                {sale?.map((chi, idx) => {
+                  const { amount, created_at, information, buyer, status, type } =
                     chi;
+
+                    let info = JSON.parse(information);
+
                   return (
                     <RavenTableRow
-                      onEdit={() => {
-                        setShowModal(true);
-                      }}
-                      action
                       key={idx}
-                      one={rowTypeText(direction, narration)}
-                      two={amount}
-                      three={batchTypeWrap(type)}
-                      four={date}
-                      five={formatTypeWrap(status)}
+                      one={info?.title}
+                      two={buyer?.name}
+                      three={formatNumWithCommaNaira(String(amount))}
+                      four={DateTime.fromISO(created_at).toLocaleString(DateTime.DATE_MED)}
+                      ManualAddActions={() => {
+                        return (
+                          <div>{icons.dots}</div>
+                        )
+                      }}
                     />
                   );
                 })}
                 
               </RavenTable>
-              {/* pagination start */}
-              <div className="table-pagination-box">
+             
+            </div>
+            {/* table end */}
+             {/* pagination start */}
+             <div className="table-pagination-box">
                 <RavenPagination
                   color={`black-light`}
                   blackHover
-                  currentPage={1}
-                  totalPage={7}
+                  onNumView={(d) => setPage(d)}
+                  currentPage={page}
+                  totalPage={sales?.totalPages}
                 />
               </div>
               {/* pagination end */}
-            </div>
-            {/* table end */}
       </div>
     </div>
 

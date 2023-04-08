@@ -4,9 +4,10 @@
 }
 
 .layout_children {
-    overflow: auto;
-    height: 100%;
+    overflow: hidden;
+    height: 90%;
     width: 100%;
+    padding-bottom: 3rem;
     padding-right: 5rem;
     display: flex;
     justify-content: center;

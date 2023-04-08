@@ -12,6 +12,7 @@ const ErrorModal = ({
   bigText,
   btnText,
   fillColor,
+  children,
   loading,
 }) => {
   return (
@@ -22,6 +23,9 @@ const ErrorModal = ({
       {/* text start */}
       <p className="text">{smallText}</p>
       {/* text end */}
+      <div style={{marginTop: '1rem'}} className="children">
+        {children}
+      </div>
       {/* btn wrap start */}
       <div className="btn-wrap">
         <p onClick={onCancel} className="cancel">

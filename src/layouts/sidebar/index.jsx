@@ -2,11 +2,16 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { icons } from '../../assets/icons/icons'
+import { useSelector } from 'react-redux';
 require('./style.css')
 
 function Sidebar() {
 
     const navigate = useNavigate()
+    const { user } = useSelector((state) => state?.user);
+
+    // console.log(user, 'user')
+
   return (
     <div className='flex flex-column p-30 wv-20 hv-100  main_sidebar_wrapper'>
         <div className="logo mb-20">
@@ -31,8 +36,14 @@ function Sidebar() {
             <div onClick={() => navigate('/settings')} className="p-15 curved text-md menu-item text-white">
                 Settings
             </div>
+
+            {user?.role == 'admin' && 
+             <div onClick={() => navigate('/admin-panel')} className="p-15 curved text-md menu-item text-white">
+             Admin Panel
+         </div>
+            }
             
-            <div className="menu_footer curved align-center  mb-10  text-black flex flex-row">
+            {/* <div className="menu_footer curved align-center  mb-10  text-black flex flex-row">
                 <div className="avatar-sm flex">
                     <img className='rounded' src="https://wallpapers.com/images/featured/4co57dtwk64fb7lv.jpg" alt="" />
                 </div>
@@ -40,7 +51,7 @@ function Sidebar() {
                     <p className='text-b'>Ezeani Emmanuel</p>
                     <span onClick={() => navigate('/profile')} className='p-5 curved'>View Profile</span>
                 </div>
-            </div>
+            </div> */}
 
         </div>
     </div>

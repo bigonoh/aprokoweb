@@ -141,6 +141,7 @@ const handleSubmit = async()=> {
         type="select"
         label={"State*"}
         color={'black-light'}
+        menuPlacement={'top'}
         selectStyles={reactSelectStyleTable}
         className='select-react' 
         selectOption={formatStateSelect(location)}
@@ -159,6 +160,7 @@ const handleSubmit = async()=> {
         type="select"
         label={"City*"}
         name="city"
+        menuPlacement={'top'}
         color={'black-light'}
         selectStyles={reactSelectStyleTable}
         className='select-react' 
@@ -175,6 +177,25 @@ const handleSubmit = async()=> {
     </div>
 
 
+    <div className="input-container">
+      <RavenInputField 
+        type="text"
+        label={"Location"}
+        color={'black-light'}
+        selectStyles={reactSelectStyleTable}
+        className='select-react' 
+        placeholder='e.g around ogombo road, sangotedo'
+        // onChange={(e) => {
+        //   setFormData({
+        //     ...formData,
+        //     status: e.value
+        //   })
+        // }}
+        // value={"formData.state"}
+        // name="state"
+        // placeholder={'Lagos State'}
+    />
+      </div>
       <div className="input-container">
       <RavenInputField 
         type="select"

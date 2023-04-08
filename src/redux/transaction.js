@@ -7,7 +7,7 @@ export const getTrx = createAsyncThunk(
   "public/get_location",
   async (payload, thunkAPI) => {
     try {
-      const  {data}  = await axios.get(`/transaction?limit=${payload.limit || 10 }&page=${payload.page || 1}`, payload);
+      const  {data}  = await axios.get(`/transaction?limit=${payload.limit || 10 }&page=${payload.page || 1} &sortBy=${payload.sort || 'asc'}`, payload);
         console.log(data)
       if (!data) {
         // toast.error(data.message, {
@@ -40,6 +40,34 @@ export const requestWithdrawal = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const  {data}  = await axios.post(`/withdraw`, payload);
+      if (data.status === 'fail') {
+        toast.error(data.message);
+        return thunkAPI.rejectWithValue(data);
+      }
+      if (data.status === 'success') {
+          toast.success(data.message, {
+            theme: "colored",
+          });
+          return (data);
+      }
+    } catch (err) {
+      // ;
+      if (err.response.data.status === "fail" && err.response.status !== 401) {
+        toast.error(err.response.data.message, {
+          theme: "colored",
+          position: "top-right"
+        });
+      }
+      return thunkAPI.rejectWithValue(err);
+    }
+  }
+);
+
+export const makePurchase = createAsyncThunk(
+  "public/purchase",
+  async (payload, thunkAPI) => {
+    try {
+      const  {data}  = await axios.post(`/purchase`, payload);
       if (data.status === 'fail') {
         toast.error(data.message);
         return thunkAPI.rejectWithValue(data);

@@ -5,6 +5,10 @@
   margin: 0;
 }
 
+* {
+  font-family: manrope !important;
+}
+
 html {
   font-size: 62.5%;
   box-sizing: border-box;
@@ -16,7 +20,7 @@ html {
 }
 
 body {
-  font-family: Manrope;
+  font-family: manrope;
 }
 
 ul {

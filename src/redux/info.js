@@ -42,6 +42,46 @@ export const getInfos = createAsyncThunk(
     }
   );
 
+  export const getSales = createAsyncThunk(
+    "/register",
+    async (payload, thunkAPI) => {
+  
+      try {
+  
+        const { data } = await axios.get(`/sale?limit=${payload.limit || 10 }&page=${payload.page || 1}&populate=buyer`, payload);
+        // console.log("login", data);
+        if (data.status !== "success") {
+          toast.error(data.message, {
+            theme: "colored",
+            position: "center-top",
+          });
+          return data;
+        }
+        
+        if (data.status === "success") {
+          // toast.success(data.message, {
+          //   theme: "colored",
+          //   position: "top-center",
+          // });
+          // console.log(data?.data, 'from this point');
+          await thunkAPI.dispatch(setSales(data?.data));
+          return data;
+          
+        }
+        // return thunkAPI.rejectWithValue(data);
+      } catch (err) {
+        if (err.response.data.status === "fail" && err.response.status !== 401) {
+          toast.error(err.response.data.message, {
+            theme: "colored",
+            position: "top-right",
+        
+          });
+          return thunkAPI.rejectWithValue(err);
+        }
+      }
+    }
+  );
+
   export const createInfo = createAsyncThunk(
     "/create-info",
     async (payload, thunkAPI) => {
@@ -86,11 +126,16 @@ export const getInfos = createAsyncThunk(
       infos: [],
       isAuth: false,
       loading: false,
+      sales: [],
       token: localStorage?.getItem('token') ,
     },
     reducers: {
       setInfos: (state, action) => {
         state.infos = action.payload;
+        state.isAuth = true;
+      },
+      setSales: (state, action) => {
+        state.sales = action.payload;
         state.isAuth = true;
       }
     },
@@ -114,6 +159,6 @@ export const getInfos = createAsyncThunk(
 
 
   // Action creators are generated for each case reducer function
-export const { setInfos } = info.actions;
+export const { setInfos, setSales } = info.actions;
 
 export default info.reducer;

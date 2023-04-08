@@ -5,12 +5,17 @@ import Select from 'react-select';
 import { icons } from '../../assets/icons/icons';
 import Footer from '../../components/global/footer/Footer';
 import { useNavigate } from 'react-router-dom';
-import { RavenPagination } from 'raven-bank-ui';
+import { RavenPagination, toast } from 'raven-bank-ui';
 import { useDispatch, useSelector } from 'react-redux';
 import { getLocations } from '../../redux/home';
 import { formatNumWithoutCommaNaira } from '../../utils/Helpers';
 import { getInfos } from '../../redux/info';
+import { usePaystackPayment } from 'react-paystack';
+import env from '../../env';
+import usePay from '../../hooks/usePay';
+import { makePurchase } from '../../redux/transaction';
 require('./style.css')
+
 function PublicPosts() {
 
     const navigate= useNavigate()
@@ -23,8 +28,45 @@ function PublicPosts() {
     }, [page])
     
     const { infos } = useSelector((state) => state.info);
+    const { user } = useSelector((state) => state.user);
 
     const posts = infos.results
+
+
+    const [pay, reference] = usePay();
+    const [payData, setPayData] = useState({})
+
+    let makePay = async (e, data) => {
+        setPayData(data)
+        if (!user.email)  {
+            toast.error("Please login to purchase information")
+        } else {
+            pay({ amount: e, email: user.email });
+      
+        }
+      }
+
+      console.log(payData)
+      
+
+      let trigger = false
+      if (reference){
+        const payload = {
+            title: payData.title,
+            amount: payData.price,
+            info_id: payData.id,
+            information: JSON.stringify(payData),
+            seller : payData.user,
+            ref: reference.trxref,
+            payment_ref: reference.transaction
+        }
+        
+        if (reference.status === "success" && trigger === false){
+            dispatch(makePurchase(payload))
+            trigger = true
+        }
+        // toast.success("Your purchase was successful")
+      }
 
   return (
     <div style={{overflow: 'auto'}}>
@@ -87,10 +129,11 @@ function PublicPosts() {
                                             <button className="btn-outlined-secondary">
                                                 See More
                                             </button>
-                                        </div>
+                                         </div>
                                     </div>
                             </div>
-                            <button className="btn-secondary text-white">
+                            <button onClick={() =>  makePay(price, chi)} 
+                                className="btn-secondary text-white">
                                 Buy Info
                             </button>
 

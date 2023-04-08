@@ -81,66 +81,77 @@
   text-align: flex-start;
 }
 
+.modal_content_wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
 .modal_content_wrapper .modal_title {
+  display: flex;
+  flex-direction: column;
+}
+.modal_content_wrapper .modal_title p {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: rgba(20, 24, 31, 0.963);
+}
+.modal_content_wrapper .modal_title span {
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+}
+.modal_content_wrapper .modal_title span h6 {
+  font-weight: 2.4rem;
+  color: #DF4309;
+}
+.modal_content_wrapper .modal_title span p {
+  font-size: 1.2rem;
+  font-weight: 400;
+  text-transform: capitalize;
+}
+.modal_content_wrapper .info_content {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.modal_content_wrapper .modal_title p {
-  font-size: 1.4rem;
-  font-weight: 600;
-}
-.modal_content_wrapper .modal_title small {
-  font-size: 1.2rem;
-  font-weight: 400;
-  color: #929191;
-}
-.modal_content_wrapper .payment_details {
-  background: #FFFFFF;
-  padding: 2rem;
-  margin-top: 2rem;
-  flex-direction: column;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 4px 22px rgba(208, 213, 221, 0.25);
-  border-radius: 16px;
-}
-.modal_content_wrapper .payment_details .note {
-  background: #FFF6ED;
-  border-radius: 100px;
+.modal_content_wrapper .info_content span h6 {
+  font-weight: 500;
   font-size: 1rem;
+  color: #4c4c4c;
+  text-transform: uppercase;
+}
+.modal_content_wrapper .info_content span p {
   font-weight: 400;
-  width: -moz-fit-content;
-  width: fit-content;
-  text-align: center;
-  padding: 0.8rem 2rem;
-  color: #EA872D;
+  font-size: 1.2rem;
 }
-.modal_content_wrapper .payment_details .bank {
-  margin-top: 2rem;
+.modal_content_wrapper .author_section {
+  border-top: 0.5px solid #cccccc;
+  width: 100%;
+  margin-top: 1rem;
+  padding-top: 1rem;
+}
+.modal_content_wrapper .author_section span {
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
   align-items: center;
+  gap: 0.5rem;
 }
-.modal_content_wrapper .payment_details .bank p:first-child {
-  color: #929191;
-  font-size: 1.2rem;
+.modal_content_wrapper .author_section span h6 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #313030;
+  gap: 0.5rem;
   text-transform: uppercase;
-  font-weight: 500;
 }
-.modal_content_wrapper .payment_details .bank p:nth-child(2) {
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: #EA872D;
+.modal_content_wrapper .author_section span h6 svg {
+  height: 1.5rem;
+  width: 1.5rem;
+  display: grid;
+  place-items: center;
 }
-.modal_content_wrapper .payment_details .bank p:last-child {
-  color: #929191;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  font-weight: 500;
-}
-.modal_content_wrapper .amount_contain {
-  margin-top: 2rem;
+.modal_content_wrapper .author_section span p {
+  font-weight: 400;
+  font-size: 1rem;
 }/*# sourceMappingURL=style.css.map */

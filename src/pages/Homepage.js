@@ -11,8 +11,11 @@ import { useEffect } from 'react';
 import { getLocations } from '../redux/home';
 import { formatNumWithoutCommaNaira, reactSelectStyleTable } from '../utils/Helpers';
 import { getInfos } from '../redux/info';
-import { RavenModal } from 'raven-bank-ui';
+import { RavenModal, toast } from 'raven-bank-ui';
 import { useState } from 'react';
+import formatNaira from '../utils/currency';
+import usePay from '../hooks/usePay';
+import { makePurchase } from '../redux/transaction';
 require('./style.css')
 function Homepage() {
 
@@ -27,6 +30,40 @@ function Homepage() {
 
     const {content} = view
 
+
+    const [pay, reference] = usePay();
+    const [payData, setPayData] = useState({})
+
+    let makePay = async (e, data) => {
+        await setPayData(data)
+        onView({
+            active: false,
+            content: '',
+    
+          })
+        if (!user.email) toast.error("Please login to purchase information")
+        pay({ amount: e, email: user.email });
+      }      
+
+      let trigger = false
+      if (reference){
+        console.log('ref', payData)
+        const payload = {
+            title: payData.title,
+            amount: payData.price,
+            info_id: payData.id,
+            information: JSON.stringify(payData),
+            seller : payData.user,
+            ref: reference.trxref,
+            payment_ref: reference.transaction
+        }
+
+        if (reference.status === "success" && trigger === false){
+            dispatch(makePurchase(payload))
+            trigger = true
+        }
+        // toast.success("Your purchase was successful")
+      }
  
     useEffect(() => {
         dispatch(getLocations())
@@ -48,8 +85,6 @@ function Homepage() {
     });
     return list;
   };
-
-//   console.log(infos)
 
   return (
     <div style={{overflow: 'auto'}}>
@@ -80,8 +115,8 @@ function Homepage() {
                 <button onClick={() => navigate('/sell')} className='col-30 btn-outlined-primary-sm text-white'>
                     Sell info
                 </button>
-                <button onClick={() => navigate(user.length > 0 ? "/dashboard" : "/login")} className='col-30 btn-primary-sm text-white'>
-                   {user.length > 0 ? "Dashboard" : "Login"}
+                <button onClick={() => navigate(user ? "/dashboard" : "/login")} className='col-30 btn-primary-sm text-white'>
+                   {user ? "Dashboard" : "Login"}
                 </button>
                 {/* <ButtonPrimary
                 btnStyle="btn-primary-lg"
@@ -309,28 +344,42 @@ function Homepage() {
          {/* <======= Middle Section Ends ======> */}
          <RavenModal
       visble={view.active}
-      btnColor="black-light"
+      btnColor="orange-dark"
       btnLabel={'Pay'}
-      onBtnClick={() => onView({
-        active: false,
-        content: ''
-      })}
-      onClose={() => onView({
-        active: false,
-        content: ''
-      })}
+      onBtnClick={() => makePay(content?.price, content)}
       >
     <div className="modal_content_wrapper">
           <div className="modal_title">
-            <p>{ content?.title}</p>
-            <small>{content?.description}</small>
+            <p>{`Information Details:`}</p>
+            <span>
+            <h6>{formatNaira(content.price)}</h6>
+            <p>{`${content?.location?.city}, ${content?.location?.state}`}</p>
+            </span>
             </div>
 
-            <div className="meta_content">
-            {/* <p><b>City: </b>{content?.location[0]?.city}</p> */}
-            {/* <p><b>State: </b>{content?.location[0]?.state}</p> */}
-            <p><b>Price: </b>{content?.price}</p>
+            <div className="info_content">
+            <span>
+                <h6>Title:</h6>
+                <p>{content?.title}</p>
+            </span>
+            <span>
+                <h6>Summary:</h6>
+                <p>{content?.description}</p>
+            </span>
             </div>
+
+            <div className="author_section">
+            <span>
+                <h6>Posted by: </h6>
+                <p>{content?.title}</p>
+            </span>
+
+            <span>
+                <h6>Verified {icons.verified}: </h6>
+                <p>No</p>
+            </span>
+            </div>
+            
 
         
             </div>
