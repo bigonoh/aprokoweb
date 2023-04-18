@@ -51,7 +51,7 @@ function Sales() {
           <div className="stat">
             <span>
               <p>Total Withdrawal</p>
-              <h6>{formatNumWithCommaNaira('5000')}</h6>
+              <h6>{formatNumWithCommaNaira('0')}</h6>
             </span>
             <figure>
               {icons.chart2}

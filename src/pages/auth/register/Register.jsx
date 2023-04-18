@@ -33,7 +33,7 @@ function Register() {
       password: formData.password
     }
     let data = await dispatch(registerUser(payload))
-    if (data.payload.status === 'success') {
+    if (data?.payload?.status === 'success') {
       navigate('/dashboard')
     }
   }

@@ -1,3 +1,6 @@
+@import "../../../_breakpoints";
+
+
 .footer{
     padding: 5rem;
     background-color: #1C100B;
@@ -7,6 +10,17 @@
        
         div:last-child {
             padding-right: 10rem;
+        }
+    }
+}
+
+
+@include xs {
+    .mobile-footer {
+        height: max-content;
+
+        .footer_content {
+            flex-direction: column;
         }
     }
 }

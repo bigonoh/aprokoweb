@@ -29,7 +29,7 @@ function Login() {
       password: formData.password
     }
     let data = await dispatch(loginUser(payload))
-    if (data.payload.status === 'success') {
+    if (data?.payload?.status === 'success') {
       navigate('/dashboard')
     }
   }

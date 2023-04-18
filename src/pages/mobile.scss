@@ -1,0 +1,145 @@
+@import "../_breakpoints";
+
+.mobile_header {
+    display: none;
+    visibility: hidden;
+}
+
+.timeline-mobile {
+    display: none;
+}
+
+@include xs {
+    .hero-navbar {
+        .nav-right{
+            display: none;
+        }
+
+        .nav-left{
+            display: none;
+        }
+
+        .mobile-hamburger {
+            width: 100%;
+            height: 100%;
+            display: flex;
+
+            figure {
+
+                svg {
+                    font-size: 5rem;
+                }
+            }
+
+            
+        }
+       
+
+    }
+
+    .timeline-items {
+        display: none;
+    }
+
+    .timeline-mobile {
+        display: flex;
+        width: 100%;
+        border: 0.5px solid #cccccc;
+        // background-color: red;
+        width: 100%;
+        gap: 2rem;
+        padding: 2rem;
+        border-radius: 2rem;
+        flex-direction: column;
+
+        .author_section {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .info_price {
+            display: flex;
+            height: 4rem;
+            color: orange;
+            width: auto;
+            margin-left: auto;
+            align-self: flex-end;
+            justify-self: flex-end;
+
+            h6 {
+                font-size: 1.6rem;
+            }
+        }
+
+
+        .profile {
+            display: flex;
+            gap: 1rem;
+            width: 100%;
+            height: max-content;
+
+            .name {
+                p {
+                    font-size: 1.4rem;
+                    font-weight: 600;
+                    color: rgb(44, 44, 44);
+                }
+            }
+
+            .avatar {
+                width: 5rem;
+                height: 5rem;
+                
+                img {
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+
+    .mobile_header {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+        visibility: visible;
+        color: white;
+        padding: 1rem 2rem;
+
+        figure {
+            width: 10rem;
+        }
+
+        .menu_icon {
+            width: 3rem;
+            height: 3rem;
+
+            svg {
+                width: 100%;
+                height: 100%;
+            }
+        }
+
+
+    }
+
+    .hero-text-container {
+        h5 {
+            width: unset;
+        }
+
+        p {
+            width: unset;
+        }
+
+        .search-container {
+            width: unset;
+            // flex-direction: column;
+        }
+    }
+
+    .hero-main-container {
+        height: max-content !important;
+        padding-bottom: 10rem;
+    }
+}

@@ -8,7 +8,7 @@ export const getInfos = createAsyncThunk(
   
       try {
   
-        const { data } = await axios.get(`/infos?limit=${payload.limit || 10 }&page=${payload.page || 1}`, payload);
+        const { data } = await axios.get(`/infos?limit=${payload.limit || 10 }&page=${payload.page || 1}&populate=user`, payload);
         // console.log("login", data);
         if (data.status !== "success") {
           toast.error(data.message, {

@@ -3,7 +3,7 @@ import { icons } from '../../../assets/icons/icons'
 import ('./style.css')
 function Footer() {
   return (
-    <footer className="footer text-white flex">
+    <footer className="footer mobile-footer text-white flex">
       <div className="footer_content flex wp-100  justify-between gap-30 flex-row">
         <div className="flex flex-column ">
           {icons.logo_white}

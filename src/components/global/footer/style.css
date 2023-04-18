@@ -8,4 +8,14 @@
 }
 .footer .footer_content div:last-child {
   padding-right: 10rem;
+}
+
+@media screen and (max-width: 29.9375em) {
+  .mobile-footer {
+    height: -moz-max-content;
+    height: max-content;
+  }
+  .mobile-footer .footer_content {
+    flex-direction: column;
+  }
 }/*# sourceMappingURL=style.css.map */

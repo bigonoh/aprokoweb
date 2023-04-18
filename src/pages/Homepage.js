@@ -11,11 +11,13 @@ import { useEffect } from 'react';
 import { getLocations } from '../redux/home';
 import { formatNumWithoutCommaNaira, reactSelectStyleTable } from '../utils/Helpers';
 import { getInfos } from '../redux/info';
-import { RavenModal, toast } from 'raven-bank-ui';
+import { RavenButton, RavenModal, toast } from 'raven-bank-ui';
 import { useState } from 'react';
 import formatNaira from '../utils/currency';
 import usePay from '../hooks/usePay';
 import { makePurchase } from '../redux/transaction';
+import { FaBars, FaHamburger } from 'react-icons/fa';
+import { getUser } from '../redux/user';
 require('./style.css')
 function Homepage() {
 
@@ -86,11 +88,25 @@ function Homepage() {
     return list;
   };
 
+  const author = (e) => {
+    dispatch(getUser(e))
+  }
+
   return (
     <div style={{overflow: 'auto'}}>
-        <div style={{backgroundImage: `url(${heroBg})`}} className="hero-section-80">
+        <div style={{backgroundImage: `url(${heroBg})`}} className="hero-section-80 hero-main-container">
             <div className="hero-layer"></div>
             <div className="hero-body">
+            <header className="mobile_header">
+                <figure>
+                    <img src={logo}  alt="" />
+                </figure>
+
+                <div className="menu_icon">
+                <FaBars />
+                </div>
+
+            </header>
             <header className="hero-navbar flex justify-between pt-10 pb-10 container-140">
             <div className="nav-right gap-10 text-sm just ify-center align-center flex">
                 <figure>
@@ -108,7 +124,7 @@ function Homepage() {
                 </div>
             </div>
 
-            <div className="flex gap-10">
+            <div className="flex nav-right gap-10">
                 <button onClick={() => navigate('/dashboard')} className='col-30 btn-outlined-primary-sm text-white'>
                     Ask Aprokopay
                 </button>
@@ -124,10 +140,11 @@ function Homepage() {
             </div>
 
             </header>
-            <section className="container align-center mt-40 text-center flex flex-column ">
+            
+            <section className="container hero-text-container align-center mt-40 text-center flex flex-column ">
                 <h5 className="wp-60 text-white md:lg sm:xm" >Buy & Sell your “INFORMATION” with Aproko Pay, Anytime, Anywhere </h5>
                 <p className="wp-60 text-white font-200 mt-20 text-sm">Know something about a product or service in your area? Need information about a particular service or product in your area? Look no further aproko pay your #1 info exchange market got you covered.</p>
-                <div className="flex  mt-50 wp-60 flex-row gap-10">
+                <div className="flex search-container  mt-50 wp-60 flex-row gap-10">
                 <input 
                 className='text-xs font-100'
                 placeholder='Search for...'
@@ -151,11 +168,12 @@ function Homepage() {
 
             const { selling, price, title, } = chi
 
+            console.log(chi)
             return (
                 <section key ={idx}  className=" mt-20 p-10  flex flex-column">
 
-                {/* cards start here */}
-                    <div className="flex mt-10 pb-20 mb-10 pr-50 pl-50   border-b-primary justify-between">
+                {/* desktop cards start here */}
+                    <div className="timeline-items flex mt-10 pb-20 mb-10 pr-50 pl-50   border-b-primary justify-between">
                         <div className="flex align-center gap-30">
                                 <img className="avatar rounded bg-primary-light-8" src="https://api.dicebear.com/5.x/adventurer/svg?seed=Casper" alt="d" />
                                 <div className="flex wp-75 flex-column gap-20 align-start">
@@ -179,6 +197,55 @@ function Homepage() {
                              {selling ? "Buy Info" : 'Answer'}
                         </button>
           
+                    </div>
+
+                    <div className="timeline-mobile">
+                        <div className="profile">
+                            <div className="avatar">
+                                <img src={`https://api.dicebear.com/6.x/initials/svg?seed=${chi?.user?.name}`} alt="" />
+                            </div>
+
+                            <div className="name">
+                                <p>{chi?.user?.name} </p>
+                                <span>Selling &#x2022; {chi?.location?.state}</span>
+                            </div>
+
+                            <div className="info_price">
+                            <span>
+                            <h6>{formatNaira(chi.price)}</h6>
+                            </span>
+                            </div>
+                        </div>
+
+                        <div className="modal_content_wrapper">
+
+            <div className="info_content">
+            <span>
+                <h6>Title:</h6>
+                <p>{chi?.title}</p>
+            </span>
+            <span>
+                <h6>Summary:</h6>
+                <p>{chi?.description}</p>
+            </span>
+            </div>
+
+            <div className="author_section">
+            <span>
+                <h6>Verified {icons.verified}: </h6>
+                <p>No</p>
+            </span>
+
+            <div className="mobile_act_btn">
+                <RavenButton size="small" color="orange-dark" onClick={() => makePay(chi?.price, chi)}>
+                    Buy
+                </RavenButton>
+            </div>
+            </div>
+            
+
+        
+            </div>
                     </div>
           
                  
@@ -348,6 +415,8 @@ function Homepage() {
       btnLabel={'Pay'}
       onBtnClick={() => makePay(content?.price, content)}
       >
+
+        {console.log(content)}
     <div className="modal_content_wrapper">
           <div className="modal_title">
             <p>{`Information Details:`}</p>
@@ -371,7 +440,7 @@ function Homepage() {
             <div className="author_section">
             <span>
                 <h6>Posted by: </h6>
-                <p>{content?.title}</p>
+                <p>{content?.user?.name}</p>
             </span>
 
             <span>
