@@ -16,4 +16,22 @@
 }
 .login-right .login-btn {
   width: 100% !important;
+}
+
+@media screen and (max-width: 29.9375em) {
+  .login-left {
+    display: none;
+  }
+  .login-right {
+    width: 100vw;
+    margin-left: 0;
+    padding-left: 0;
+    padding: 3rem;
+  }
+  .login-right div {
+    width: 100%;
+  }
+  .login-right .have-account {
+    width: 100%;
+  }
 }/*# sourceMappingURL=style.css.map */

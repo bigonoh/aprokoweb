@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react'
 import { useState } from 'react'
 import logo from '../../../assets/img/logo.svg'
@@ -47,7 +48,7 @@ function Register() {
         </div> 
 
         <div className="wp-70 register-right flex flex-column ml-20 pl-50 mt-20 ">
-          <figure className="w-90">
+          <figure  onClick={() => navigate('/')} className="w-90 cursor-pointer">
           <img src={logo}  alt="" />
           </figure>
 
@@ -107,9 +108,9 @@ function Register() {
 
             </div>
 
-            <div className="flex gap-10">
+            <div className="flex have-account  gap-10">
               <p>Already have an account?</p>
-              <p className="text-primary text-700">
+              <p onClick={() => navigate('/login')} className="text-primary cursor-pointer text-700">
                 Login
               </p>
             </div>

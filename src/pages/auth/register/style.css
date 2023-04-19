@@ -16,4 +16,22 @@
 }
 .register-right .register-btn {
   width: 100% !important;
+}
+
+@media screen and (max-width: 29.9375em) {
+  .register-left {
+    display: none;
+  }
+  .register-right {
+    width: 100vw;
+    margin-left: 0;
+    padding-left: 0;
+    padding: 3rem;
+  }
+  .register-right div {
+    width: 100%;
+  }
+  .register-right .have-account {
+    width: 100%;
+  }
 }/*# sourceMappingURL=style.css.map */

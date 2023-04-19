@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import { RavenButton, RavenInputField } from 'raven-bank-ui'
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -41,7 +42,7 @@ function Login() {
         </div>
 
         <div className="wp-70 login-right flex flex-column ml-20 pl-50 mt-60 pt-60">
-          <figure className="w-90">
+          <figure onClick={() => navigate('/')} className="w-90 cursor-pointer">
           <img src={logo}  alt="" />
           </figure>
 
@@ -83,13 +84,13 @@ function Login() {
               <RavenButton label="Login"  onClick={handleSubmit} className="btn-primary-md text-md text-700 login-btn"  color="orange"/>
             </div>
 
-            <div className="flex gap-10">
+            <div className="flex have-account gap-10">
               <p>Dont have an account?</p>
-              <div style={{cursor: 'pointer'}} onClick={() => navigate('/register')}>
-              <p  className="text-primary text-700">
+              <span style={{cursor: 'pointer'}} >
+              <p onClick={() => navigate('/register')}  className="text-primary text-700">
                 Sign up
               </p>
-              </div>
+              </span>
              
             </div>
            

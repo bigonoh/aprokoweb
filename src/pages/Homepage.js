@@ -18,6 +18,8 @@ import usePay from '../hooks/usePay';
 import { makePurchase } from '../redux/transaction';
 import { FaBars, FaHamburger } from 'react-icons/fa';
 import { getUser } from '../redux/user';
+import Feed from '../components/mobile/timeline/Feed';
+import Header from '../components/global/header/Header';
 require('./style.css')
 function Homepage() {
 
@@ -97,49 +99,7 @@ function Homepage() {
         <div style={{backgroundImage: `url(${heroBg})`}} className="hero-section-80 hero-main-container">
             <div className="hero-layer"></div>
             <div className="hero-body">
-            <header className="mobile_header">
-                <figure>
-                    <img src={logo}  alt="" />
-                </figure>
-
-                <div className="menu_icon">
-                <FaBars />
-                </div>
-
-            </header>
-            <header className="hero-navbar flex justify-between pt-10 pb-10 container-140">
-            <div className="nav-right gap-10 text-sm just ify-center align-center flex">
-                <figure>
-                    <img src={logo}  alt="" />
-                </figure>
-
-                <div className="nav-menu">
-                <ul className="flex">
-                 <li className="ml-10 text-4 text-white text-xs text-hover-secondary"><a href="#work">Services</a></li>
-                 <li className="ml-10  text-4 text-white  text-xs text-hover-secondary"><a href="#about">Location</a></li>
-                 <li className="ml-10  text-4 text-white text-xs text-hover-secondary"><a href="#about">About</a></li>
-                 <li className="ml-10  text-4 text-white text-xs text-hover-secondary"><a href="#about">FAQs</a></li>
-                </ul>
-
-                </div>
-            </div>
-
-            <div className="flex nav-right gap-10">
-                <button onClick={() => navigate('/dashboard')} className='col-30 btn-outlined-primary-sm text-white'>
-                    Ask Aprokopay
-                </button>
-                <button onClick={() => navigate('/sell')} className='col-30 btn-outlined-primary-sm text-white'>
-                    Sell info
-                </button>
-                <button onClick={() => navigate(user ? "/dashboard" : "/login")} className='col-30 btn-primary-sm text-white'>
-                   {user ? "Dashboard" : "Login"}
-                </button>
-                {/* <ButtonPrimary
-                btnStyle="btn-primary-lg"
-                >Login</ButtonPrimary> */}
-            </div>
-
-            </header>
+            <Header />
             
             <section className="container hero-text-container align-center mt-40 text-center flex flex-column ">
                 <h5 className="wp-60 text-white md:lg sm:xm" >Buy & Sell your “INFORMATION” with Aproko Pay, Anytime, Anywhere </h5>
@@ -199,54 +159,7 @@ function Homepage() {
           
                     </div>
 
-                    <div className="timeline-mobile">
-                        <div className="profile">
-                            <div className="avatar">
-                                <img src={`https://api.dicebear.com/6.x/initials/svg?seed=${chi?.user?.name}`} alt="" />
-                            </div>
-
-                            <div className="name">
-                                <p>{chi?.user?.name} </p>
-                                <span>Selling &#x2022; {chi?.location?.state}</span>
-                            </div>
-
-                            <div className="info_price">
-                            <span>
-                            <h6>{formatNaira(chi.price)}</h6>
-                            </span>
-                            </div>
-                        </div>
-
-                        <div className="modal_content_wrapper">
-
-            <div className="info_content">
-            <span>
-                <h6>Title:</h6>
-                <p>{chi?.title}</p>
-            </span>
-            <span>
-                <h6>Summary:</h6>
-                <p>{chi?.description}</p>
-            </span>
-            </div>
-
-            <div className="author_section">
-            <span>
-                <h6>Verified {icons.verified}: </h6>
-                <p>No</p>
-            </span>
-
-            <div className="mobile_act_btn">
-                <RavenButton size="small" color="orange-dark" onClick={() => makePay(chi?.price, chi)}>
-                    Buy
-                </RavenButton>
-            </div>
-            </div>
-            
-
-        
-            </div>
-                    </div>
+                   <Feed item={chi} />
           
                  
             </section>

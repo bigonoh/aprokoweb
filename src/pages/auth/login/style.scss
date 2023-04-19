@@ -8,6 +8,9 @@
     
 }
 
+@import "../../../_breakpoints";
+
+
 .login-right {
     .login-form-wrapper {
         align-items: flex-start;
@@ -21,6 +24,27 @@
 
     .login-btn {
         width: 100% !important;
+    }
+}
+
+@include xs {
+    .login-left {
+        display: none;
+    }
+
+    .login-right {
+        width: 100vw;
+        margin-left: 0;
+        padding-left: 0;
+        padding: 3rem;
+
+        div {
+            width: 100%;
+        }
+
+        .have-account {
+            width: 100%;
+        }
     }
 }
 

@@ -1,27 +1,8 @@
-.mobile_header {
-  display: none;
-  visibility: hidden;
-}
-
 .timeline-mobile {
   display: none;
 }
 
 @media screen and (max-width: 29.9375em) {
-  .hero-navbar .nav-right {
-    display: none;
-  }
-  .hero-navbar .nav-left {
-    display: none;
-  }
-  .hero-navbar .mobile-hamburger {
-    width: 100%;
-    height: 100%;
-    display: flex;
-  }
-  .hero-navbar .mobile-hamburger figure svg {
-    font-size: 5rem;
-  }
   .timeline-items {
     display: none;
   }
@@ -69,26 +50,6 @@
   }
   .timeline-mobile .profile .avatar img {
     border-radius: 50%;
-  }
-  .mobile_header {
-    display: flex;
-    width: 100%;
-    align-items: center;
-    justify-content: space-between;
-    visibility: visible;
-    color: white;
-    padding: 1rem 2rem;
-  }
-  .mobile_header figure {
-    width: 10rem;
-  }
-  .mobile_header .menu_icon {
-    width: 3rem;
-    height: 3rem;
-  }
-  .mobile_header .menu_icon svg {
-    width: 100%;
-    height: 100%;
   }
   .hero-text-container h5 {
     width: unset;

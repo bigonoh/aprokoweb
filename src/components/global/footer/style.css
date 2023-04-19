@@ -6,6 +6,13 @@
 .footer .footer_content {
   justify-content: space-between;
 }
+.footer .footer_content .item {
+  color: rgba(255, 255, 255, 0.784);
+}
+.footer .footer_content .footer-header {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
 .footer .footer_content div:last-child {
   padding-right: 10rem;
 }
@@ -15,7 +22,20 @@
     height: -moz-max-content;
     height: max-content;
   }
+  .mobile-footer .content-items {
+    width: 100%;
+    align-items: center;
+  }
   .mobile-footer .footer_content {
     flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .mobile-footer .footer_content .footer-header {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  .mobile-footer .footer_content div:last-child {
+    padding: 0;
   }
 }/*# sourceMappingURL=style.css.map */

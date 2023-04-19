@@ -8,4 +8,10 @@
 }
 .w.invite_banner h5 {
   text-transform: uppercase;
+}
+
+@media screen and (max-width: 29.9375em) {
+  .desktop-feed {
+    display: none;
+  }
 }/*# sourceMappingURL=style.css.map */
