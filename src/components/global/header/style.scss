@@ -15,14 +15,23 @@
     .desktop-header {
         display: none;
         visibility: hidden;
+        
     }
        
     .mobile_sidebar {
         width: 100%;
+        max-height: 50%;
+        overflow: hidden;
 
         div:first-child {
             width: 100%;
-            height: unset;
+            // height: min-content;
+            overflow: auto;
+
+            div:last-child {
+                overflow-y: auto;
+                height: 50%;
+            }
         }
     }
 

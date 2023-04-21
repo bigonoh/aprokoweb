@@ -37,9 +37,11 @@ function Header(props) {
         <label className="hamb" htmlFor="side-menu"><span className="hamb-line"></span></label>
             {/* Menu */}
         <nav className="nav">
+            {!props.dashboard &&
             <div className="menu_title">
                 <p>Menu</p>
             </div>
+            }
 
             {!props.dashboard &&
             <ul className="menu">
