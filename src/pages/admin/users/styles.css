@@ -84,7 +84,7 @@
 }
 .users_wrapper .page_body {
   width: 100%;
-  height: 90%;
+  max-height: 90%;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
@@ -207,4 +207,13 @@
   width: fit-content;
   color: rgb(0, 202, 0);
   background: rgba(100, 255, 115, 0.228);
+}
+
+@media screen and (max-width: 29.9375em) {
+  .users_wrapper {
+    padding: 0 2rem;
+  }
+  .table {
+    width: 150% !important;
+  }
 }/*# sourceMappingURL=styles.css.map */

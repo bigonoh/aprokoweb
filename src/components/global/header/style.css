@@ -1,6 +1,6 @@
 :root {
   --white: #ffffff;
-  --black: #36383F;
+  --black: #1C100B;
   --gray: #85888C;
 }
 
@@ -13,6 +13,13 @@
   .desktop-header {
     display: none;
     visibility: hidden;
+  }
+  .mobile_sidebar {
+    width: 100%;
+  }
+  .mobile_sidebar div:first-child {
+    width: 100%;
+    height: unset;
   }
   .mobile_header {
     display: flex;
@@ -93,7 +100,7 @@
   .mobile_header .hamb {
     cursor: pointer;
     float: right;
-    z-index: 2;
+    z-index: 2000;
     /* Style span tag */
   }
   .mobile_header .hamb .hamb-line {

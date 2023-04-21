@@ -122,4 +122,22 @@
 }
 .settings_wrapper .page_body .settings_card_wrapper .settings_main_wrapper .security .btn_group {
   margin-top: 1rem;
+}
+
+@media screen and (max-width: 29.9375em) {
+  .settings_wrapper {
+    padding: 0 2rem;
+  }
+  .settings_wrapper .page_body {
+    width: 100%;
+  }
+  .settings_wrapper .page_body .settings_card_wrapper {
+    width: 100%;
+  }
+  .settings_wrapper .page_body .settings_card_wrapper .account_setting .form-group, .settings_wrapper .page_body .settings_card_wrapper .account_setting .form_group {
+    width: 100% !important;
+  }
+  .settings_wrapper .page_body .settings_card_wrapper .account_setting .form_group .left {
+    width: 100% !important;
+  }
 }/*# sourceMappingURL=styles.css.map */

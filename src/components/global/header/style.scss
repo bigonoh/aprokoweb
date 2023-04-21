@@ -1,7 +1,7 @@
 @import "../../../_breakpoints";
 :root {
     --white: #ffffff;
-    --black: #36383F;
+    --black: #1C100B;
     --gray: #85888C;
   }
 .mobile_header {
@@ -17,6 +17,14 @@
         visibility: hidden;
     }
        
+    .mobile_sidebar {
+        width: 100%;
+
+        div:first-child {
+            width: 100%;
+            height: unset;
+        }
+    }
 
     .mobile_header {
         display: flex;
@@ -109,7 +117,7 @@
     cursor: pointer;
     float: right;
     // padding: 40px 20px;
-    z-index: 2;
+    z-index: 2000;
 
     .hamb-line {
         background: var(--white);

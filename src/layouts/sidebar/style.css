@@ -48,4 +48,18 @@
 .main_sidebar_wrapper .menu_footer .profile-box span:hover {
   background-color: rgba(142, 169, 7, 0.1882352941);
   transition: background 0.5s;
+}
+.main_sidebar_wrapper .desktop_side_actions {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  width: 100%;
+  margin-top: 5rem;
+}
+
+@media screen and (max-width: 29.9375em) {
+  .desktop_side_actions {
+    display: none !important;
+    visibility: hidden;
+  }
 }/*# sourceMappingURL=style.css.map */

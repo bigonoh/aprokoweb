@@ -116,4 +116,33 @@
   width: 100%;
   height: 100%;
   overflow: auto;
+}
+
+@media screen and (max-width: 29.9375em) {
+  .sales_wrapper {
+    overflow-y: auto;
+    padding-bottom: 2rem;
+  }
+  .sales_wrapper .page_body .action_grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .sales_wrapper .page_body .action_grid > div {
+    padding: 2rem 3rem;
+    width: 100%;
+  }
+  .information_wrapper {
+    padding: 0 2rem;
+  }
+  .withdrawal_wrapper {
+    padding: 0 2rem;
+  }
+  .table-wrap {
+    height: unset !important;
+  }
+  .table-wrap .table {
+    max-width: 200% !important;
+    width: 200% !important;
+  }
 }/*# sourceMappingURL=styles.css.map */

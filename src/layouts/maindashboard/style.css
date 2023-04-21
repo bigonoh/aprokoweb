@@ -384,4 +384,17 @@
   align-items: center;
   display: flex;
   gap: 1rem;
+}
+
+@media screen and (max-width: 29.9375em) {
+  .mainDashboard {
+    flex-direction: column;
+    width: 100%;
+  }
+  .mainDashboard .right {
+    width: 100%;
+  }
+  .mainDashboard .right .balance {
+    width: 100%;
+  }
 }/*# sourceMappingURL=style.css.map */

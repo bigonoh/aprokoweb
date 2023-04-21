@@ -77,12 +77,12 @@ function Feed({item}) {
 
 <div className="info_content">
 <span>
-<h6>Title:</h6>
+{/* <h6>Title:</h6> */}
 <p>{item?.title}</p>
 </span>
 <span>
-<h6>Summary:</h6>
-<p>{item?.description}</p>
+<h6>Location:</h6>
+<p>{item?.location?.address  ? item?.location?.address + " - " : "" +  item?.location?.state + ', ' + item?.location?.city} </p>
 </span>
 </div>
 

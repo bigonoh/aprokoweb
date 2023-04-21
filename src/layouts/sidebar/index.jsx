@@ -3,6 +3,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { icons } from '../../assets/icons/icons'
 import { useSelector } from 'react-redux';
+import { RavenButton, toast } from 'raven-bank-ui';
 require('./style.css')
 
 function Sidebar() {
@@ -10,7 +11,13 @@ function Sidebar() {
     const navigate = useNavigate()
     const { user } = useSelector((state) => state?.user);
 
-    // console.log(user, 'user')
+    const handleLogout = () => {
+        localStorage.clear()
+        toast.success("You have been logged out successfully")
+        setTimeout(() => {
+            window.location.reload()   
+        }, 5000);
+      }
 
   return (
     <div className='flex flex-column p-30 wv-20 hv-100  main_sidebar_wrapper'>
@@ -42,6 +49,16 @@ function Sidebar() {
              Admin Panel
          </div>
             }
+
+            <div className="desktop_side_actions">
+                      {user &&
+                <RavenButton color={'error-light'} size="small" onClick={handleLogout} >
+                   Logout
+                </RavenButton>
+                }
+
+            </div>
+       
             
             {/* <div className="menu_footer curved align-center  mb-10  text-black flex flex-row">
                 <div className="avatar-sm flex">

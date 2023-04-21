@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import './style.css'
 import { RavenButton } from 'raven-bank-ui';
 import { toast } from 'raven-bank-ui';
+import Sidebar from '../../../layouts/sidebar';
 
 
 function Header(props) {
@@ -39,6 +40,8 @@ function Header(props) {
             <div className="menu_title">
                 <p>Menu</p>
             </div>
+
+            {!props.dashboard &&
             <ul className="menu">
             <li><a href="#work">Services</a></li>
                  <li><a href="#about">Location</a></li>
@@ -51,6 +54,14 @@ function Header(props) {
                     Sell info
                 </li>
             </ul>
+            }
+
+
+            {props.dashboard  &&
+            <div className="mobile_sidebar">
+                <Sidebar />
+            </div>
+                }
 
             <div className="action_title">
                 <p>Quick Actions</p>
@@ -88,6 +99,8 @@ function Header(props) {
                 </ul>
 
                 </div>
+
+             
             </div>
 
             <div className="flex nav-right gap-10">
