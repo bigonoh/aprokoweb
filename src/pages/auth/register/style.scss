@@ -1,49 +1,46 @@
-@import "../../../_breakpoints";
+@import '../../../_breakpoints';
 
 .register-left {
-    background-color: #FF8F66;
-    opacity: 96%;
-    background-image: url('../../../assets/img/side-image.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-
-    
+  background-color: #ff8f66;
+  opacity: 96%;
+  background-image: url('../../../assets/img/side-image.png');
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .register-right {
-    .register-form-wrapper {
-        align-items: flex-start;
-        justify-content: flex-start;
-    }
+  .register-form-wrapper {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
 
-    .remember-me {
-        width: 100%;
-        justify-content: space-between;
-    }
+  .remember-me {
+    width: 100%;
+    justify-content: space-between;
+  }
 
-    .register-btn {
-        width: 100% !important;
-    }
+  .register-btn {
+    width: 100% !important;
+  }
 }
 
 @include xs {
-    .register-left {
-        display: none;
+  .register-left {
+    display: none;
+  }
+
+  .register-right {
+    width: 100vw;
+    margin-left: 0;
+    padding-left: 0;
+    padding: 3rem;
+
+    div {
+      width: 100%;
     }
 
-    .register-right {
-        width: 100vw;
-        margin-left: 0;
-        padding-left: 0;
-        padding: 3rem;
-
-        div {
-            width: 100%;
-        }
-
-        .have-account {
-            width: 100%;
-        }
+    .have-account {
+      width: 100%;
     }
+  }
 }
-

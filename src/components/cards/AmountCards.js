@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react'
 
 const AmountCards = () => {
-  return <div>AmountCards</div>;
-};
+  return <div>AmountCards</div>
+}
 
-export default AmountCards;
+export default AmountCards

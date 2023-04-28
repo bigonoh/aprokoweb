@@ -1,7 +1,7 @@
-import React from "react";
-import { ThreeDots } from "react-loader-spinner";
-import { ButtonPrimary } from "../buttons/ButtonReuse";
-import "./NoContentReuseable.css";
+import React from 'react'
+import { ThreeDots } from 'react-loader-spinner'
+import { ButtonPrimary } from '../buttons/ButtonReuse'
+import './NoContentReuseable.css'
 
 const NoContentReuseable = ({
   img,
@@ -34,10 +34,10 @@ const NoContentReuseable = ({
           <ButtonPrimary
             // label={btnText}
             action={onClickBtn}
-            btnStyle={btnStyle || "btn-reuse"}
+            btnStyle={btnStyle || 'btn-reuse'}
           >
             {loading ? (
-              <div style={{ padding: ".1rem" }} className="load-wrap">
+              <div style={{ padding: '.1rem' }} className="load-wrap">
                 <ThreeDots
                   height="15"
                   width="40"
@@ -57,7 +57,7 @@ const NoContentReuseable = ({
         {/* btn end */}
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default NoContentReuseable;
+export default NoContentReuseable

@@ -1,32 +1,30 @@
-.sellInfo{
-    margin: 0px;
-    width: 362px;
-    font-size: 18px;
-    
+.sellInfo {
+  margin: 0px;
+  width: 362px;
+  font-size: 18px;
 
-    .tittle{
-        font-size: 20px;
-        margin-right: 300px;
-        margin-bottom: 10px;
-        margin-top: 20px;
-    }
+  .tittle {
+    font-size: 20px;
+    margin-right: 300px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
 
-  .text{
+  .text {
     width: 362px;
     height: 100px;
-  } 
-
-  .dropDown{
-    border: 1px solid #CCCCCC;
-    border-radius: 8px;
-
   }
-  .button{
+
+  .dropDown {
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+  }
+  .button {
     margin-top: 20px;
     width: 362px;
     height: 40px;
     border-radius: 8px;
-    background-color: #3FA302;
+    background-color: #3fa302;
     border: none;
   }
 }

@@ -1,7 +1,7 @@
 :root {
   --white: #ffffff;
-  --black: #1C100B;
-  --gray: #85888C;
+  --black: #1c100b;
+  --gray: #85888c;
 }
 
 .mobile_header {
@@ -16,16 +16,16 @@
   }
   .mobile_sidebar {
     width: 100%;
-    max-height: 50%;
+    max-height: 80%;
     overflow: hidden;
   }
   .mobile_sidebar div:first-child {
     width: 100%;
-    overflow: auto;
   }
   .mobile_sidebar div:first-child div:last-child {
     overflow-y: auto;
-    height: 50%;
+    height: 100%;
+    padding-bottom: 20rem;
   }
   .mobile_header {
     display: flex;
@@ -119,7 +119,7 @@
   .mobile_header .hamb .hamb-line::before,
   .mobile_header .hamb .hamb-line::after {
     background: var(--white);
-    content: "";
+    content: '';
     display: block;
     height: 100%;
     position: absolute;
@@ -149,4 +149,4 @@
     transform: rotate(45deg);
     top: 0;
   }
-}/*# sourceMappingURL=style.css.map */
+} /*# sourceMappingURL=style.css.map */

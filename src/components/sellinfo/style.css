@@ -14,7 +14,7 @@
   height: 100px;
 }
 .sellInfo .dropDown {
-  border: 1px solid #CCCCCC;
+  border: 1px solid #cccccc;
   border-radius: 8px;
 }
 .sellInfo .button {
@@ -22,6 +22,6 @@
   width: 362px;
   height: 40px;
   border-radius: 8px;
-  background-color: #3FA302;
+  background-color: #3fa302;
   border: none;
-}/*# sourceMappingURL=style.css.map */
+} /*# sourceMappingURL=style.css.map */

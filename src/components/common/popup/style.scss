@@ -41,7 +41,7 @@ body {
     position: absolute;
     width: 0;
     height: $stroke;
-    content: "";
+    content: '';
     background: #fff;
     top: -$stroke;
     left: -$stroke;
@@ -51,7 +51,7 @@ body {
     position: absolute;
     width: $stroke;
     height: 0;
-    content: "";
+    content: '';
     background: #fff;
     top: -$stroke;
     right: -$stroke;
@@ -61,7 +61,7 @@ body {
     position: absolute;
     width: 0;
     height: $stroke;
-    content: "";
+    content: '';
     background: #fff;
     bottom: -$stroke;
     right: -$stroke;
@@ -71,7 +71,7 @@ body {
     position: absolute;
     width: $stroke;
     height: 0;
-    content: "";
+    content: '';
     background: #fff;
     bottom: -$stroke;
     left: -$stroke;

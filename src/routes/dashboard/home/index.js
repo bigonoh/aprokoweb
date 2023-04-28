@@ -1,40 +1,44 @@
-
-import Homepage from '../../../pages/Homepage';
-import DashboardHome from '../../../pages/dashboard/DashboardHome';
-import Sell from '../../../pages/dashboard/sell';
-import Buy from '../../../pages/dashboard/buy';
-import Profile from '../../../pages/dashboard/profile/index';
-import Sales from '../../../pages/dashboard/sales/index';
-import Transactions from '../../../pages/dashboard/transaction/index';
-import Settings from '../../../pages/dashboard/settings';
+import Homepage from '../../../pages/Homepage'
+import DashboardHome from '../../../pages/dashboard/DashboardHome'
+import Sell from '../../../pages/dashboard/sell'
+import Buy from '../../../pages/dashboard/buy'
+import Profile from '../../../pages/dashboard/profile/index'
+import Sales from '../../../pages/dashboard/sales/index'
+import Transactions from '../../../pages/dashboard/transaction/index'
+import Settings from '../../../pages/dashboard/settings'
+import UserInformation from '../../../pages/dashboard/information'
 
 export const dashboard_home_route_group = [
   {
-    path: "/dashboard",
+    path: '/dashboard',
     element: <DashboardHome />,
   },
   {
-    path: "/sell",
+    path: '/sell',
     element: <Sell />,
   },
   {
-    path: "/buy",
+    path: '/buy',
     element: <Buy />,
   },
   {
-    path: "/sales",
+    path: '/sales',
     element: <Sales />,
   },
   {
-    path: "/transaction",
+    path: '/transaction',
     element: <Transactions />,
   },
   {
-    path: "/profile",
+    path: '/information-collection',
+    element: <UserInformation />,
+  },
+  {
+    path: '/profile',
     element: <Profile />,
   },
   {
-    path: "/settings",
+    path: '/settings',
     element: <Settings />,
   },
-];
+]

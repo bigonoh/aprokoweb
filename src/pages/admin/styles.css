@@ -36,8 +36,8 @@
   width: max-content;
   height: -moz-fit-content;
   height: fit-content;
-  background: #FFFFFF;
-  border: 1px solid #EAECEE;
+  background: #ffffff;
+  border: 1px solid #eaecee;
   border-radius: 12px;
   display: flex;
   gap: 10rem;
@@ -54,10 +54,10 @@
 .sales_wrapper .page_top .stats_card .stat span p {
   font-size: 1.4rem;
   font-weight: 600;
-  color: #373F47;
+  color: #373f47;
 }
 .sales_wrapper .page_top .stats_card .stat span h6 {
-  color: #242D35;
+  color: #242d35;
 }
 .sales_wrapper .page_top .stats_card .stat_minimal {
   display: flex;
@@ -67,17 +67,17 @@
   margin-left: 3rem;
 }
 .sales_wrapper .page_top .stats_card .stat_minimal span {
-  border: 1px solid #EAECEE;
+  border: 1px solid #eaecee;
   padding: 1rem;
   border-radius: 1rem;
 }
 .sales_wrapper .page_top .stats_card .stat_minimal p {
   font-size: 1.4rem;
   font-weight: 600;
-  color: #373F47;
+  color: #373f47;
 }
 .sales_wrapper .page_top .stats_card .stat_minimal h6 {
-  color: #242D35;
+  color: #242d35;
   font-size: 1.6rem;
 }
 .sales_wrapper .page_body {
@@ -110,7 +110,7 @@
 }
 .sales_wrapper .page_body .action_grid > div p:last-child {
   font-size: 1.2rem;
-  color: #373F47;
+  color: #373f47;
 }
 .sales_wrapper .page_body .table-wrap {
   width: 100%;
@@ -145,4 +145,4 @@
     max-width: 200% !important;
     width: 200% !important;
   }
-}/*# sourceMappingURL=styles.css.map */
+} /*# sourceMappingURL=styles.css.map */

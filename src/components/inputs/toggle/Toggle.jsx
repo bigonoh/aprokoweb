@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import togle from "./toggle.module.css";
+import React, { useState } from 'react'
+import togle from './toggle.module.css'
 
 function Toggle(props) {
-  let type = props.type ? props.type : "rounded";
+  let type = props.type ? props.type : 'rounded'
   return (
     <div>
-      {type === "rectangle" && (
+      {type === 'rectangle' && (
         <label className={togle.switch}>
           <input type="checkbox" />
           <span className={togle.slider}></span>
         </label>
       )}
 
-      {type === "rounded" && (
+      {type === 'rounded' && (
         <label className={togle.switch}>
           <input
             type="checkbox"
@@ -23,7 +23,7 @@ function Toggle(props) {
         </label>
       )}
     </div>
-  );
+  )
 }
 
-export default Toggle;
+export default Toggle

@@ -17,7 +17,7 @@
 .salesTerminal .top .mainBalance {
   position: relative;
   height: 228px;
-  background-color: #FFE7D6;
+  background-color: #ffe7d6;
   border-radius: 8px;
   display: flex;
 }
@@ -61,7 +61,7 @@
   margin-left: 0.3rem;
   width: 88.7rem;
   height: 5rem;
-  border: 1px solid #F5F5F5;
+  border: 1px solid #f5f5f5;
   border-radius: 8px;
   position: relative;
 }
@@ -69,5 +69,5 @@
   width: 17.6rem;
   margin-left: 4.3rem;
   border-radius: 0.8rem;
-  border: 1px solid #F5F5F5;
-}/*# sourceMappingURL=style.css.map */
+  border: 1px solid #f5f5f5;
+} /*# sourceMappingURL=style.css.map */

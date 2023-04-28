@@ -1,25 +1,25 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useEffect, useRef, useState } from "react";
-import popStyles from "./styles.module.css";
-import { ButtonPrimary } from "../../buttons/ButtonReuse";
-import { isMobile } from "../../../utils/DetectMobile";
+import React, { useEffect, useRef, useState } from 'react'
+import popStyles from './styles.module.css'
+import { ButtonPrimary } from '../../buttons/ButtonReuse'
+import { isMobile } from '../../../utils/DetectMobile'
 
 function Popup(props) {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false)
 
   const closeHandler = () => {
-    setShow(false);
-    props.onClose(false);
-  };
+    setShow(false)
+    props.onClose(false)
+  }
 
-  const [isCopied, setIsCopied] = useState("Tap to Copy");
+  const [isCopied, setIsCopied] = useState('Tap to Copy')
   const copyLink = () => {
-    navigator.clipboard.writeText(props.link);
-    setIsCopied("Copied");
-  };
+    navigator.clipboard.writeText(props.link)
+    setIsCopied('Copied')
+  }
   useEffect(() => {
-    setShow(props.show);
-  }, [props.show]);
+    setShow(props.show)
+  }, [props.show])
 
   const buy_airtime = (
     <svg
@@ -55,7 +55,7 @@ function Popup(props) {
         </clipPath>
       </defs>
     </svg>
-  );
+  )
 
   const buy_data = (
     <svg
@@ -91,7 +91,7 @@ function Popup(props) {
         </clipPath>
       </defs>
     </svg>
-  );
+  )
 
   const request_money = (
     <svg
@@ -110,21 +110,19 @@ function Popup(props) {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 
   return (
     <div
       style={{
-        visibility: show ? "visible" : "hidden",
-        opacity: show ? "1" : "0",
+        visibility: show ? 'visible' : 'hidden',
+        opacity: show ? '1' : '0',
       }}
       className={popStyles.overlay}
     >
-      <div className={popStyles.popup}>
-
-      </div>
+      <div className={popStyles.popup}></div>
     </div>
-  );
+  )
 }
 
-export default Popup;
+export default Popup

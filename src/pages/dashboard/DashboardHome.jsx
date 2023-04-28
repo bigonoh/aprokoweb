@@ -7,27 +7,22 @@ import { getInfos } from '../../redux/info'
 import { getTrx } from '../../redux/transaction'
 
 function DashboardHome() {
-
   const dispatch = useDispatch()
-  const { user } = useSelector((state) => state.user);
-  const { transactions } = useSelector((state) => state.transaction);
+  const { user } = useSelector((state) => state.user)
+  const { transactions } = useSelector((state) => state.transaction)
 
   useEffect(() => {
-    dispatch(getInfos({limit: '5'}))
-    dispatch(getTrx({limit: '5', sort: 'asc'})) 
-}, [])
+    dispatch(getInfos({ limit: '5' }))
+    dispatch(getTrx({ limit: '5', sort: 'asc' }))
+  }, [])
 
   useEffect(() => {
     dispatch(getUser())
   }, [])
 
-  
   return (
     <DashboardLayout>
-        <MainDashboard
-        user = { user }
-        trx = {transactions}
-        />
+      <MainDashboard user={user} trx={transactions} />
     </DashboardLayout>
   )
 }

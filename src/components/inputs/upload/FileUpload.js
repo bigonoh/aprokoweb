@@ -1,15 +1,15 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useEffect, useState } from "react";
-import CancelRound from "../../../assets/cancel-round";
-import ChevronRight from "../../../assets/chevron-right";
-import FileIcon from "../../../assets/file-icon";
-import stile from "./fileUpload.module.css";
+import React, { useEffect, useState } from 'react'
+import CancelRound from '../../../assets/cancel-round'
+import ChevronRight from '../../../assets/chevron-right'
+import FileIcon from '../../../assets/file-icon'
+import stile from './fileUpload.module.css'
 
 export default function FileUpload(props) {
-  const [value, setValue] = useState();
-  const [path, setPath] = useState();
-  const [preview, setPreview] = useState();
+  const [value, setValue] = useState()
+  const [path, setPath] = useState()
+  const [preview, setPreview] = useState()
 
   // handle drag n drop file upload
 
@@ -17,32 +17,32 @@ export default function FileUpload(props) {
     // console.log("File(s) dropped");
 
     // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
+    ev.preventDefault()
 
     if (ev.dataTransfer.items) {
       // Use DataTransferItemList interface to access the file(s)
-      [...ev.dataTransfer.items].forEach((item, i) => {
+      ;[...ev.dataTransfer.items].forEach((item, i) => {
         // If dropped items aren't files, reject them
-        if (item.kind === "file") {
-          const file = item.getAsFile();
-          setPath(file), setValue(file.name);
+        if (item.kind === 'file') {
+          const file = item.getAsFile()
+          setPath(file), setValue(file.name)
 
-          console.log(`… file[${i}].name = ${file.name}`);
+          console.log(`… file[${i}].name = ${file.name}`)
         }
-      });
+      })
     } else {
       // Use DataTransfer interface to access the file(s)
-      [...ev.dataTransfer.files].forEach((file, i) => {
-        console.log(`… file[${i}].name = ${file.name}`);
-      });
+      ;[...ev.dataTransfer.files].forEach((file, i) => {
+        console.log(`… file[${i}].name = ${file.name}`)
+      })
     }
   }
 
   function dragOverHandler(ev) {
-    console.log("File(s) in drop zone");
+    console.log('File(s) in drop zone')
 
     // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
+    ev.preventDefault()
   }
 
   const fileIcon = (
@@ -65,39 +65,39 @@ export default function FileUpload(props) {
         fill="#333333"
       />
     </svg>
-  );
+  )
 
   // convert file size to readable format
   const fileSize = (size) => {
-    var i = size == 0 ? 0 : Math.floor(Math.log(size) / Math.log(1024));
+    var i = size == 0 ? 0 : Math.floor(Math.log(size) / Math.log(1024))
     return (
       (size / Math.pow(1024, i)).toFixed(2) * 1 +
-      " " +
-      ["B", "kB", "MB", "GB", "TB"][i]
-    );
-  };
+      ' ' +
+      ['B', 'kB', 'MB', 'GB', 'TB'][i]
+    )
+  }
 
   useEffect(() => {
     // create the preview
     if (path) {
-      const objectUrl = URL.createObjectURL(path);
-      setPreview(objectUrl);
-      return () => URL.revokeObjectURL(objectUrl);
+      const objectUrl = URL.createObjectURL(path)
+      setPreview(objectUrl)
+      return () => URL.revokeObjectURL(objectUrl)
     }
     // free memory when ever this component is unmounted
-  }, [path]);
+  }, [path])
 
-  props.value(value);
-  props.preview(preview);
+  props.value(value)
+  props.preview(preview)
 
-  let width = props.width;
-  let label = props.label;
-  let dragdrop = props.dragdrop;
+  let width = props.width
+  let label = props.label
+  let dragdrop = props.dragdrop
   return (
     <>
       {!dragdrop && (
         <div
-          style={{ width: width ? width : "755px" }}
+          style={{ width: width ? width : '755px' }}
           className={stile.upload}
         >
           <div className={stile.uploadBtn}>
@@ -111,7 +111,7 @@ export default function FileUpload(props) {
             </label>
             <input
               onChange={(e) => {
-                setPath(e.target.files[0]), setValue(e.target.files);
+                setPath(e.target.files[0]), setValue(e.target.files)
               }}
               type="file"
               name="docs"
@@ -132,14 +132,14 @@ export default function FileUpload(props) {
                   </div>
                   <div
                     onClick={() => {
-                      setPreview();
-                      setValue();
+                      setPreview()
+                      setValue()
                     }}
                   >
                     <CancelRound />
                   </div>
                 </div>
-              );
+              )
             })}
         </div>
       )}
@@ -149,7 +149,7 @@ export default function FileUpload(props) {
             id={stile.drop_zone}
             onDrop={(e) => dropHandler(e)}
             onDragOver={(event) => dragOverHandler(event)}
-            style={{ width: width ? width : "755px" }}
+            style={{ width: width ? width : '755px' }}
             className={stile.upload}
           >
             <div id={stile.uploadBtn}>
@@ -161,7 +161,7 @@ export default function FileUpload(props) {
               </label>
               <input
                 onChange={(e) => {
-                  setPath(e.target.files[0]), setValue(e.target.files);
+                  setPath(e.target.files[0]), setValue(e.target.files)
                 }}
                 type="file"
                 name="docs"
@@ -186,17 +186,17 @@ export default function FileUpload(props) {
                   <div
                     id={stile.deleteBtn}
                     onClick={() => {
-                      setPreview();
-                      setValue();
+                      setPreview()
+                      setValue()
                     }}
                   >
                     <span>Delete</span>
                   </div>
                 </div>
-              );
+              )
             })}
         </>
       )}
     </>
-  );
+  )
 }

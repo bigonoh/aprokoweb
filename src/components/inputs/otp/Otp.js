@@ -1,7 +1,7 @@
-import React, { useRef, useState } from "react";
-import otpStyle from "./otp.module.css";
-import { Helmet } from "react-helmet";
-import ReactPinField from "react-pin-field";
+import React, { useRef, useState } from 'react'
+import otpStyle from './otp.module.css'
+import { Helmet } from 'react-helmet'
+import ReactPinField from 'react-pin-field'
 
 function Otp({
   paddingTop,
@@ -15,41 +15,41 @@ function Otp({
   // const { paddingTop, fontSize, pinNum, value, onComplete, onEdit } = props;
 
   // Feature detection
-  if ("OTPCredential" in window) {
-    window.addEventListener("DOMContentLoaded", (e) => {
+  if ('OTPCredential' in window) {
+    window.addEventListener('DOMContentLoaded', (e) => {
       const input = document.querySelector(
         'input[autocomplete="one-time-code"]'
-      );
-      if (!input) return;
+      )
+      if (!input) return
       // Cancel the WebOTP API if the form is submitted manually.
-      const ac = new AbortController();
-      const form = input.closest("form");
+      const ac = new AbortController()
+      const form = input.closest('form')
       if (form) {
-        form.addEventListener("submit", (e) => {
+        form.addEventListener('submit', (e) => {
           // Cancel the WebOTP API.
-          ac.abort();
-        });
+          ac.abort()
+        })
       }
       // Invoke the WebOTP API
       navigator.credentials
         .get({
-          otp: { transport: ["sms"] },
+          otp: { transport: ['sms'] },
           signal: ac.signal,
         })
         .then((otp) => {
-          input.value = otp.code;
+          input.value = otp.code
           // Automatically submit the form when an OTP is obtained.
-          if (form) form.submit();
+          if (form) form.submit()
         })
-        .catch((err) => {});
-    });
+        .catch((err) => {})
+    })
   }
 
-  const [data, setData] = useState("");
-  const [completePin, setCompletePin] = useState(false);
+  const [data, setData] = useState('')
+  const [completePin, setCompletePin] = useState(false)
 
   // props?.value(data)
-  value ? value(data) : "";
+  value ? value(data) : ''
 
   return (
     <div className={otpStyle.pin_field_group}>
@@ -60,14 +60,14 @@ function Otp({
           completePin && otpStyle.pin_field_completed
         }`}
         onChange={(num) => {
-          setCompletePin(false);
-          onEdit && onEdit();
-          setData(num);
-          onChange && onChange(num);
+          setCompletePin(false)
+          onEdit && onEdit()
+          setData(num)
+          onChange && onChange(num)
         }}
         onComplete={(num) => {
-          setCompletePin(true);
-          onComplete && onComplete(num);
+          setCompletePin(true)
+          onComplete && onComplete(num)
         }}
         format={(k) => k.toUpperCase()}
         //  disabled={showTime}
@@ -77,7 +77,7 @@ function Otp({
         // ref={ref}
       />
     </div>
-  );
+  )
 }
 
-export default Otp;
+export default Otp

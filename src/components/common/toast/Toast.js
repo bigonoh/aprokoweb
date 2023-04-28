@@ -1,10 +1,10 @@
 /* eslint-disable react/display-name */
-import { useState, useEffect } from "react";
-import { forwardRef, useRef, useImperativeHandle } from "react";
+import { useState, useEffect } from 'react'
+import { forwardRef, useRef, useImperativeHandle } from 'react'
 
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 
-import "./Toast.css";
+import './Toast.css'
 
 const errorIcon = (
   <svg
@@ -44,7 +44,7 @@ const errorIcon = (
       </clipPath>
     </defs>
   </svg>
-);
+)
 
 const close = (
   <svg
@@ -76,37 +76,37 @@ const close = (
       strokeLinejoin="round"
     />
   </svg>
-);
+)
 
 const Toast = (props) => {
-  const { toastList, position, autoDelete, autoDeleteTime } = props;
-  const [list, setList] = useState(toastList);
+  const { toastList, position, autoDelete, autoDeleteTime } = props
+  const [list, setList] = useState(toastList)
 
   useEffect(() => {
-    setList([...toastList]);
-  }, [toastList]);
+    setList([...toastList])
+  }, [toastList])
 
   useEffect(() => {
     const interval = setInterval(() => {
       if (autoDelete && toastList.length && list.length) {
-        deleteToast(toastList[0].id);
+        deleteToast(toastList[0].id)
       }
-    }, autoDeleteTime);
+    }, autoDeleteTime)
 
     return () => {
-      clearInterval(interval);
-    };
+      clearInterval(interval)
+    }
 
     // eslint-disable-next-line
-  }, [toastList, autoDelete, autoDeleteTime, list]);
+  }, [toastList, autoDelete, autoDeleteTime, list])
 
   const deleteToast = (id) => {
-    const listItemIndex = list.findIndex((e) => e.id === id);
-    const toastListItem = toastList.findIndex((e) => e.id === id);
-    list.splice(listItemIndex, 1);
-    toastList.splice(toastListItem, 1);
-    setList([...list]);
-  };
+    const listItemIndex = list.findIndex((e) => e.id === id)
+    const toastListItem = toastList.findIndex((e) => e.id === id)
+    list.splice(listItemIndex, 1)
+    toastList.splice(toastListItem, 1)
+    setList([...list])
+  }
 
   return (
     <>
@@ -137,17 +137,17 @@ const Toast = (props) => {
         ))}
       </div>
     </>
-  );
-};
+  )
+}
 
 const Toastify = forwardRef((props, ref) => {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState([])
 
   useImperativeHandle(ref, () => ({
     showToast() {
-      setList([...list, TOAST_PROP]);
+      setList([...list, TOAST_PROP])
     },
-  }));
+  }))
 
   //  const showToast = () =>  {
   //     setList([...list, TOAST_PROP]);
@@ -155,43 +155,43 @@ const Toastify = forwardRef((props, ref) => {
 
   const TOAST_PROP = {
     id: Math.floor(Math.random() * 101 + 1),
-    title: props.title ? props.title : "Title will appear here",
-    type: props.type ? props.type : "success",
-    description: props.description ? props.description : "",
-    width: props.width ? props.width : "52.7rem",
+    title: props.title ? props.title : 'Title will appear here',
+    type: props.type ? props.type : 'success',
+    description: props.description ? props.description : '',
+    width: props.width ? props.width : '52.7rem',
     backgroundColor:
-      props.type === "error"
-        ? "#CC0000"
-        : props.type === "warning"
-        ? "#FFF1F0"
-        : "#3CC35C",
+      props.type === 'error'
+        ? '#CC0000'
+        : props.type === 'warning'
+        ? '#FFF1F0'
+        : '#3CC35C',
 
     borderColor:
-      props.type === "error"
-        ? "#CC0000"
-        : props.type === "warning"
-        ? "#FFF1F0"
-        : "#3CC35C",
-    icon: props.type === "error" ? errorIcon : errorIcon,
-  };
+      props.type === 'error'
+        ? '#CC0000'
+        : props.type === 'warning'
+        ? '#FFF1F0'
+        : '#3CC35C',
+    icon: props.type === 'error' ? errorIcon : errorIcon,
+  }
 
   return (
     <>
       {/* <button  onClick={showToast}>Show toast</button> */}
       <Toast
         autoDelete={props.autoDelete ? props.autoDelete : true}
-        autoDeleteTime={props.expireIn ? props.expireIn : "3000"}
+        autoDeleteTime={props.expireIn ? props.expireIn : '3000'}
         toastList={list}
-        position={props.position ? props.position : "top-right"}
+        position={props.position ? props.position : 'top-right'}
       />
     </>
-  );
-});
+  )
+})
 
-export default Toastify;
+export default Toastify
 
 Toastify.propTypes = {
   autoDelete: PropTypes.bool,
   position: PropTypes.string.isRequired,
   autoDeleteTime: PropTypes.number,
-};
+}
