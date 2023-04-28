@@ -47,6 +47,12 @@ function Sidebar() {
           Sales
         </div>
         <div
+          onClick={() => navigate('/information-collection')}
+          className="p-15 curved text-md menu-item text-white"
+        >
+          Information
+        </div>
+        <div
           onClick={() => navigate('/transaction')}
           className="p-15 curved text-md menu-item text-white"
         >
