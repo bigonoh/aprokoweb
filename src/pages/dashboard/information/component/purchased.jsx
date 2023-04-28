@@ -114,281 +114,214 @@ function BoughtInfo() {
     }
   }
 
+  console.log(infos)
   return (
-    <div className='information_wrapper'>
-          {/* table start */}
-          <div className="table-wrap">
-            <RavenTable headerList={headerList} action>
-              {infos?.map((chi, idx) => {
-                const {
-                  title,
-                  created_at,
-                  user,
-                  verified,
-                  phone,
-                  price,
-                  information,
-                  location,
-                } = chi
+    <div className='purchased_info_wrapper'>
+         <div className="information_wrapper">
+        <div className="page_body">
+                   {/* table start */}
+                   <div className="table-wrap">
+              <RavenTable headerList={headerList} action>
+                {infos?.map((chi, idx) => {
+                  const { title, created_at,user, information, verified, phone, info_id, price, location, } =
+                    chi;
 
-                // console.log(chi, 'this is')
+                    // console.log(JSON.parse(information), 'this is')
 
-                return (
-                  <RavenTableRow
-                    key={idx}
-                    one={`${
-                      information.length > 30 ? information.slice(0, 30) + '...' : information
-                    }`}
-                    two={price}
-                    three={phone}
-                    onRowClick={() => setShowAction(false)}
-                    four={location?.city + ' - ' + location?.state}
-                    five={user?.name}
-                    className={showAction === idx ? 'zUp' : 'zDown'}
-                    six={DateTime.fromISO(created_at).toLocaleString(
-                      DateTime.DATE_MED
-                    )}
-                    seven={userVerification(verified)}
-                    ManualAddActions={() => {
-                      return (
-                        <div className="action_contain">
-                          <div
-                            onClick={() => {
-                              if (showAction === idx) setShowAction()
-                              else setShowAction(idx)
-                            }}
-                          >
+
+                  return (
+                    <RavenTableRow
+                      key={idx}
+                      one={`${info_id?.title?.length > 30 ? info_id?.title?.slice(0, 30) + '...' : info_id?.title}`}
+                      two={formatNumWithCommaNaira(String(info_id?.price ? info_id?.price : 0)) }
+                      three={phone}
+                      onRowClick={() => setShowAction(false)}
+                      four={info_id?.location?.city + ' - ' + location?.state }
+                      five={user?.name}
+                      className={showAction === idx ? "zUp" : "zDown"}
+                      six={DateTime.fromISO(created_at).toLocaleString(DateTime.DATE_MED)}
+                      seven={userVerification(verified)}
+                      ManualAddActions={() => {
+                        return (
+                          <div className='action_contain'>
+                            <div onClick={() => {
+                             if (showAction === idx) setShowAction()
+                             else setShowAction(idx)
+
+                            }}>
                             {icons.dots}
-                          </div>
-
-                          <div
-                            className={`action_drop ${
-                              showAction === idx && 'show'
-                            }`}
-                          >
-                            <span
-                              onClick={() =>
-                                setModal({
-                                  view: true,
-                                  edit: false,
-                                  content: chi,
-                                })
-                              }
-                            >
-                              View Info
-                            </span>
+                            </div>
+                            
+                            <div className={`action_drop ${showAction === idx && 'show'}`}>
+                            <span onClick={() => setModal({view: true, edit: false, content: chi})}>View Info</span>
                             <span>Edit Info</span>
-                            <span
-                              onClick={() =>
-                                setModal({
-                                  view: false,
-                                  edit: false,
-                                  verify: true,
-                                  content: chi,
-                                })
-                              }
-                            >
-                              {chi?.verified ? 'Unverify Info' : 'Verify Info'}
-                            </span>
-                            <span
-                              onClick={() =>
-                                setModal({
-                                  view: false,
-                                  edit: false,
-                                  delete: true,
-                                  content: chi,
-                                })
-                              }
-                            >
-                              Destroy Info
-                            </span>
+                            <span onClick={() => setModal({view: false, edit: false, verify: true, content: chi})}>{chi?.verified ? "Unverify Info": "Verify Info"}</span>
+                            <span onClick={() => setModal({view: false, edit: false, delete: true, content: chi})}>Destroy Info</span>
+                            </div>
                           </div>
-                        </div>
-                      )
-                    }}
-                  />
-                )
-              })}
-            </RavenTable>
-          </div>
-          {/* table end */}
-          {/* pagination start */}
-          <div className="table-pagination-box">
-            <RavenPagination
-              color={`black-light`}
-              blackHover
-              onNumView={(d) => setPage(d)}
-              currentPage={page}
-              totalPage={boughtInfos?.totalPages}
-            />
-          </div>
-          {/* pagination end */}
-
-        {/* view info modal */}
-        <RavenModal
-          visble={modal.view}
-          btnColor="orange-dark"
-          btnLabel={'Close'}
-          onClose={() =>
-            setModal({
-              view: false,
-              edit: false,
-            })
-          }
-          onBtnClick={() =>
-            setModal({
-              view: false,
-              edit: false,
-            })
-          }
-        >
-          <div className="modal_content_wrapper">
-            <div className="title">Information Details</div>
-
-            <div className="content table-responsive">
-              <table className="table">
-                <colgroup>
-                  <col />
-                  <col />
-                </colgroup>
-                <tbody style={{ fontSize: '80%' }}>
-                  <tr>
-                    <td>Title</td>
-                    <td>{modal.content?.title}</td>
-                  </tr>
-                  <tr>
-                    <td>Description</td>
-                    <td>{modal.content?.description}</td>
-                  </tr>
-                  <tr>
-                    <td>Location</td>
-                    <td>
-                      {modal.content?.city + ' - ' + modal.content?.state}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Info ID</td>
-                    <td>{modal.content?.id}</td>
-                  </tr>
-                  <tr>
-                    <td>Price</td>
-                    <td>
-                      {formatNumWithCommaNaira(String(modal.content?.price))}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Author</td>
-                    <td> {modal.content?.user?.name} </td>
-                  </tr>
-                  <tr>
-                    <td>Verified</td>
-                    <td>
-                      {' '}
-                      <div
-                        className={
-                          modal.content?.verified ? 'verified' : 'unverified'
-                        }
-                      >
-                        {modal.content?.verified ? 'Verified' : 'Unverified'}
-                      </div>{' '}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Status</td>
-                    <td>{modal.content?.status}</td>
-                  </tr>
-                  <tr>
-                    <td>Probation</td>
-                    <td>{String(modal.content?.probation)}</td>
-                  </tr>
-                  <tr>
-                    <td>Reported</td>
-                    <td>{String(modal.content?.reported)}</td>
-                  </tr>
-
-                  <tr>
-                    <td>Created</td>
-                    <td>
-                      <time dateTime={modal.content?.created_at}>
-                        {DateTime.fromISO(
-                          modal.content?.created_at
-                        ).toLocaleString(DateTime.DATE_MED)}
-                      </time>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+                        )
+                      }}
+                    />
+                  );
+                })}
+                
+              </RavenTable>
+             
             </div>
-          </div>
-        </RavenModal>
-        {/* end view info modal */}
+            {/* table end */}
+             {/* pagination start */}
+             <div className="table-pagination-box">
+                <RavenPagination
+                  color={`black-light`}
+                  blackHover
+                  onNumView={(d) => setPage(d)}
+                  currentPage={page}
+                  totalPage={boughtInfos?.totalPages}
+                />
+              </div>
+              {/* pagination end */}
+      </div>
+
+{/* view info modal */}
+      <RavenModal
+      visble={modal.view}
+      btnColor="orange-dark"
+      btnLabel={'Close'}
+      onClose={() => setModal({
+        view: false,
+        edit: false,
+      })}
+      onBtnClick={() => setModal({
+        view: false,
+        edit: false,
+      })}
+      >
+    <div className="modal_content_wrapper">
+      <div className="title">Information Details</div>
+
+      <div className="content table-responsive">
+        <table className="table">
+          <colgroup>
+          <col />
+          <col />
+          </colgroup>
+          <tbody style={{fontSize: "80%"}}>
+  <tr>
+    <td>Title</td>
+    <td>{modal.content?.info_id?.title}</td>
+  </tr>
+  <tr>
+    <td>Description</td>
+    <td>{modal.content?.info_id?.description}</td>
+  </tr>
+  <tr>
+    <td>Location</td>
+    <td>{modal.content?.info_id?.city + " - " + modal.content?.state}</td>
+  </tr>
+  <tr>
+    <td>Info ID</td>
+    <td>{modal.content?.info_id?.id}</td>
+  </tr>
+  <tr>
+    <td>Price</td>
+    <td>{formatNumWithCommaNaira (String(modal.content?.info_id?.price))}</td>
+  </tr>
+  <tr>
+    <td>Author</td>
+    <td> { modal.content?.user?.name}  </td>
+  </tr>
+  <tr>
+    <td>Verified</td>
+    <td> <div className={modal.content?.verified ? "verified" : "unverified"}>
+    {modal.content?.verified ? "Verified" : "Unverified"}
+      </div> </td>
+  </tr>
+  <tr>
+    <td>Status</td>
+    <td>{modal.content?.status}</td>
+  </tr>
+  <tr>
+    <td>Probation</td>
+    <td>{String(modal.content?.probation)}</td>
+  </tr>
+  <tr>
+    <td>Reported</td>
+    <td>{String(modal.content?.reported)}</td>
+  </tr>
+
+  <tr>
+    <td>Created</td>
+    <td>
+      <time dateTime={modal.content?.created_at }>{DateTime.fromISO(modal.content?.created_at).toLocaleString(DateTime.DATE_MED)}</time>
+    </td>
+  </tr>
+</tbody>
+        </table>
+
+      </div>
+
+    </div>
+      </RavenModal>
+{/* end view info modal */}
+
+
+    </div>
 
       {/* caution modal */}
-      <RavenModal
-        visble={modal.delete}
-        className="caution_modal"
-        effect={'fadeInRight'}
-        onClose={() =>
-          setModal({
-            view: false,
-            edit: false,
-          })
-        }
-      >
-        <ErrorModal
-          bigText={'Destroy this information'}
-          smallText={
-            'If you destroy this information, it will be permanently deleted and will no longer be available on this platform, and this action cannot be reversed.'
-          }
-          onCancel={() =>
-            setModal({
-              view: false,
-              edit: false,
-            })
-          }
-          onClick={() => deleteInfo(modal?.content?.id)}
-          btnText={'Destroy'}
-        ></ErrorModal>
-      </RavenModal>
-      {/* end caution modal */}
+    <RavenModal
+     visble={modal.delete}
+    className="caution_modal"
+    effect={'fadeInRight'}
+     onClose={() => setModal({
+       view: false,
+       edit: false,
+     })}
+     > 
+  <ErrorModal 
+  bigText={"Destroy this information"}
+  smallText={"If you destroy this information, it will be permanently deleted and will no longer be available on this platform, and this action cannot be reversed."}
+  onCancel={
+    () => setModal({
+      view: false,
+      edit: false,
+    })
+  }
+  onClick={() => deleteInfo(modal?.content?.id)}
+  btnText={"Destroy"}
+  >
 
-      {/* caution modal */}
-      <RavenModal
-        visble={modal.verify}
-        className="caution_modal"
-        effect={'fadeInRight'}
-        onClose={() =>
-          setModal({
-            view: false,
-            edit: false,
-          })
-        }
-      >
-        <ErrorModal
-          bigText={`${
-            modal?.content?.verified
-              ? 'Unverify this information'
-              : 'Verify this information'
-          }`}
-          smallText={
-            'If you verify this information, it means you have checked and confirmed that the information contained is correct and legit, do you want to proceed ?.'
-          }
-          fillColor={'green'}
-          onCancel={() =>
-            setModal({
-              view: false,
-              edit: false,
-            })
-          }
-          onClick={() =>
-            verifyInfo(modal?.content?.id, !modal?.content?.verified)
-          }
-          btnText={`${
-            modal?.content?.verified ? 'Yes, Unverify' : 'Yes, Verify'
-          }`}
-        ></ErrorModal>
-      </RavenModal>
-      {/* end caution modal */}
+  </ErrorModal>
+    </RavenModal>
+{/* end caution modal */}
+
+
+ {/* caution modal */}
+ <RavenModal
+     visble={modal.verify}
+    className="caution_modal"
+    effect={'fadeInRight'}
+     onClose={() => setModal({
+       view: false,
+       edit: false,
+     })}
+     > 
+  <ErrorModal 
+  bigText={`${modal?.content?.verified ? "Unverify this information" : "Verify this information"}`}
+  smallText={"If you verify this information, it means you have checked and confirmed that the information contained is correct and legit, do you want to proceed ?."}
+  fillColor={'green'}
+  onCancel={
+    () => setModal({
+      view: false,
+      edit: false,
+    })
+  }
+  onClick={() => verifyInfo(modal?.content?.id, !modal?.content?.verified)}
+  btnText={`${modal?.content?.verified ? "Yes, Unverify": "Yes, Verify"}`}
+  >
+
+  </ErrorModal>
+    </RavenModal>
+{/* end caution modal */}
     </div>
   )
 }

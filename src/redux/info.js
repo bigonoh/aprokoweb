@@ -50,7 +50,7 @@ export const getBoughtInfo = createAsyncThunk(
       const { data } = await axios.get(
         `/purchase/user?limit=${payload.limit || 10}&page=${
           payload.page || 1
-        }&populate=user`,
+        }&populate=user,info_id`,
         payload
       )
       // console.log("login", data);

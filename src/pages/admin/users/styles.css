@@ -42,8 +42,8 @@
   width: max-content;
   height: -moz-fit-content;
   height: fit-content;
-  background: #ffffff;
-  border: 1px solid #eaecee;
+  background: #FFFFFF;
+  border: 1px solid #EAECEE;
   border-radius: 12px;
   display: flex;
   gap: 10rem;
@@ -56,10 +56,10 @@
 .users_wrapper .page_top .stats_card .stat span p {
   font-size: 1.4rem;
   font-weight: 600;
-  color: #373f47;
+  color: #373F47;
 }
 .users_wrapper .page_top .stats_card .stat span h6 {
-  color: #242d35;
+  color: #242D35;
 }
 .users_wrapper .page_top .stats_card .stat_minimal {
   display: flex;
@@ -69,17 +69,17 @@
   margin-left: 3rem;
 }
 .users_wrapper .page_top .stats_card .stat_minimal span {
-  border: 1px solid #eaecee;
+  border: 1px solid #EAECEE;
   padding: 1rem;
   border-radius: 1rem;
 }
 .users_wrapper .page_top .stats_card .stat_minimal p {
   font-size: 1.4rem;
   font-weight: 600;
-  color: #373f47;
+  color: #373F47;
 }
 .users_wrapper .page_top .stats_card .stat_minimal h6 {
-  color: #242d35;
+  color: #242D35;
   font-size: 1.6rem;
 }
 .users_wrapper .page_body {
@@ -128,13 +128,9 @@
   width: -moz-max-content;
   width: max-content;
   font-weight: 500;
-  color: #373f47;
+  color: #373F47;
 }
-.users_wrapper
-  .page_body
-  .action_contain
-  .action_drop.show
-  span:not(:last-child) {
+.users_wrapper .page_body .action_contain .action_drop.show span:not(:last-child) {
   padding: 1rem;
   padding-right: 4rem;
   padding-left: 2rem;
@@ -180,7 +176,7 @@
 .users_wrapper .modal-parent-wrap figure::before {
   font-weight: bold;
   color: navy;
-  content: '✕';
+  content: "✕";
   font-size: 1.8rem;
 }
 .users_wrapper .modal-parent-wrap .modal_content_wrapper {
@@ -220,4 +216,4 @@
   .table {
     width: 150% !important;
   }
-} /*# sourceMappingURL=styles.css.map */
+}/*# sourceMappingURL=styles.css.map */

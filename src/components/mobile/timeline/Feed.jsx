@@ -69,7 +69,7 @@ function Feed({ item }) {
       amount: payData.price,
       info_id: payData.id,
       information: JSON.stringify(payData),
-      seller: payData.user,
+      seller: payData.user.id,
       ref: reference.trxref,
       payment_ref: reference.transaction,
     }
