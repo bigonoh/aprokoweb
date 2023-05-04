@@ -1,61 +1,61 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
-import React, { useEffect, useState } from "react";
-import style from "./style.module.css";
-import ChevronDown from "../../../assets/chevron-down";
-import { isMobile } from "../../../utils/DetectMobile";
+import React, { useEffect, useState } from 'react'
+import style from './style.module.css'
+import ChevronDown from '../../../assets/chevron-down'
+import { isMobile } from '../../../utils/DetectMobile'
 
 function Select(props) {
-  let placeholder = props.placeholder;
+  let placeholder = props.placeholder
   let options = props.options
     ? props.options
     : [
-        { value: "add an option", label: "" },
+        { value: 'add an option', label: '' },
         // { value: "choose", label: "some text" },
         // { value: "choose", label: "some text" },
-      ];
+      ]
 
-  const [label, setLabel] = useState();
-  const [icon, setIcon] = useState("");
-  const [show, setShow] = useState();
+  const [label, setLabel] = useState()
+  const [icon, setIcon] = useState('')
+  const [show, setShow] = useState()
 
   useEffect(() => {
     if (props.default) {
-      let def = props.default;
-      setLabel(def?.label);
-      setIcon(def?.icon);
+      let def = props.default
+      setLabel(def?.label)
+      setIcon(def?.icon)
     }
-  }, []);
+  }, [])
 
   const handleShow = () => {
-    setShow(!show);
-  };
+    setShow(!show)
+  }
 
   const handleSelect = (item) => {
     if (props.value) {
-      setLabel(item.label), setIcon(item.icon);
-      props.value(item.value);
-      setShow(!show);
+      setLabel(item.label), setIcon(item.icon)
+      props.value(item.value)
+      setShow(!show)
     } else {
-      setLabel(item.label), setIcon(item.icon);
-      setShow(!show);
+      setLabel(item.label), setIcon(item.icon)
+      setShow(!show)
     }
-  };
+  }
 
-  const mobile = isMobile();
+  const mobile = isMobile()
 
-  const { width, gap, height } = props;
+  const { width, gap, height } = props
 
   return (
     <div
-      style={{ width: width ? width : mobile ? "90vw" : "439px" }}
+      style={{ width: width ? width : mobile ? '90vw' : '439px' }}
       className={`${style.selectContain} ${props.selectStyle}`}
     >
       <div
         onClick={() => handleShow()}
         style={{
-          width: "100%",
-          gap: gap ? gap : "",
-          height: height ? height : "",
+          width: '100%',
+          gap: gap ? gap : '',
+          height: height ? height : '',
         }}
         className={style.selectInput}
       >
@@ -79,7 +79,7 @@ function Select(props) {
       {show && (
         <div
           style={{
-            width: props.width ? props.width : mobile ? "90vw" : "439px",
+            width: props.width ? props.width : mobile ? '90vw' : '439px',
           }}
           className={style.optionsContain}
         >
@@ -88,7 +88,7 @@ function Select(props) {
               <div
                 disabled={true}
                 onClick={() => {
-                  handleSelect(item);
+                  handleSelect(item)
                 }}
                 key={index}
                 value={item}
@@ -97,12 +97,12 @@ function Select(props) {
                 {item.icon && <div>{item.icon}</div>}
                 {item.label}
               </div>
-            );
+            )
           })}
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default Select;
+export default Select

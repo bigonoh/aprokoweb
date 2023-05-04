@@ -3,7 +3,7 @@
 }
 
 @media screen and (max-width: 29.9375em) {
-  .timeline-items {
+  .desktop-timeline {
     display: none;
   }
   .timeline-mobile {
@@ -65,4 +65,4 @@
     height: max-content !important;
     padding-bottom: 10rem;
   }
-}/*# sourceMappingURL=mobile.css.map */
+} /*# sourceMappingURL=mobile.css.map */

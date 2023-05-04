@@ -1,69 +1,65 @@
-@import "../_breakpoints";
-
+@import '../_breakpoints';
 
 .dashboard_layout_wrapper {
-    overflow: hidden;
-    height: 100vh;
+  overflow: hidden;
+  height: 100vh;
 }
 
 .layout_children {
-    overflow: hidden;
-    height: 90%;
-    width: 100%;
-    padding-bottom: 3rem;
-    padding-right: 5rem;
-    display: flex;
-    justify-content: center;
+  overflow: hidden;
+  height: 90%;
+  width: 100%;
+  padding-bottom: 3rem;
+  padding-right: 5rem;
+  display: flex;
+  justify-content: center;
 }
 
 .mobile_dashboard_header {
-    display: none;
+  display: none;
 }
 
 @include xs {
-        .desktop-layout {
-            display: none;
-            visibility: none;
-    }
-    .dashboard_layout_wrapper{
-        flex-direction: column;
+  .desktop-layout {
+    display: none;
+    visibility: none;
+  }
+  .dashboard_layout_wrapper {
+    flex-direction: column;
 
-
-        .mobile_dashboard_header {
-            display: unset;
-            z-index: 5000;
-            width: 100%;
-        }
-
-        .layout_children {
-            padding: 0;
-            margin: 0;
-            padding-top: 5rem;
-        }
+    .mobile_dashboard_header {
+      display: unset;
+      z-index: 5000;
+      width: 100%;
     }
 
-    .create_post_wrapper {
-        padding: 0;
-        margin: 0;
-        width: 100%;
+    .layout_children {
+      padding: 0;
+      margin: 0;
+      padding-top: 5rem;
+    }
+  }
 
-        .create_card {
-            width: 100% !important;
-            margin-top: 0   !important;
-        }
+  .create_post_wrapper {
+    padding: 0;
+    margin: 0;
+    width: 100%;
 
-        .post_body {
-            width: 100% !important; 
-
-            .input-container { 
-                width: 100% !important;
-            }
-
-            .grouped-input-container { 
-                width: 100% !important;
-            }
-        }
+    .create_card {
+      width: 100% !important;
+      margin-top: 0 !important;
     }
 
-    
+    .post_body {
+      width: 100% !important;
+
+      .input-container {
+        width: 100% !important;
+      }
+
+      .grouped-input-container {
+        width: 100% !important;
+      }
+    }
+  }
 }

@@ -9,7 +9,7 @@
 .balance .mainBalance {
   position: relative;
   height: 22.8rem;
-  background-color: #FFE7D6;
+  background-color: #ffe7d6;
   border-radius: 8px;
   flex-direction: column;
   display: flex;
@@ -45,36 +45,43 @@
   width: 100%;
   justify-content: space-between;
 }
-.balance .details .withdrawn, .balance .details .pending {
+.balance .details .withdrawn,
+.balance .details .pending {
   display: flex;
-  background-color: #F0F0F0;
+  background-color: #f0f0f0;
   border-radius: 0.8rem;
   padding: 1rem 2rem;
   align-items: center;
 }
-.balance .details .withdrawn p, .balance .details .pending p {
+.balance .details .withdrawn p,
+.balance .details .pending p {
   font-weight: 400;
   font-size: 1.4rem;
   line-height: 1.9rem;
   color: #929191;
 }
-.balance .details .withdrawn h2, .balance .details .pending h2 {
+.balance .details .withdrawn h2,
+.balance .details .pending h2 {
   font-weight: 400;
   font-size: 1.4rem;
   line-height: 19px;
   color: #212121;
 }
-.balance .details .withdrawn .left, .balance .details .pending .left {
+.balance .details .withdrawn .left,
+.balance .details .pending .left {
   align-items: flex-start;
   display: flex;
 }
-.balance .details .withdrawn .left svg, .balance .details .pending .left svg {
+.balance .details .withdrawn .left svg,
+.balance .details .pending .left svg {
   width: 70%;
 }
-.balance .details .withdrawn .left.icon, .balance .details .pending .left.icon {
-  color: #DF4309;
+.balance .details .withdrawn .left.icon,
+.balance .details .pending .left.icon {
+  color: #df4309;
 }
-.balance .details .withdrawn .right, .balance .details .pending .right {
+.balance .details .withdrawn .right,
+.balance .details .pending .right {
   align-items: start;
   display: flex;
   flex-direction: column;
@@ -102,7 +109,7 @@
 }
 .modal_content_wrapper .modal_title span h6 {
   font-weight: 2.4rem;
-  color: #DF4309;
+  color: #df4309;
 }
 .modal_content_wrapper .modal_title span p {
   font-size: 1.2rem;
@@ -154,4 +161,4 @@
 .modal_content_wrapper .author_section span p {
   font-weight: 400;
   font-size: 1rem;
-}/*# sourceMappingURL=style.css.map */
+} /*# sourceMappingURL=style.css.map */

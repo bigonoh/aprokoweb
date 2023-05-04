@@ -226,7 +226,7 @@
 .more_actions div:after {
   width: auto;
   height: 0;
-  content: "";
+  content: '';
   background: #fff;
   transition: 100ms height ease 200ms;
   -web-kit-transition: 100ms height ease 200ms;

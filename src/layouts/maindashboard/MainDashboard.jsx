@@ -1,124 +1,119 @@
 import React from 'react'
 require('./style.css')
 import Balance from '../../components/balance/Balance'
-import { icons } from '../../assets/icons/icons';
-import { useSelector } from 'react-redux';
-import { formatNumWithCommaNaira } from '../../utils/Helpers';
-import { useState } from 'react';
-import { RavenModal } from 'raven-bank-ui';
+import { icons } from '../../assets/icons/icons'
+import { useSelector } from 'react-redux'
+import { formatNumWithCommaNaira } from '../../utils/Helpers'
+import { useState } from 'react'
+import { RavenModal } from 'raven-bank-ui'
 
-
-const MainDashboard = ({trx}) => {
-   const styles = {
+const MainDashboard = ({ trx }) => {
+  const styles = {
     button: {
-      backgroundColor: 'blue'}, };
+      backgroundColor: 'blue',
+    },
+  }
 
-      const data = [
-        { name: 'Purchase of information from jack', age: 28, address: 'some where', key: '1' },
-        { name: 'Rose', age: 36, address: 'some where', key: '2' },
-      ];
+  const data = [
+    {
+      name: 'Purchase of information from jack',
+      age: 28,
+      address: 'some where',
+      key: '1',
+    },
+    { name: 'Rose', age: 36, address: 'some where', key: '2' },
+  ]
 
-      const { infos } = useSelector((state) => state.info);
-      const posts = infos?.results
+  const { infos } = useSelector((state) => state.info)
+  const posts = infos?.results
 
   return (
-    <div className='mainDashboard'>
-
-        <div className='right'>
-            <div className='topBalance'>
-                <Balance />
-                {/* <button className='text-white wp-100 btn-secondary'>Request Withdrawal</button> */}
+    <div className="mainDashboard">
+      <div className="right">
+        <div className="topBalance">
+          <Balance />
+          {/* <button className='text-white wp-100 btn-secondary'>Request Withdrawal</button> */}
+        </div>
+        <div className="bottom_wrapper">
+          <p className="text-md font-600 ">Quick Actions</p>
+          <div className="flex gap-10  mt-20 justify-between">
+            <div className="p-20 flex align-start actions justify center">
+              Sell info
             </div>
-            <div className='bottom_wrapper'>
-              <p className='text-md font-600 '>Quick Actions</p>
-              <div className="flex gap-10  mt-20 justify-between">
-                <div className="p-20 flex align-start actions justify center">
-                  Sell info
-                </div>
-                <div className="p-20 flex align-start actions justify center">
-                  Buy info
-                </div>
-                <div className="p-20 flex align-start actions justify center">
-                  Withdraw
-                </div>
-                <div className="p-20 flex align-start actions justify center">
-                  Deposit
-                </div>
-              </div>
+            <div className="p-20 flex align-start actions justify center">
+              Buy info
+            </div>
+            <div className="p-20 flex align-start actions justify center">
+              Withdraw
+            </div>
+            <div className="p-20 flex align-start actions justify center">
+              Deposit
+            </div>
+          </div>
 
-              <p className='text-md font-600 mt-50 '>Recent Transaction</p>
-                  <div className=" mt-20">
-                 <table cellSpacing="0" cellPadding="0" className="table" >
-                  <thead>
-                    <tr>
-                    <th>Summary</th>
-                    <th>Amount</th>
+          <p className="text-md font-600 mt-50 ">Recent Transaction</p>
+          <div className=" mt-20">
+            <table cellSpacing="0" cellPadding="0" className="table">
+              <thead>
+                <tr>
+                  <th>Summary</th>
+                  <th>Amount</th>
+                </tr>
+              </thead>
+              <tbody>
+                {trx?.results?.map((chi, idx) => {
+                  return (
+                    <tr key={idx}>
+                      <td>
+                        <div className="table_content_wrap">{chi?.purpose}</div>
+                      </td>
+                      <td>
+                        <div className="table_content_wrap">
+                          {formatNumWithCommaNaira(String(chi?.amount))}
+                        </div>
+                      </td>
                     </tr>
-                    
-                  </thead>
-                  <tbody>
-                    {trx?.results?.map((chi, idx) => {
-                      return (
-                        <tr key={idx}>
-                          <td>
-                            <div className="table_content_wrap">
-                            {chi?.purpose}
-                            </div>
-                          </td>
-                          <td>
-                            <div className="table_content_wrap">
-                            {formatNumWithCommaNaira(String(chi?.amount )) }
-                            </div>
-                          </td>
-                      
-                        </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
 
-                      )
-                   
-                    })}
-                  </tbody>
-                 </table>
+      <div className="left-dashboard">
+        <div className="widget">
+          <h2>Latest Posts</h2>
+          <div className="wrapper">
+            {posts?.map((chi, idx) => {
+              return (
+                <div key={idx} className="comment">
+                  <p>{chi?.title}</p>
+                  <div className="button">
+                    <button>
+                      {formatNumWithCommaNaira(String(chi?.price))}
+                    </button>
+                    <button className="info">More info</button>
                   </div>
-            </div>
-         
+                </div>
+              )
+            })}
+          </div>
         </div>
 
+        <div className="p-20 home-dash-ad bg-primary-light-9 mt-30 curved">
+          <p>Start Earning on Aprokopay, Share information that matters.</p>
+          <span>
+            Aprokopay pays you for every bit of information you sell, click the
+            button below to start selling
+          </span>
 
-        <div className='left-dashboard'>
-        
-            <div className='widget'>
-            <h2>Latest Posts</h2>
-            <div className="wrapper">
-              {posts?.map((chi, idx) => {
-                return(
-                  <div key={idx} className='comment'>
-                  <p>{chi?.title}</p>
-                  <div className='button'>
-                      <button>{formatNumWithCommaNaira(String(chi?.price))}</button>
-                      <button className='info'>More info</button> 
-                  </div>
-                  </div>
-                )
-              })}
-
-            </div>
-            </div>
-        
-            <div className="p-20 home-dash-ad bg-primary-light-9 mt-30 curved">
-                    <p>
-                      Start Earning on Aprokopay, Share information that matters.
-                    </p>
-                    <span>
-                      Aprokopay pays you for every bit of information you sell, click the button below to start selling
-                    </span>
-
-                    <btn className="btn-create">
-                      Create post
-                      {icons.chevron_right}
-                    </btn>
-            </div>
-       </div>
-      
+          <btn className="btn-create">
+            Create post
+            {icons.chevron_right}
+          </btn>
+        </div>
+      </div>
     </div>
   )
 }

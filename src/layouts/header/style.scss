@@ -1,24 +1,22 @@
 .dashboard_header_wrap {
-    position: absolute;
-    top: 0;
-    height: 5rem;
-    width: 100vw;
-    background-color: white;
-    justify-content: flex-end;
-    border-bottom: 0.5px solid #cccccc;
+  position: absolute;
+  top: 0;
+  height: 5rem;
+  width: 100vw;
+  background-color: white;
+  justify-content: flex-end;
+  border-bottom: 0.5px solid #cccccc;
 
-    .notification_icon {
-        height: fit-content;
-        
-        background-color: aliceblue;
-        padding: 0.5rem;
-        border-radius: 50%;
-        
+  .notification_icon {
+    height: fit-content;
 
-        .notification {
-            width: 2rem;
-            height: 2rem;
-        }
+    background-color: aliceblue;
+    padding: 0.5rem;
+    border-radius: 50%;
+
+    .notification {
+      width: 2rem;
+      height: 2rem;
     }
-    
+  }
 }

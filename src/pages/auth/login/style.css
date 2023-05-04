@@ -1,7 +1,7 @@
 .login-left {
-  background-color: #FF8F66;
+  background-color: #ff8f66;
   opacity: 96%;
-  background-image: url("../../../assets/img/side-image.png");
+  background-image: url('../../../assets/img/side-image.png');
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -34,4 +34,4 @@
   .login-right .have-account {
     width: 100%;
   }
-}/*# sourceMappingURL=style.css.map */
+} /*# sourceMappingURL=style.css.map */

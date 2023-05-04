@@ -1,5 +1,5 @@
-import React from "react";
-import style from "./style.module.css";
+import React from 'react'
+import style from './style.module.css'
 
 function Search(props) {
   const searchIcon = (
@@ -23,17 +23,17 @@ function Search(props) {
         strokeLinejoin="round"
       />
     </svg>
-  );
+  )
 
   return (
     <div className={style.searchContainer}>
       <div className={style.search_icon}>{searchIcon}</div>
       <input
-        placeholder={props.placeholder ? props.placeholder : "Search anything"}
+        placeholder={props.placeholder ? props.placeholder : 'Search anything'}
         className={style.searchInput}
       />
     </div>
-  );
+  )
 }
 
-export default Search;
+export default Search

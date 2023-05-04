@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   bottom: 0;
-  background-color: #1C100B;
+  background-color: #1c100b;
   position: relative;
 }
 .main_sidebar_wrapper .menu-item {
@@ -30,7 +30,8 @@
   align-items: center;
   border: double 0.5em transparent;
   border-radius: 50%;
-  background-image: linear-gradient(white, white), linear-gradient(to right, green, orange);
+  background-image: linear-gradient(white, white),
+    linear-gradient(to right, green, orange);
   background-origin: border-box;
   background-clip: content-box, border-box;
 }
@@ -62,4 +63,4 @@
     display: none !important;
     visibility: hidden;
   }
-}/*# sourceMappingURL=style.css.map */
+} /*# sourceMappingURL=style.css.map */

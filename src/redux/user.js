@@ -1,576 +1,528 @@
 /* eslint-disable jsx-a11y/alt-text */
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "../utils/axios";
-import { toast } from "raven-bank-ui";
-import setAuthToken from "../utils/auth";
-
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+import axios from '../utils/axios'
+import { toast } from 'raven-bank-ui'
+import setAuthToken from '../utils/auth'
 
 export const registerUser = createAsyncThunk(
-  "/register",
+  '/register',
   async (payload, thunkAPI) => {
-
     try {
-
-      const { data } = await axios.post("/auth/register", payload);
+      const { data } = await axios.post('/auth/register', payload)
       // console.log("login", data);
-      if (data.status !== "success") {
+      if (data.status !== 'success') {
         toast.error(data.message, {
-          theme: "colored",
-          position: "center-top",
-      
-        });
-        return data;
+          theme: 'colored',
+          position: 'center-top',
+        })
+        return data
       }
-      
-      if (data.status === "success") {
-        toast.success(data.message, {
-          theme: "colored",
-          position: "top-center",
-        });
-        // console.log(data, 'from this point');
-        await thunkAPI.dispatch(login(data?.data?.tokens?.access?.token));
-        await localStorage.setItem('user', JSON.stringify(data?.data.data.user));
-        return data;
 
-        
+      if (data.status === 'success') {
+        toast.success(data.message, {
+          theme: 'colored',
+          position: 'top-center',
+        })
+        // console.log(data, 'from this point');
+        await thunkAPI.dispatch(login(data?.data?.tokens?.access?.token))
+        await localStorage.setItem('user', JSON.stringify(data?.data.data.user))
+        return data
       }
       // return thunkAPI.rejectWithValue(data);
     } catch (err) {
-      if (err.response.data.status === "fail" && err.response.status !== 401) {
+      if (err.response.data.status === 'fail' && err.response.status !== 401) {
         toast.error(err.response.data.message, {
-          theme: "colored",
-          position: "top-right",
-      
-        });
-        return thunkAPI.rejectWithValue(err);
+          theme: 'colored',
+          position: 'top-right',
+        })
+        return thunkAPI.rejectWithValue(err)
       }
     }
   }
-);
+)
 
 export const validateOtp = createAsyncThunk(
-  "register/validate_registration_otp",
+  'register/validate_registration_otp',
   async (payload, thunkAPI) => {
     try {
       // console.log(payload);
       const { data } = await axios.post(
-        "register/validate_registration_otp",
+        'register/validate_registration_otp',
         payload
-      );
-      if (data.status !== "success") {
+      )
+      if (data.status !== 'success') {
         toast.error(data.message, {
-          theme: "colored",
-      
-        });
-        return thunkAPI.rejectWithValue(data);
+          theme: 'colored',
+        })
+        return thunkAPI.rejectWithValue(data)
       }
-      if (data.status === "success") {
+      if (data.status === 'success') {
         // toast.success(data.data.message, {
         //   theme: "colored",
         // });
-        await thunkAPI.dispatch(login(data));
-        return thunkAPI.rejectWithValue(data);
+        await thunkAPI.dispatch(login(data))
+        return thunkAPI.rejectWithValue(data)
       }
     } catch (err) {
       // ;
-      if (err.response.data.status === "fail" && err.response.status !== 401) {
+      if (err.response.data.status === 'fail' && err.response.status !== 401) {
         toast.error(err.response.data.message, {
-          theme: "colored",
-          position: "top-right",
-      
-        });
+          theme: 'colored',
+          position: 'top-right',
+        })
       }
-      return thunkAPI.rejectWithValue(err);
+      return thunkAPI.rejectWithValue(err)
     }
   }
-);
+)
 
 export const updateUserProfile = createAsyncThunk(
-  "register/update-user-profile",
+  'register/update-user-profile',
   async (payload, thunkAPI) => {
     try {
       // console.log(payload);
-      const { data } = await axios.post("/update_user", payload);
-      console.log(data);
-      if (data.status === "fail") {
+      const { data } = await axios.post('/update_user', payload)
+      console.log(data)
+      if (data.status === 'fail') {
         toast.error(data.message, {
-          theme: "colored",
-      
-        });
-        return thunkAPI.rejectWithValue(data);
+          theme: 'colored',
+        })
+        return thunkAPI.rejectWithValue(data)
       }
-      if (data.status === "success") {
+      if (data.status === 'success') {
         toast.success(data.message, {
-          theme: "colored",
-      
-          
-        });
+          theme: 'colored',
+        })
         // await thunkAPI.dispatch(login(data));
-        return thunkAPI.rejectWithValue(data);
+        return thunkAPI.rejectWithValue(data)
       }
     } catch (err) {
       // ;
-      if (err.response.data.status === "fail" && err.response.status !== 401) {
+      if (err.response.data.status === 'fail' && err.response.status !== 401) {
         toast.error(err.response.data.message, {
-          theme: "colored",
-          position: "top-right",
-      
-        });
+          theme: 'colored',
+          position: 'top-right',
+        })
       }
-      return thunkAPI.rejectWithValue(err);
+      return thunkAPI.rejectWithValue(err)
     }
   }
-);
-
-
+)
 
 export const resendEmail = createAsyncThunk(
-  "register/resend_email_validation_otp",
+  'register/resend_email_validation_otp',
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.post(
-        "register/resend_email_validation_otp",
+        'register/resend_email_validation_otp',
         payload
-      );
-      if (data.status !== "success") {
+      )
+      if (data.status !== 'success') {
         toast.error(data.message, {
-          theme: "colored",
-      
-        });
+          theme: 'colored',
+        })
         // return thunkAPI.rejectWithValue(data);
       }
-      if (data.status === "success") {
+      if (data.status === 'success') {
         toast.success(data.message, {
-          theme: "colored",
-      
-          
-        });
+          theme: 'colored',
+        })
         // await thunkAPI.dispatch(login(data));
-        return thunkAPI.rejectWithValue(data);
+        return thunkAPI.rejectWithValue(data)
       }
     } catch (err) {
       // ;
-      if (err.response.data.status === "fail" && err.response.status !== 400) {
+      if (err.response.data.status === 'fail' && err.response.status !== 400) {
         toast.error(err.response.data.message, {
-          theme: "colored",
-          position: "top-right",
-      
-        });
+          theme: 'colored',
+          position: 'top-right',
+        })
       }
-      return thunkAPI.rejectWithValue(err);
+      return thunkAPI.rejectWithValue(err)
     }
   }
-);
+)
 
 export const getUser = createAsyncThunk(
-  "dashboard/get-user",
+  'dashboard/get-user',
   async (payload, thunkAPI) => {
     try {
       // console.log(payload);
-      const token = localStorage.getItem("token");
-      await setAuthToken(token);
-      const { data } = await axios.get("/get_user");
-      if (data.status !== "success") {
+      const token = localStorage.getItem('token')
+      await setAuthToken(token)
+      const { data } = await axios.get('/get_user')
+      if (data.status !== 'success') {
         toast.error(data.message, {
-          theme: "colored",
-      
-        });
+          theme: 'colored',
+        })
 
         console.log(data)
         // return thunkAPI.rejectWithValue(data);
       }
-      if (data.status === "success") {
+      if (data.status === 'success') {
         // console.log("resend otp", data);
-        const user = data?.data?.user;
-        const wallet = data?.data?.wallet;
-        await thunkAPI.dispatch(setUser(user));
-        await thunkAPI.dispatch(setWallet(wallet));
-        return data;
+        const user = data?.data?.user
+        const wallet = data?.data?.wallet
+        await thunkAPI.dispatch(setUser(user))
+        await thunkAPI.dispatch(setWallet(wallet))
+        return data
       }
     } catch (err) {
       // ;
-      if (err.response.data.status === "fail" && err.response.status !== 400) {
+      if (err.response.data.status === 'fail' && err.response.status !== 400) {
         toast.error(err.response.data.message, {
-          theme: "colored",
-          position: "top-right",
-      
-        });
+          theme: 'colored',
+          position: 'top-right',
+        })
       }
-      return thunkAPI.rejectWithValue(err);
+      return thunkAPI.rejectWithValue(err)
     }
   }
-);
-
+)
 
 export const loginUser = createAsyncThunk(
-  "login",
+  'login',
   async (formData, thunkAPI) => {
     const payload = {
       email: formData.email,
       password: formData.password,
-    };
+    }
     try {
-      const data = await axios.post("auth/login", payload);
+      const data = await axios.post('auth/login', payload)
       // console.log("we gere", data);
-      if (data?.response?.data?.status === "fail") {
+      if (data?.response?.data?.status === 'fail') {
         toast.error(data?.response?.data?.message, {
-          theme: "colored",
-          position: "top-center",
-          
-        });
+          theme: 'colored',
+          position: 'top-center',
+        })
 
-        return;
+        return
       }
-      if (data?.data?.status !== "success") {
-        if (data?.payload?.data?.action === "verify_email") {
+      if (data?.data?.status !== 'success') {
+        if (data?.payload?.data?.action === 'verify_email') {
           toast.info(data?.data?.message, {
-            theme: "colored",
-            position: "top-center",
-            
-            });
-          return data?.data;
+            theme: 'colored',
+            position: 'top-center',
+          })
+          return data?.data
         } else
           toast.error(data?.data?.message, {
-            theme: "colored",
-            position: "top-center",
-            
-            });
-        return thunkAPI.rejectWithValue(data?.data);
+            theme: 'colored',
+            position: 'top-center',
+          })
+        return thunkAPI.rejectWithValue(data?.data)
       }
-      if (data?.data?.status === "success") {
+      if (data?.data?.status === 'success') {
         toast.success(data?.data?.message, {
-          theme: "colored",
-          position: "top-right",
-          
-        });
+          theme: 'colored',
+          position: 'top-right',
+        })
 
-        await thunkAPI.dispatch(setUser(data?.data.data.user));
-        await localStorage.setItem('user', JSON.stringify(data?.data.data.user));
-        await thunkAPI.dispatch(login(data?.data.data.tokens.access.token));
-        return (data?.data);
+        await thunkAPI.dispatch(setUser(data?.data.data.user))
+        await localStorage.setItem('user', JSON.stringify(data?.data.data.user))
+        await thunkAPI.dispatch(login(data?.data.data.tokens.access.token))
+        return data?.data
       }
     } catch (err) {
       // console.log(err);
       if (
-        err.response.data.status === "fail" &&
+        err.response.data.status === 'fail' &&
         err.response.data.message !==
-          "Your email address is yet to be verified. A mail has been sent to your email address. Please check and follow the instruction in the mail to verify account."
+          'Your email address is yet to be verified. A mail has been sent to your email address. Please check and follow the instruction in the mail to verify account.'
       ) {
         toast.error(err.response.data.message, {
-          theme: "colored",
-          position: "top-right",
-      
-        });
+          theme: 'colored',
+          position: 'top-right',
+        })
       }
-      return thunkAPI.rejectWithValue(err);
+      return thunkAPI.rejectWithValue(err)
     }
   }
-);
+)
 
 export const forgotPassword = createAsyncThunk(
-  "forgot-password",
+  'forgot-password',
   async (email, thunkAPI) => {
     try {
-      const { data } = await axios.post("/forgot_password", email);
+      const { data } = await axios.post('/forgot_password', email)
       // console.log("forgot", data);
-      if (data.status !== "success") {
+      if (data.status !== 'success') {
         toast.error(data.message, {
-          theme: "colored",
-      
-        });
-        return thunkAPI.rejectWithValue(data);
+          theme: 'colored',
+        })
+        return thunkAPI.rejectWithValue(data)
       }
-      if (data.status === "success") {
+      if (data.status === 'success') {
         // toast.success(data.message, {
         //   theme: "colored",
         // });
-        await thunkAPI.dispatch(login(data));
-        return thunkAPI.rejectWithValue(data);
+        await thunkAPI.dispatch(login(data))
+        return thunkAPI.rejectWithValue(data)
       }
     } catch (err) {
       // ;
-      if (err.response.data.status === "fail" && err.response.status !== 401) {
+      if (err.response.data.status === 'fail' && err.response.status !== 401) {
         toast.error(err.response.data.message, {
-          theme: "colored",
-          position: "top-right",
-      
-        });
+          theme: 'colored',
+          position: 'top-right',
+        })
       }
-      return thunkAPI.rejectWithValue(err);
+      return thunkAPI.rejectWithValue(err)
     }
   }
-);
+)
 
 export const resetPassword = createAsyncThunk(
-  "resetPassword",
+  'resetPassword',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.post("/reset_password", payload);
+      const { data } = await axios.post('/reset_password', payload)
       // console.log("register", data);
 
-      if (data.status !== "success") {
+      if (data.status !== 'success') {
         toast.error(data.message, {
-          theme: "colored",
-      
-        });
-        return thunkAPI.rejectWithValue(data);
+          theme: 'colored',
+        })
+        return thunkAPI.rejectWithValue(data)
       }
-      if (data.status === "success") {
+      if (data.status === 'success') {
         //   toast.success(data.data.message, {
         //     theme: "colored",
         //   });
         // await thunkAPI.dispatch(login(data));
-        return thunkAPI.rejectWithValue(data);
+        return thunkAPI.rejectWithValue(data)
       }
     } catch (err) {
-      if (err.response.data.status === "fail" && err.response.status !== 401) {
+      if (err.response.data.status === 'fail' && err.response.status !== 401) {
         toast.error(err.response.data.message, {
-          theme: "colored",
-          position: "top-right",
-      
-        });
+          theme: 'colored',
+          position: 'top-right',
+        })
       }
-      return thunkAPI.rejectWithValue(err);
+      return thunkAPI.rejectWithValue(err)
     }
   }
-);
-
-
+)
 
 export const validateResetPasswordOtp = createAsyncThunk(
-  "verify_reset_passwordOTP",
+  'verify_reset_passwordOTP',
   async (otp, thunkAPI) => {
     try {
-      const { data } = await axios.post("verify_reset_passwordOTP", otp);
+      const { data } = await axios.post('verify_reset_passwordOTP', otp)
       // console.log("validateOtp", data);
-      if (data.status !== "success") {
+      if (data.status !== 'success') {
         toast.error(data.message, {
-          theme: "colored",
-      
-        });
-        return thunkAPI.rejectWithValue(data);
+          theme: 'colored',
+        })
+        return thunkAPI.rejectWithValue(data)
       }
-      if (data.status === "success") {
+      if (data.status === 'success') {
         toast.success(data.data.message, {
-          theme: "colored",
-      
-          
-        });
-        await thunkAPI.dispatch(login(data));
-        return thunkAPI.rejectWithValue(data);
+          theme: 'colored',
+        })
+        await thunkAPI.dispatch(login(data))
+        return thunkAPI.rejectWithValue(data)
       }
     } catch (err) {
       // ;
-      if (err.response.data.status === "fail" && err.response.status !== 401) {
+      if (err.response.data.status === 'fail' && err.response.status !== 401) {
         toast.error(err.response.data.message, {
-          theme: "colored",
-          position: "top-right",
-      
-        });
+          theme: 'colored',
+          position: 'top-right',
+        })
       }
-      return thunkAPI.rejectWithValue(err);
+      return thunkAPI.rejectWithValue(err)
     }
   }
-);
+)
 
 export const logoutUser = createAsyncThunk(
-  "logout",
+  'logout',
   async (payload, thunkAPI) => {
     try {
-      const data = await axios.post("/logout_user", payload);
+      const data = await axios.post('/logout_user', payload)
       // console.log(data);
-      if (data?.data?.status === "fail") {
+      if (data?.data?.status === 'fail') {
         toast.error(data?.data?.message, {
-          theme: "colored",
-      
-        });
+          theme: 'colored',
+        })
         // return thunkAPI.rejectWithValue(data);
       }
-      if (data?.data?.status === "success") {
+      if (data?.data?.status === 'success') {
         toast.success(data?.data?.message, {
-          theme: "colored",
-      
-          
-        });
-        return data;
+          theme: 'colored',
+        })
+        return data
       }
     } catch (err) {
       //
       // ;
-      if (err.response.data.status === "fail" && err.response.status !== 401) {
+      if (err.response.data.status === 'fail' && err.response.status !== 401) {
         toast.error(err.response.data.message, {
-          theme: "colored",
-          position: "top-right",
-      
-        });
+          theme: 'colored',
+          position: 'top-right',
+        })
       }
-      return thunkAPI.rejectWithValue(err);
+      return thunkAPI.rejectWithValue(err)
     }
   }
-);
-
-
-
+)
 
 export const user = createSlice({
-  name: "user",
+  name: 'user',
   initialState: {
-    user: JSON.parse(localStorage.getItem("user")),
+    user: JSON.parse(localStorage.getItem('user')),
     wallet: [],
     account_details: [],
     isAuth: false,
     loading: false,
-    token: localStorage?.getItem('token') ,
+    token: localStorage?.getItem('token'),
   },
   reducers: {
     setUser: (state, action) => {
-      state.user = action.payload;
-      state.isAuth = true;
+      state.user = action.payload
+      state.isAuth = true
     },
     setWallet: (state, action) => {
-      state.wallet = action.payload;
-      state.isAuth = true;
+      state.wallet = action.payload
+      state.isAuth = true
     },
     login: (state, action) => {
-      state.token = action.payload;
-      localStorage.setItem('token', state.token) 
-      state.isAuth = true;
-      state.loading = false;
+      state.token = action.payload
+      localStorage.setItem('token', state.token)
+      state.isAuth = true
+      state.loading = false
     },
   },
 
   extraReducers: {
     [registerUser.pending]: (state) => {
-      state.loading = true;
+      state.loading = true
     },
     [registerUser.fulfilled]: (state) => {
-      state.loading = false;
+      state.loading = false
     },
     [registerUser.rejected]: (state) => {
       // localStorage.removeItem("token");
-      state.loading = false;
-      state.isAuth = false;
-      state = null;
+      state.loading = false
+      state.isAuth = false
+      state = null
     },
     [getUser.pending]: (state) => {
-      state.loadUser = true;
+      state.loadUser = true
     },
     [getUser.fulfilled]: (state) => {
-      state.loadUser = false;
+      state.loadUser = false
     },
     [getUser.rejected]: (state) => {
       // localStorage.removeItem("token");
-      state.loadUser = false;
-      state.isAuth = false;
-      state = null;
+      state.loadUser = false
+      state.isAuth = false
+      state = null
     },
     [validateOtp.pending]: (state) => {
-      state.loading = true;
+      state.loading = true
     },
     [validateOtp.fulfilled]: (state) => {
-      state.loading = false;
+      state.loading = false
     },
     [validateOtp.rejected]: (state) => {
       // localStorage.removeItem("token");
-      state.loading = false;
-      state.isAuth = false;
-      state = null;
+      state.loading = false
+      state.isAuth = false
+      state = null
     },
-   
+
     [resendEmail.pending]: (state) => {
-      state.loading = true;
+      state.loading = true
     },
     [resendEmail.fulfilled]: (state) => {
-      state.loading = false;
+      state.loading = false
     },
     [resendEmail.rejected]: (state) => {
       // localStorage.removeItem("token");
-      state.loading = false;
-      state.isAuth = false;
-      state = null;
+      state.loading = false
+      state.isAuth = false
+      state = null
     },
     [loginUser.pending]: (state) => {
-      state.loading = true;
+      state.loading = true
     },
     [loginUser.fulfilled]: (state) => {
-      state.loading = false;
+      state.loading = false
     },
     [loginUser.rejected]: (state) => {
       // localStorage.removeItem("token");
-      state.loading = false;
-      state.isAuth = false;
-      state = null;
+      state.loading = false
+      state.isAuth = false
+      state = null
     },
     [forgotPassword.pending]: (state) => {
-      state.loading = true;
+      state.loading = true
     },
     [forgotPassword.fulfilled]: (state) => {
-      state.loading = false;
+      state.loading = false
     },
     [forgotPassword.rejected]: (state) => {
       // localStorage.removeItem("token");
-      state.loading = false;
-      state.isAuth = false;
-      state = null;
+      state.loading = false
+      state.isAuth = false
+      state = null
     },
     [resetPassword.pending]: (state) => {
-      state.loading = true;
+      state.loading = true
     },
     [resetPassword.fulfilled]: (state) => {
-      state.loading = false;
+      state.loading = false
     },
     [resetPassword.rejected]: (state) => {
       // localStorage.removeItem("token");
-      state.loading = false;
-      state.isAuth = false;
-      state = null;
+      state.loading = false
+      state.isAuth = false
+      state = null
     },
-   
+
     [validateResetPasswordOtp.pending]: (state) => {
-      state.loading = true;
+      state.loading = true
     },
     [validateResetPasswordOtp.fulfilled]: (state) => {
-      state.loading = false;
+      state.loading = false
     },
     [validateResetPasswordOtp.rejected]: (state) => {
       // localStorage.removeItem("token");
-      state.loading = false;
-      state.isAuth = false;
-      state = null;
+      state.loading = false
+      state.isAuth = false
+      state = null
     },
-  
-
-    
 
     [updateUserProfile.pending]: (state) => {
-      state.loadUpdate = true;
+      state.loadUpdate = true
     },
     [updateUserProfile.fulfilled]: (state) => {
-      state.loadUpdate = false;
+      state.loadUpdate = false
     },
     [updateUserProfile.rejected]: (state) => {
       // localStorage.removeItem("token");
-      state.loadUpdate = false;
-      state.isAuth = false;
-      state = null;
+      state.loadUpdate = false
+      state.isAuth = false
+      state = null
     },
     [logoutUser.pending]: (state) => {
-      state.loadLogout = true;
+      state.loadLogout = true
     },
     [logoutUser.fulfilled]: (state) => {
-      state.loadLogout = false;
+      state.loadLogout = false
     },
     [logoutUser.rejected]: (state) => {
       // localStorage.removeItem("toke`n");
-      state.loadLogout = false;
-      state.isAuth = false;
-      state = null;
+      state.loadLogout = false
+      state.isAuth = false
+      state = null
     },
-   
   },
-});
+})
 
 // Action creators are generated for each case reducer function
-export const { login, setUser, setWallet, setAccountDetails } = user.actions;
+export const { login, setUser, setWallet, setAccountDetails } = user.actions
 
-export default user.reducer;
+export default user.reducer

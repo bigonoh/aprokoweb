@@ -1,14 +1,11 @@
 import React from 'react'
 import RequestLayout from '../../layouts/requestlayout/RequestLayout'
-import DashboardLayout from '../../layouts/DashboardLayout';
-
+import DashboardLayout from '../../layouts/DashboardLayout'
 
 export const RequestWithdrawal = () => {
-  return ( 
+  return (
     <DashboardLayout>
-       <RequestLayout/> 
-
+      <RequestLayout />
     </DashboardLayout>
- 
   )
 }

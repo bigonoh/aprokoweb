@@ -5,51 +5,51 @@ export const validatePassword = (password) => {
     password.match(/[a-z]+/g) &&
     password.length > 7
   ) {
-    return true;
+    return true
   } else {
-    return false;
+    return false
   }
-};
+}
 
 export const validatePasswordSpecialCharacter = (password) => {
   if (password.match(/[!@#$%.^&*_=+-]/g)) {
-    return true;
+    return true
   } else {
-    return false;
+    return false
   }
-};
+}
 
 export const validatePasswordUpperCase = (password) => {
   if (password.match(/[A-Z]+/g)) {
-    return true;
+    return true
   } else {
-    return false;
+    return false
   }
-};
+}
 
 export const validatePasswordLowercase = (password) => {
   if (password.match(/[a-z]+/g)) {
-    return true;
+    return true
   } else {
-    return false;
+    return false
   }
-};
+}
 
 export const validatePasswordLength = (password) => {
   if (password.length > 7) {
-    return true;
+    return true
   } else {
-    return false;
+    return false
   }
-};
+}
 
 export const validatePasswordNumber = (password) => {
   if (password.match(/[0-9]+/g)) {
-    return true;
+    return true
   } else {
-    return false;
+    return false
   }
-};
+}
 
 export const validatePasswordTwo = (password) => {
   if (
@@ -57,11 +57,11 @@ export const validatePasswordTwo = (password) => {
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[?!%@#$%^&*])[A-Za-z0-9?!%@#$%^&*]{8,}$/gm
     )
   ) {
-    return true;
+    return true
   } else {
-    return false;
+    return false
   }
-};
+}
 
 export const validateEmail = (email) => {
   if (
@@ -69,8 +69,8 @@ export const validateEmail = (email) => {
       /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
     )
   ) {
-    return true;
+    return true
   } else {
-    return false;
+    return false
   }
-};
+}
