@@ -140,7 +140,13 @@ function Feed({ item }) {
                   item.selling ? makePay(item?.price, item) : onView({
                     active: true,
                     content: item
-                  })}}
+                  })
+                  setProposal({
+                    ...proposal,
+                    info_id: item.id,
+                  })
+                }
+                }
               >
                 {item.selling ? 'Buy' : 'Answer'}
               </RavenButton>
@@ -220,7 +226,14 @@ function Feed({ item }) {
         visble={view.active}
         btnColor="orange-dark"
         btnLabel={'Submit Proposal'}
-        onBtnClick={() => makeProposal(content)}
+        onClose={() => onView({
+          active: false,
+          content: ''
+        })}
+        onBtnClick={() => {
+          makeProposal(content)
+          
+        }}
       >
         {console.log(content)}
         <div className="modal_content_wrapper">
@@ -239,11 +252,11 @@ function Feed({ item }) {
               color={"orange-dark"}
               labelSpanText='What this ?'
               labelColor={'orange-dark'}
-              value={proposal.info_id}
-              onChange={e => {setProposal({
-                ...proposal,
-                info_id: e.target.value
-              })}}
+              value={content.id}
+              // onChange={e => {setProposal({
+              //   ...proposal,
+              //   info_id: e.target.value
+              // })}}
               placeholder='i.e 644b95bbd9b4e71cf40a01dc'
               type={"text"} />
             <span>

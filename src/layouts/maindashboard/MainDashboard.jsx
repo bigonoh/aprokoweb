@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { formatNumWithCommaNaira } from '../../utils/Helpers'
 import { useState } from 'react'
 import { RavenModal } from 'raven-bank-ui'
+import { useNavigate } from 'react-router-dom'
 
 const MainDashboard = ({ trx }) => {
   const styles = {
@@ -27,6 +28,8 @@ const MainDashboard = ({ trx }) => {
   const { infos } = useSelector((state) => state.info)
   const posts = infos?.results
 
+  const navigate = useNavigate()
+
   return (
     <div className="mainDashboard">
       <div className="right">
@@ -37,17 +40,14 @@ const MainDashboard = ({ trx }) => {
         <div className="bottom_wrapper">
           <p className="text-md font-600 ">Quick Actions</p>
           <div className="flex gap-10  mt-20 justify-between">
-            <div className="p-20 flex align-start actions justify center">
+            <div onClick={() => navigate('/sell')} className="p-20 flex align-start actions justify center">
               Sell info
             </div>
-            <div className="p-20 flex align-start actions justify center">
+            <div onClick={() => navigate('/buy')} className="p-20 flex align-start actions justify center">
               Buy info
             </div>
-            <div className="p-20 flex align-start actions justify center">
-              Withdraw
-            </div>
-            <div className="p-20 flex align-start actions justify center">
-              Deposit
+            <div onClick={() => navigate('/withdraw')} className="p-20 flex align-start actions justify center">
+              Ask Aprokopay
             </div>
           </div>
 

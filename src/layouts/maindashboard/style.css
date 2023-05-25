@@ -268,14 +268,7 @@
   flex-direction: column;
   width: 23rem;
 }
-.table
-  tbody
-  tr
-  td
-  .action-copy-box
-  .action-box
-  .drop-down-box
-  > *:not(:last-child) {
+.table tbody tr td .action-copy-box .action-box .drop-down-box > *:not(:last-child) {
   border-bottom: 0.1rem solid #e5e6e6;
 }
 .table tbody tr td .action-copy-box .action-box .drop-down-box .box {
@@ -293,43 +286,17 @@
   display: grid;
   place-items: center;
 }
-.table
-  tbody
-  tr
-  td
-  .action-copy-box
-  .action-box
-  .drop-down-box
-  .box
-  .img-box
-  .img {
+.table tbody tr td .action-copy-box .action-box .drop-down-box .box .img-box .img {
   width: 50%;
   height: 50%;
   -o-object-fit: contain;
-  object-fit: contain;
+     object-fit: contain;
 }
-.table
-  tbody
-  tr
-  td
-  .action-copy-box
-  .action-box
-  .drop-down-box
-  .box
-  .img-box-two
-  .img {
+.table tbody tr td .action-copy-box .action-box .drop-down-box .box .img-box-two .img {
   width: 100%;
   height: 100%;
 }
-.table
-  tbody
-  tr
-  td
-  .action-copy-box
-  .action-box
-  .drop-down-box
-  .delete
-  .img-box {
+.table tbody tr td .action-copy-box .action-box .drop-down-box .delete .img-box {
   background-color: #ffeceb;
 }
 .table tbody tr td .action-copy-box .action-box .drop-down-box .delete .text {
@@ -430,4 +397,4 @@
   .mainDashboard .right .balance {
     width: 100%;
   }
-} /*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
