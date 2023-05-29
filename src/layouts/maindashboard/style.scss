@@ -6,6 +6,11 @@
   justify-content: space-between;
   width: 100%;
   padding: 0 3rem;
+  overflow: auto;
+
+  .table-wrapper {
+    overflow: auto;
+  }
 
   // margin: 3rem;
 
@@ -38,14 +43,18 @@
   }
 
   .left-dashboard {
+    display: flex;
+    flex-direction: column;
+    
     .widget {
       // border: 0.01rem solid #cccc;
       border-radius: 0.8rem;
-      height: 49.6rem;
+      height: 45%;
       position: relative;
       overflow: hidden;
-      width: 100%;
+      // width: 100%;
       background-color: white;
+      overflow: auto;
       box-shadow: 0px 4px 39px -3px rgba(136, 136, 136, 0.1);
 
       h2 {
@@ -57,14 +66,13 @@
 
       .wrapper {
         margin: 2rem;
-        height: min-content;
+        height: auto;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         overflow: auto;
         gap: 2rem;
         width: 100%;
-        height: 100%;
 
         .comment:not(:last-child) {
           border-bottom: 0.05rem solid #cccccc;

@@ -52,7 +52,7 @@ const MainDashboard = ({ trx }) => {
           </div>
 
           <p className="text-md font-600 mt-50 ">Recent Transaction</p>
-          <div className=" mt-20">
+          <div className="table-wrapper mt-20">
             <table cellSpacing="0" cellPadding="0" className="table">
               <thead>
                 <tr>

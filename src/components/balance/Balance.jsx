@@ -32,7 +32,7 @@ const Balance = () => {
     <div className="balance">
       <div className="mainBalance">
         <div className="left">
-          <p>Aporoko Pay Balance</p>
+          <p>Aproko Pay Balance</p>
           {/* {icons.salary} */}
           <h2>{formatNumWithCommaNaira(String(wallet?.balance))}</h2>
         </div>
