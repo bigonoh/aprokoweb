@@ -71,6 +71,11 @@
   border-radius: 50%;
 }
 
+.dashboard-view {
+  border: none;
+  width: 100%;
+}
+
 @media screen and (max-width: 29.9375em) {
   .hero-navbar .nav-right {
     display: none;

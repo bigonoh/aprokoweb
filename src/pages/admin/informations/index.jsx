@@ -11,7 +11,7 @@ import { deleteInformation, getAllInformations, updateInformation } from '../../
 import { formatNumWithCommaNaira } from '../../../utils/Helpers';
 import ErrorModal from '../../../components/modal/ErrorModal';
 
-function Informations() {
+function Information() {
 
   const dispatch = useDispatch()
   const [page, setPage] = useState(1)
@@ -107,7 +107,7 @@ function Informations() {
       <div className="page_top">
         <span className="page_title">
           <div className="title">
-          <h6> Informations</h6>
+          <h6> Information</h6>
           <p>Take a quick overview at your informations</p>
           </div>
 
@@ -140,11 +140,11 @@ function Informations() {
 
           <div className="stat_minimal">
             <span>
-              <p>Informations Sold:</p>
+              <p>Information Sold:</p>
               <h6>{sales?.totalResults}</h6>
             </span>
             <span>
-              <p>Informations Bought:</p>
+              <p>Information Bought:</p>
               <h6>{`10`}</h6>
             </span>
           </div>
@@ -360,4 +360,4 @@ function Informations() {
   )
 }
 
-export default Informations
+export default Information

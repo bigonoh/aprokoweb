@@ -42,9 +42,17 @@ function BoughtInfo() {
     dispatch(getBoughtInfo(payload))
   }, [page, refresh])
 
+  useEffect(() => {
+    let payload = {
+      page: page,
+      limit: 20,
+    }
+    dispatch(getBoughtInfo(payload))
+  }, [])
+
   const { boughtInfos } = useSelector((state) => state?.info)
 
-  console.log(boughtInfos)
+
   let infos = boughtInfos?.results
   const headerList = [
     'TITLE',
@@ -114,7 +122,7 @@ function BoughtInfo() {
     }
   }
 
-  console.log(infos)
+
   return (
     <div className='purchased_info_wrapper'>
          <div className="information_wrapper">

@@ -9,7 +9,7 @@ import './style.css'
 import { formatNumWithoutCommaNaira } from '../../../utils/Helpers'
 import { sendProposal } from '../../../redux/info'
 
-function Feed({ item }) {
+function Feed({ item, dash }) {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state?.user)
 
@@ -27,7 +27,7 @@ function Feed({ item }) {
     message: '',
   })
 
-  console.log(proposal)
+
 
   let makePay = async (e, data) => {
     await setPayData(data)
@@ -63,7 +63,7 @@ function Feed({ item }) {
 
   let trigger = false
   if (reference) {
-    console.log('ref', payData)
+
     const payload = {
       title: payData.title,
       amount: payData.price,
@@ -86,7 +86,7 @@ function Feed({ item }) {
   return (
     <>
       {/* desktop cards start here */}
-      <div className="desktop-timeline">
+      <div className={`desktop-timeline ${dash && 'dashboard-view'}`} >
         <div className="profile">
           <div className="avatar">
             <img
@@ -102,7 +102,7 @@ function Feed({ item }) {
 
           <div className="info_price">
             <span>
-              <h6>{formatNaira(item.price)}</h6>
+              <h6 style={{color:  !item.selling && '#0b8376'}}>{formatNaira(item.price)}</h6>
             </span>
           </div>
         </div>
@@ -168,12 +168,12 @@ function Feed({ item }) {
 
           <div className="name">
             <p>{item?.user?.name} </p>
-            <span>{item.selling ? 'Selling' : 'Asking'} &#x2022; {item?.location?.state}</span>
+            <span >{item.selling ? 'Selling' : 'Asking'} &#x2022; {item?.location?.state}</span>
           </div>
 
-          <div className="info_price">
+          <div  className="info_price">
             <span>
-              <h6>{formatNaira(item.price)}</h6>
+              <h6 style={{color:  !item.selling && '#0b8376'}}>{formatNaira(item.price)}</h6>
             </span>
           </div>
         </div>
@@ -235,7 +235,7 @@ function Feed({ item }) {
           
         }}
       >
-        {console.log(content)}
+
         <div className="modal_content_wrapper">
           <div className="modal_title">
             <p>{`Send a Proposal`}</p>

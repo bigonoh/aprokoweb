@@ -5,7 +5,7 @@ import { icons } from '../../../assets/icons/icons'
 import { formatNumWithCommaNaira } from '../../../utils/Helpers'
 import { RavenPagination, RavenTable, RavenTableRow } from 'raven-bank-ui'
 import { useDispatch, useSelector } from 'react-redux'
-import { getSales } from '../../../redux/info'
+import { getBoughtInfo, getSales } from '../../../redux/info'
 import { DateTime } from 'luxon'
 
 function Sales() {
@@ -17,10 +17,11 @@ function Sales() {
       page: page,
       limit: 20,
     }
+    dispatch(getBoughtInfo({page: 1, limit: 1}))
     dispatch(getSales(payload))
   }, [page])
 
-  const { sales } = useSelector((state) => state?.info)
+  const { sales , boughtInfos} = useSelector((state) => state?.info)
 
   const sale = sales?.results
 
@@ -62,7 +63,7 @@ function Sales() {
               </span>
               <span>
                 <p>Informations Bought:</p>
-                <h6>{`10`}</h6>
+                <h6>{boughtInfos?.totalResults}</h6>
               </span>
             </div>
           </div>

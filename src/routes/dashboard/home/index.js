@@ -1,12 +1,12 @@
 import Homepage from '../../../pages/Homepage'
 import DashboardHome from '../../../pages/dashboard/DashboardHome'
 import Sell from '../../../pages/dashboard/sell'
-import Buy from '../../../pages/dashboard/buy'
 import Profile from '../../../pages/dashboard/profile/index'
 import Sales from '../../../pages/dashboard/sales/index'
 import Transactions from '../../../pages/dashboard/transaction/index'
 import Settings from '../../../pages/dashboard/settings'
 import UserInformation from '../../../pages/dashboard/information'
+import Ask from '../../../pages/dashboard/buy'
 
 export const dashboard_home_route_group = [
   {
@@ -18,8 +18,8 @@ export const dashboard_home_route_group = [
     element: <Sell />,
   },
   {
-    path: '/buy',
-    element: <Buy />,
+    path: '/ask',
+    element: <Ask />,
   },
   {
     path: '/sales',

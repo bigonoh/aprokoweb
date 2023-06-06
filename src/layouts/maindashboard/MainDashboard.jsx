@@ -7,23 +7,10 @@ import { formatNumWithCommaNaira } from '../../utils/Helpers'
 import { useState } from 'react'
 import { RavenModal } from 'raven-bank-ui'
 import { useNavigate } from 'react-router-dom'
+import Feed from '../../components/mobile/timeline/Feed'
 
 const MainDashboard = ({ trx }) => {
-  const styles = {
-    button: {
-      backgroundColor: 'blue',
-    },
-  }
 
-  const data = [
-    {
-      name: 'Purchase of information from jack',
-      age: 28,
-      address: 'some where',
-      key: '1',
-    },
-    { name: 'Rose', age: 36, address: 'some where', key: '2' },
-  ]
 
   const { infos } = useSelector((state) => state.info)
   const posts = infos?.results
@@ -40,14 +27,16 @@ const MainDashboard = ({ trx }) => {
         <div className="bottom_wrapper">
           <p className="text-md font-600 ">Quick Actions</p>
           <div className="flex gap-10  mt-20 justify-between">
-            <div onClick={() => navigate('/sell')} className="p-20 flex align-start actions justify center">
+            <div onClick={() => navigate('/sell')} className="p-20 flex align-start actions justify  cursor-pointer center">
               Sell info
             </div>
-            <div onClick={() => navigate('/buy')} className="p-20 flex align-start actions justify center">
-              Buy info
-            </div>
-            <div onClick={() => navigate('/withdraw')} className="p-20 flex align-start actions justify center">
+
+            <div onClick={() => navigate('/ask')} className="p-20 flex align-start actions  cursor-pointer justify cursor-pointer  center">
               Ask Aprokopay
+            </div>
+
+            <div onClick={() => navigate('/informations')} className="p-20 flex align-start actions  cursor-pointer justify center">
+              Information
             </div>
           </div>
 
@@ -88,13 +77,9 @@ const MainDashboard = ({ trx }) => {
             {posts?.map((chi, idx) => {
               return (
                 <div key={idx} className="comment">
-                  <p>{chi?.title}</p>
-                  <div className="button">
-                    <button>
-                      {formatNumWithCommaNaira(String(chi?.price))}
-                    </button>
-                    <button className="info">More info</button>
-                  </div>
+                <Feed 
+                dash
+                item={chi} />
                 </div>
               )
             })}

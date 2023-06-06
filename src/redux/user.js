@@ -82,7 +82,7 @@ export const updateUserProfile = createAsyncThunk(
     try {
       // console.log(payload);
       const { data } = await axios.post('/update_user', payload)
-      console.log(data)
+
       if (data.status === 'fail') {
         toast.error(data.message, {
           theme: 'colored',
@@ -156,7 +156,7 @@ export const getUser = createAsyncThunk(
           theme: 'colored',
         })
 
-        console.log(data)
+
         // return thunkAPI.rejectWithValue(data);
       }
       if (data.status === 'success') {
@@ -230,7 +230,7 @@ export const loginUser = createAsyncThunk(
         err.response.data.message !==
           'Your email address is yet to be verified. A mail has been sent to your email address. Please check and follow the instruction in the mail to verify account.'
       ) {
-        toast.error(err.response.data.message, {
+        toast.error(err.response?.data?.message?.message, {
           theme: 'colored',
           position: 'top-right',
         })

@@ -34,4 +34,7 @@
   .register-right .have-account {
     width: 100%;
   }
+}
+.form-group__black-light .input-group__phone .phone-wrap {
+  width: 20%;
 }/*# sourceMappingURL=style.css.map */

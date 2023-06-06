@@ -27,7 +27,7 @@ function App() {
       {/* <ElectricityOntime /> */}
       <div className="App">
         {/* <Helmet>
-          <title>Aprokopay || Sell & Buy Informations </title>
+          <title>Aprokopay || Sell & Buy Information </title>
           <meta
             name="description"
             content="Sell and buy informations."

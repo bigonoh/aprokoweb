@@ -10,10 +10,10 @@ export const getTrx = createAsyncThunk(
       const { data } = await axios.get(
         `/transaction?limit=${payload.limit || 10}&page=${
           payload.page || 1
-        } &sortBy=${payload.sort || 'asc'}`,
+        }&sortBy=${payload.sort || 'created_at:desc'}`,
         payload
       )
-      console.log(data)
+      // console.log(data)
       if (!data) {
         // toast.error(data.message, {
         //   theme: 'colored'
@@ -45,6 +45,7 @@ export const requestWithdrawal = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.post(`/withdraw`, payload)
+      console.log(data)
       if (data.status === 'fail') {
         toast.error(data.message)
         return thunkAPI.rejectWithValue(data)

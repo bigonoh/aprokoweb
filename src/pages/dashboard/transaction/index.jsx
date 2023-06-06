@@ -17,13 +17,14 @@ function Transactions() {
     let payload = {
       page: page,
       limit: 20,
+      sortBy: 'created_at:desc'
     }
     dispatch(getTrx(payload))
   }, [page])
 
   const { transactions } = useSelector((state) => state?.transaction)
 
-  console.log(transactions)
+
   let trx = transactions?.results
 
   const headerList = ['SUMMARY', 'AMOUNT', 'TYPE', ' DATE', 'REF']
@@ -60,11 +61,11 @@ function Transactions() {
 
           <div className="stat_minimal">
             <span>
-              <p>Informations Sold:</p>
+              <p>Information Sold:</p>
               <h6>{sales?.totalResults}</h6>
             </span>
             <span>
-              <p>Informations Bought:</p>
+              <p>Information Bought:</p>
               <h6>{`10`}</h6>
             </span>
           </div>

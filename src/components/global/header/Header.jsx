@@ -1,13 +1,15 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React from 'react'
 import { FaBars } from 'react-icons/fa'
 import logo from '../../../assets/img/logo.svg'
-import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import './style.css'
 import { RavenButton } from 'raven-bank-ui'
 import { toast } from 'raven-bank-ui'
 import Sidebar from '../../../layouts/sidebar'
+import { useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 
 function Header(props) {
   const navigate = useNavigate()
@@ -15,7 +17,7 @@ function Header(props) {
 
   const handleLogout = () => {
     localStorage.clear()
-    toast.success('You have been logged out successfully')
+    toast.success('You have been logged out successfully') 
     setTimeout(() => {
       window.location.reload()
     }, 5000)
@@ -25,7 +27,7 @@ function Header(props) {
     <div className={props.bg && 'bg-black'}>
       {/* mobile header starts here */}
       <header className="mobile_header">
-        <figure>
+        <figure onClick={() => navigate('/')} >
           <img src={logo} alt="" />
         </figure>
 
@@ -104,7 +106,7 @@ function Header(props) {
           <div className="nav-menu">
             <ul className="flex">
               <li className="ml-10 text-4 text-white text-xs text-hover-secondary">
-                <a href="#work">Services</a>
+                <a onClick={() => navigate('/information')}>Informations</a>
               </li>
               <li className="ml-10  text-4 text-white  text-xs text-hover-secondary">
                 <a href="#about">Location</a>
@@ -121,7 +123,7 @@ function Header(props) {
 
         <div className="flex nav-right gap-10">
           <button
-            onClick={() => navigate('/dashboard')}
+            onClick={() => navigate('/ask')}
             className="col-30 btn-outlined-primary-sm text-white"
           >
             Ask Aprokopay

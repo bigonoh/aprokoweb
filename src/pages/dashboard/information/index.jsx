@@ -16,7 +16,7 @@ function UserInformation() {
       <div className="settings_wrapper">
         <div className="page_top">
           <span className="page_title">
-            <h6> Informations</h6>
+            <h6> Information</h6>
             <p>Take a quick overview of your informations</p>
           </span>
         </div>
@@ -28,7 +28,7 @@ function UserInformation() {
                 onClick={() => setActivesettings(1)}
                 className={activeSettings === 1 && 'active'}
               >
-                Purchased Informations
+                Purchased Information
               </p>
               <p
                 onClick={() => setActivesettings(2)}

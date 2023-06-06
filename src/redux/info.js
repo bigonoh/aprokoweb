@@ -9,7 +9,7 @@ export const getInfos = createAsyncThunk(
       const { data } = await axios.get(
         `/infos?limit=${payload.limit || 10}&page=${
           payload.page || 1
-        }&populate=user`,
+        }&populate=user&sortBy=${payload.sortBy || 'created_at: desc'}`,
         payload
       )
       // console.log("login", data);
@@ -50,7 +50,7 @@ export const getBoughtInfo = createAsyncThunk(
       const { data } = await axios.get(
         `/purchase/user?limit=${payload.limit || 10}&page=${
           payload.page || 1
-        }&populate=user,info_id`,
+        }&sortBy=${payload.sortBy || 'created_at:desc'}&populate=user,info_id`,
         payload
       )
       // console.log("login", data);
@@ -91,7 +91,7 @@ export const getSales = createAsyncThunk(
       const { data } = await axios.get(
         `/sale?limit=${payload.limit || 10}&page=${
           payload.page || 1
-        }&populate=buyer`,
+        }&populate=buyer&sortBy=${payload.sortBy || 'created_at:desc'}`,
         payload
       )
       // console.log("login", data);
