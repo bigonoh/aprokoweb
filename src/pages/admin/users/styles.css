@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .users_wrapper {
   width: 100%;
   height: 100%;
@@ -172,12 +171,6 @@
 .users_wrapper .modal-parent-wrap .raven-modal-content-wrap .close-box {
   justify-content: flex-end !important;
   border-bottom: 0.5px solid #cccccc;
-}
-.users_wrapper .modal-parent-wrap figure::before {
-  font-weight: bold;
-  color: navy;
-  content: "✕";
-  font-size: 1.8rem;
 }
 .users_wrapper .modal-parent-wrap .modal_content_wrapper {
   display: flex;

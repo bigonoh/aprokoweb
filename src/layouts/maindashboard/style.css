@@ -135,6 +135,7 @@
 }
 .table tbody tr > *:first-child {
   padding-left: 2rem;
+  width: 30%;
 }
 .table tbody tr:hover td .arrow-wrap .img-box {
   transform: translateX(1rem);

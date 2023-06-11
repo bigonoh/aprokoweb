@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .information_wrapper {
   width: 100%;
   height: 100%;
@@ -173,15 +172,11 @@
   justify-content: flex-end !important;
   border-bottom: 0.5px solid #cccccc;
 }
-.information_wrapper .modal-parent-wrap figure::before {
-  font-weight: bold;
-  color: navy;
-  content: "✕";
-  font-size: 1.8rem;
-}
 .information_wrapper .modal-parent-wrap .modal_content_wrapper {
   display: flex;
   flex-direction: column;
+  overflow: auto;
+  height: 60rem;
 }
 .information_wrapper .modal-parent-wrap .modal_content_wrapper .title {
   position: absolute;
@@ -215,12 +210,6 @@
 .caution_modal .raven-modal-content-wrap .close-box {
   justify-content: flex-end !important;
   border-bottom: 0.5px solid #cccccc;
-}
-.caution_modal figure::before {
-  font-weight: bold;
-  color: navy;
-  content: "✕";
-  font-size: 1.8rem;
 }
 .caution_modal .modal_content_wrapper {
   display: flex;

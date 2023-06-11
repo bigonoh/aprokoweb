@@ -39,16 +39,9 @@ function UserInformation() {
             </nav>
 
             <main className="settings_main_wrapper">
-              {activeSettings === 1 && (
-                <BoughtInfo/>
+              {activeSettings === 1 && <BoughtInfo />}
 
-              )}
-
-              {activeSettings === 2 && (
-              <></>
-              )}
-
-            
+              {activeSettings === 2 && <></>}
             </main>
           </div>
         </div>

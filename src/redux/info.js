@@ -53,7 +53,7 @@ export const getBoughtInfo = createAsyncThunk(
         }&sortBy=${payload.sortBy || 'created_at:desc'}&populate=user,info_id`,
         payload
       )
-      // console.log("login", data);
+      console.log('bought', data)
       if (data.status !== 'success') {
         toast.error(data.message, {
           theme: 'colored',
