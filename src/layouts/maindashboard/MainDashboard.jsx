@@ -10,8 +10,6 @@ import { useNavigate } from 'react-router-dom'
 import Feed from '../../components/mobile/timeline/Feed'
 
 const MainDashboard = ({ trx }) => {
-
-
   const { infos } = useSelector((state) => state.info)
   const posts = infos?.results
 
@@ -27,15 +25,24 @@ const MainDashboard = ({ trx }) => {
         <div className="bottom_wrapper">
           <p className="text-md font-600 ">Quick Actions</p>
           <div className="flex gap-10  mt-20 justify-between">
-            <div onClick={() => navigate('/sell')} className="p-20 flex align-start actions justify  cursor-pointer center">
+            <div
+              onClick={() => navigate('/sell')}
+              className="p-20 flex align-start actions justify  cursor-pointer center"
+            >
               Sell info
             </div>
 
-            <div onClick={() => navigate('/ask')} className="p-20 flex align-start actions  cursor-pointer justify cursor-pointer  center">
+            <div
+              onClick={() => navigate('/ask')}
+              className="p-20 flex align-start actions  cursor-pointer justify cursor-pointer  center"
+            >
               Ask Aprokopay
             </div>
 
-            <div onClick={() => navigate('/informations')} className="p-20 flex align-start actions  cursor-pointer justify center">
+            <div
+              onClick={() => navigate('/informations')}
+              className="p-20 flex align-start actions  cursor-pointer justify center"
+            >
               Information
             </div>
           </div>
@@ -77,9 +84,7 @@ const MainDashboard = ({ trx }) => {
             {posts?.map((chi, idx) => {
               return (
                 <div key={idx} className="comment">
-                <Feed 
-                dash
-                item={chi} />
+                  <Feed dash item={chi} />
                 </div>
               )
             })}

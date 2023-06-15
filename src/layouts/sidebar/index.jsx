@@ -53,6 +53,12 @@ function Sidebar() {
           Information
         </div>
         <div
+          onClick={() => navigate('/place-an-ad')}
+          className="p-15 curved text-md menu-item text-white"
+        >
+          Place Ad
+        </div>
+        <div
           onClick={() => navigate('/transaction')}
           className="p-15 curved text-md menu-item text-white"
         >

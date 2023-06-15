@@ -9,10 +9,53 @@ export const getInfos = createAsyncThunk(
       const { data } = await axios.get(
         `/infos?limit=${payload.limit || 10}&page=${
           payload.page || 1
-        }&populate=user&sortBy=${payload.sortBy || 'created_at: desc'}`,
+        }&populate=user&sortBy=${payload.sortBy || 'createdAt:desc'}`,
         payload
       )
       // console.log("login", data);
+      if (data.status !== 'success') {
+        toast.error(data.message, {
+          theme: 'colored',
+          position: 'center-top',
+        })
+        return data
+      }
+
+      if (data.status === 'success') {
+        // toast.success(data.message, {
+        //   theme: "colored",
+        //   position: "top-center",
+        // });
+        // console.log(data?.data, 'from this point');
+        await thunkAPI.dispatch(setInfos(data?.data))
+        return data
+      }
+      // return thunkAPI.rejectWithValue(data);
+    } catch (err) {
+      if (err.response.data.status === 'fail' && err.response.status !== 401) {
+        toast.error(err.response.data.message, {
+          theme: 'colored',
+          position: 'top-right',
+        })
+        return thunkAPI.rejectWithValue(err)
+      }
+    }
+  }
+)
+
+export const getUserInfos = createAsyncThunk(
+  '/register',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.get(
+        `/infos?limit=${payload.limit || 10}&page=${
+          payload.page || 1
+        }&populate=user&sortBy=${payload.sortBy || 'createdAt:desc'}&user=${
+          payload.user || ''
+        }`,
+        payload
+      )
+      // console.log('login', data)
       if (data.status !== 'success') {
         toast.error(data.message, {
           theme: 'colored',
@@ -53,7 +96,7 @@ export const getBoughtInfo = createAsyncThunk(
         }&sortBy=${payload.sortBy || 'created_at:desc'}&populate=user,info_id`,
         payload
       )
-      console.log('bought', data)
+
       if (data.status !== 'success') {
         toast.error(data.message, {
           theme: 'colored',

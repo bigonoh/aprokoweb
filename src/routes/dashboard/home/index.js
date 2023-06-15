@@ -7,6 +7,7 @@ import Transactions from '../../../pages/dashboard/transaction/index'
 import Settings from '../../../pages/dashboard/settings'
 import UserInformation from '../../../pages/dashboard/information'
 import Ask from '../../../pages/dashboard/buy'
+import Advert from '../../../pages/dashboard/advert'
 
 export const dashboard_home_route_group = [
   {
@@ -32,6 +33,10 @@ export const dashboard_home_route_group = [
   {
     path: '/information-collection',
     element: <UserInformation />,
+  },
+  {
+    path: '/place-an-ad',
+    element: <Advert />,
   },
   {
     path: '/profile',

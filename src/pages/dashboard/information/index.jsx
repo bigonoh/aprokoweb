@@ -5,6 +5,7 @@ import './styles.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { RavenButton, RavenInputField } from 'raven-bank-ui'
 import BoughtInfo from './component/purchased'
+import UserInfos from './component/userInfos'
 
 function UserInformation() {
   const dispatch = useDispatch()
@@ -36,12 +37,19 @@ function UserInformation() {
               >
                 Proposals
               </p>
+              <p
+                onClick={() => setActivesettings(3)}
+                className={activeSettings === 3 && 'active'}
+              >
+                My Information
+              </p>
             </nav>
 
             <main className="settings_main_wrapper">
               {activeSettings === 1 && <BoughtInfo />}
 
               {activeSettings === 2 && <></>}
+              {activeSettings === 3 && <UserInfos />}
             </main>
           </div>
         </div>
