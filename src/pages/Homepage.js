@@ -9,9 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { getLocations } from '../redux/home'
-import {
-  reactSelectStyleTable,
-} from '../utils/Helpers'
+import { reactSelectStyleTable } from '../utils/Helpers'
 import { getInfos } from '../redux/info'
 import { RavenModal, toast } from 'raven-bank-ui'
 import { useState } from 'react'
@@ -49,7 +47,6 @@ function Homepage() {
 
   let trigger = false
   if (reference) {
-
     const payload = {
       title: payData.title,
       amount: payData.price,
@@ -184,7 +181,8 @@ function Homepage() {
                 </span>
 
                 <div className="wp-50 flex justify-center text-center">
-                  Share useful Information with Aprokopay community and get paid for it.
+                  Share useful Information with Aprokopay community and get paid
+                  for it.
                 </div>
 
                 <ul className="w-150 border-secondary mt-30 mb-30"></ul>
@@ -198,7 +196,8 @@ function Homepage() {
                 </span>
 
                 <div className="wp-50 flex justify-center text-center">
-                  Place Withdrawal request and get your balance in your local bank account.
+                  Place Withdrawal request and get your balance in your local
+                  bank account.
                 </div>
 
                 <ul className="w-150 border-secondary mt-30 mb-30"></ul>
@@ -287,7 +286,6 @@ function Homepage() {
         btnLabel={'Pay'}
         onBtnClick={() => makePay(content?.price, content)}
       >
-
         <div className="modal_content_wrapper">
           <div className="modal_title">
             <p>{`Information Details:`}</p>

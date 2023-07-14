@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react'
 require('./style.css')
 import Balance from '../../components/balance/Balance'
@@ -37,6 +38,13 @@ const MainDashboard = ({ trx }) => {
               className="p-20 flex align-start actions  cursor-pointer justify cursor-pointer  center"
             >
               Ask Aprokopay
+            </div>
+
+            <div
+              onClick={() => navigate('/place-an-ad')}
+              className="p-20 flex align-start actions  cursor-pointer justify cursor-pointer  center"
+            >
+              Place Ad
             </div>
 
             <div

@@ -9,68 +9,78 @@ import axios from 'axios'
 import { getUser, updateUserProfile } from '../../../redux/user'
 
 function Settings() {
-  const dispatch = useDispatch() 
+  const dispatch = useDispatch()
 
   const { user } = useSelector((state) => state?.user)
   const [activeSettings, setActivesettings] = useState(1)
-  const [formData, setFormData] = useState(user) 
-  const [banks, setBanks] = useState([]) 
+  const [formData, setFormData] = useState(user)
+  const [banks, setBanks] = useState([])
 
-  function handleForm(e){
+  function handleForm(e) {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     })
   }
 
-  function fetchBanks(){
-    axios.get('https://nigerianbanks.xyz').then(d => {
+  function fetchBanks() {
+    axios.get('https://nigerianbanks.xyz').then((d) => {
       setBanks(d.data)
     })
   }
 
   useEffect(() => {
-    getUser()
+    dispatch(getUser())
     fetchBanks()
     setFormData(user)
   }, [])
 
   useEffect(() => {
-    setFormData([])
-  } , [activeSettings]);
+    dispatch(getUser())
+    console.log('trigger')
+    setFormData(user)
+  }, [activeSettings])
 
-  async function update(){
-    await dispatch(updateUserProfile(formData));
+  useEffect(() => {
+    setFormData([])
+  }, [])
+
+  async function update() {
+    await dispatch(updateUserProfile(formData))
   }
 
   function lookupAccount() {
-    if (formData?.bank_details?.account_number?.length === 10){
-      axios.post(`https://maylancer.org/api/nuban/api.php?account_number=${formData.bank_details.account_number}&bank_code=${formData.bank_details.bank_code}&currency`)
-      .then(d => {
-        setFormData({
-          ...formData,
-          bank_details: {
-            ...formData?.bank_details,
-            account_name: d?.data.account_name
-          }
+    if (formData?.bank_details?.account_number?.length === 10) {
+      axios
+        .post(
+          `https://maylancer.org/api/nuban/api.php?account_number=${formData.bank_details.account_number}&bank_code=${formData.bank_details.bank_code}&currency`
+        )
+        .then((d) => {
+          setFormData({
+            ...formData,
+            bank_details: {
+              ...formData?.bank_details,
+              account_name: d?.data.account_name,
+            },
+          })
         })
-      })
     }
   }
 
   useEffect(() => {
     lookupAccount()
-  }, [formData?.bank_details?.account_number, formData?.bank_details?.bank_code])
-  
+  }, [
+    formData?.bank_details?.account_number,
+    formData?.bank_details?.bank_code,
+  ])
 
   const formatBankList = (param) => {
     const list = param?.map((chi) => {
-      const { code, name } = chi;
-      return { label: name, value: code };
-    });
-    return list;
-  };
-  
+      const { code, name } = chi
+      return { label: name, value: code }
+    })
+    return list
+  }
 
   return (
     <DashboardLayout>
@@ -125,7 +135,7 @@ function Settings() {
                         value={formData?.name}
                         onChange={handleForm}
                         label={'Full Name'}
-                        name='name'
+                        name="name"
                       />
                       <RavenInputField
                         className={'input'}
@@ -133,7 +143,7 @@ function Settings() {
                         color="black-light"
                         onChange={handleForm}
                         label={'Username'}
-                        name='username'
+                        name="username"
                       />
                     </div>
                     <div className="right">
@@ -143,7 +153,7 @@ function Settings() {
                         onChange={handleForm}
                         color="black-light"
                         label={'Email'}
-                        name='email'
+                        name="email"
                       />
                       <RavenInputField
                         className={'input'}
@@ -151,7 +161,7 @@ function Settings() {
                         color="black-light"
                         label={'Phone Number'}
                         onChange={handleForm}
-                        name='phone'
+                        name="phone"
                       />
                     </div>
                   </div>
@@ -160,7 +170,7 @@ function Settings() {
                     type={'textarea'}
                     className={'input'}
                     onChange={handleForm}
-                    name='bio'
+                    name="bio"
                     value={formData?.bio}
                     color="black-light"
                     label={'Bio'}
@@ -191,7 +201,7 @@ function Settings() {
                     <div className="left">
                       <RavenInputField
                         type={'password'}
-                        name='password'
+                        name="password"
                         placeholder="*****"
                         className={'input'}
                         color="black-light"
@@ -202,14 +212,14 @@ function Settings() {
                         placeholder="*****"
                         className={'input'}
                         color="black-light"
-                        name='password'
+                        name="password"
                         onChange={handleForm}
                         label={'New Password'}
                       />
                       <RavenInputField
                         type={'password'}
                         className={'input'}
-                        name='password'
+                        name="password"
                         onChange={handleForm}
                         color="black-light"
                         label={'Confirm New Password'}
@@ -223,7 +233,9 @@ function Settings() {
                       onClick={update}
                       label="Update Account"
                     />
-                    <div onClick={() => setFormData([])} className="reset_btn">Reset</div>
+                    <div onClick={() => setFormData([])} className="reset_btn">
+                      Reset
+                    </div>
                   </footer>
                 </section>
               )}
@@ -241,19 +253,22 @@ function Settings() {
                     <div className="left">
                       <RavenInputField
                         type={'select'}
-                        style={{zIndex: 3000, color: 'black'}}
+                        style={{ zIndex: 3000, color: 'black' }}
                         placeholder="Wema Bank"
                         className={'input'}
-                        value={formData?.bank_details?.bank}
+                        value={{
+                          label: formData?.bank_details?.bank,
+                          value: formData?.bank_details?.bank_code,
+                        }}
                         selectOption={formatBankList(banks)}
-                        name='bank'
+                        name="bank"
                         onChange={(e) => {
                           setFormData({
                             ...formData,
                             bank_details: {
                               bank: e.label,
-                              bank_code: e.value
-                            }
+                              bank_code: e.value,
+                            },
                           })
                         }}
                         color="black-light"
@@ -264,21 +279,21 @@ function Settings() {
                         type={'text'}
                         className={'input'}
                         color="black-light"
-                        name='account_name'
+                        name="account_name"
                         value={formData?.bank_details?.account_number}
-                        placeholder='00475*******'
+                        placeholder="00475*******"
                         onChange={(e) => {
                           setFormData({
                             ...formData,
                             bank_details: {
                               ...formData?.bank_details,
-                              account_number: e.target.value
-                            }
+                              account_number: e.target.value,
+                            },
                           })
                         }}
                         label={'Account Number'}
                       />
-                        <RavenInputField
+                      <RavenInputField
                         type={'text'}
                         placeholder="Adekunle Ciroma"
                         className={'input'}
@@ -297,7 +312,9 @@ function Settings() {
                       disabled={!formData?.bank_details?.account_name}
                       label="Update Account"
                     />
-                    <div onClick={() => setFormData([])} className="reset_btn">Reset</div>
+                    <div onClick={() => setFormData([])} className="reset_btn">
+                      Reset
+                    </div>
                   </footer>
                 </section>
               )}
