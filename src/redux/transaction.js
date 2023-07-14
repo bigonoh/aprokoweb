@@ -10,10 +10,10 @@ export const getTrx = createAsyncThunk(
       const { data } = await axios.get(
         `/transaction?limit=${payload.limit || 10}&page=${
           payload.page || 1
-        } &sortBy=${payload.sort || 'asc'}`,
+        }&sortBy=${payload.sort || 'created_at:desc'}`,
         payload
       )
-      console.log(data)
+      // console.log(data)
       if (!data) {
         // toast.error(data.message, {
         //   theme: 'colored'
@@ -45,6 +45,7 @@ export const requestWithdrawal = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.post(`/withdraw`, payload)
+      console.log(data)
       if (data.status === 'fail') {
         toast.error(data.message)
         return thunkAPI.rejectWithValue(data)
@@ -72,15 +73,28 @@ export const makePurchase = createAsyncThunk(
   'public/purchase',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.post(`/purchase`, payload)
+      const filtered = Object.keys(payload)
+        .filter((key) => !key.includes('isAd'))
+        .reduce((cur, key) => {
+          return Object.assign(cur, { [key]: payload[key] })
+        }, {})
+
+      const { data } = await axios.post(`/purchase`, filtered)
       if (data.status === 'fail') {
         toast.error(data.message)
         return thunkAPI.rejectWithValue(data)
       }
       if (data.status === 'success') {
-        toast.success(data.message, {
-          theme: 'colored',
-        })
+        if (payload.isAd) {
+          toast.success(
+            'Ad was successfully saved to your information collection.'
+          )
+        } else {
+          toast.success(data.message, {
+            theme: 'colored',
+          })
+        }
+
         return data
       }
     } catch (err) {

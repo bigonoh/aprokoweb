@@ -7,6 +7,10 @@
   justify-content: flex-end;
   border-bottom: 0.5px solid #cccccc;
 }
+.dashboard_header_wrap .user {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
 .dashboard_header_wrap .notification_icon {
   height: -moz-fit-content;
   height: fit-content;
@@ -17,4 +21,4 @@
 .dashboard_header_wrap .notification_icon .notification {
   width: 2rem;
   height: 2rem;
-} /*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

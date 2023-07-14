@@ -9,17 +9,13 @@ import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { getLocations } from '../redux/home'
-import {
-  formatNumWithoutCommaNaira,
-  reactSelectStyleTable,
-} from '../utils/Helpers'
+import { reactSelectStyleTable } from '../utils/Helpers'
 import { getInfos } from '../redux/info'
-import { RavenButton, RavenModal, toast } from 'raven-bank-ui'
+import { RavenModal, toast } from 'raven-bank-ui'
 import { useState } from 'react'
 import formatNaira from '../utils/currency'
 import usePay from '../hooks/usePay'
 import { makePurchase } from '../redux/transaction'
-import { FaBars, FaHamburger } from 'react-icons/fa'
 import { getUser } from '../redux/user'
 import Feed from '../components/mobile/timeline/Feed'
 import Header from '../components/global/header/Header'
@@ -51,7 +47,6 @@ function Homepage() {
 
   let trigger = false
   if (reference) {
-    console.log('ref', payData)
     const payload = {
       title: payData.title,
       amount: payData.price,
@@ -186,8 +181,8 @@ function Homepage() {
                 </span>
 
                 <div className="wp-50 flex justify-center text-center">
-                  Sign up on Aprokopay and input your preferred bank details for
-                  receiving payments
+                  Share useful Information with Aprokopay community and get paid
+                  for it.
                 </div>
 
                 <ul className="w-150 border-secondary mt-30 mb-30"></ul>
@@ -201,8 +196,8 @@ function Homepage() {
                 </span>
 
                 <div className="wp-50 flex justify-center text-center">
-                  Sign up on Aprokopay and input your preferred bank details for
-                  receiving payments
+                  Place Withdrawal request and get your balance in your local
+                  bank account.
                 </div>
 
                 <ul className="w-150 border-secondary mt-30 mb-30"></ul>
@@ -216,8 +211,7 @@ function Homepage() {
                 </span>
 
                 <div className="wp-50 flex justify-center text-center">
-                  Sign up on Aprokopay and input your preferred bank details for
-                  receiving payments
+                  Rinse and Repeat Step 2 & 3 &nbsp; 😎
                 </div>
 
                 <ul className="w-150 border-secondary mt-30 mb-30"></ul>
@@ -242,29 +236,29 @@ function Homepage() {
             </span>
 
             <span className="flex wp-100 pb-10 pt-20 border-b-primary-1 justify-between align-center">
-              <p className="text-md">Question 1</p>
+              <p className="text-md">Question 2</p>
               <p className="text-dmd text-primary font-200">+</p>
             </span>
 
             <span className="flex wp-100 pb-10 pt-20 border-b-primary-1 justify-between align-center">
-              <p className="text-md">Question 1</p>
+              <p className="text-md">Question 3</p>
               <p className="text-dmd text-primary font-200">+</p>
             </span>
           </div>
 
           <div className="flex flex-column wp-50">
             <span className="flex wp-100 pb-10 pt-20 border-b-primary-1 justify-between align-center">
-              <p className="text-md">Question 1</p>
+              <p className="text-md">Question 4</p>
               <p className="text-dmd text-primary font-200">+</p>
             </span>
 
             <span className="flex wp-100 pb-10 pt-20 border-b-primary-1 justify-between align-center">
-              <p className="text-md">Question 1</p>
+              <p className="text-md">Question 5</p>
               <p className="text-dmd text-primary font-200">+</p>
             </span>
 
             <span className="flex wp-100 pb-10 pt-20 border-b-primary-1 justify-between align-center">
-              <p className="text-md">Question 1</p>
+              <p className="text-md">Question 6</p>
               <p className="text-dmd text-primary font-200">+</p>
             </span>
           </div>
@@ -292,7 +286,6 @@ function Homepage() {
         btnLabel={'Pay'}
         onBtnClick={() => makePay(content?.price, content)}
       >
-        {console.log(content)}
         <div className="modal_content_wrapper">
           <div className="modal_title">
             <p>{`Information Details:`}</p>

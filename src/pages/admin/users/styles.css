@@ -1,4 +1,3 @@
-@charset "UTF-8";
 .users_wrapper {
   width: 100%;
   height: 100%;
@@ -173,12 +172,6 @@
   justify-content: flex-end !important;
   border-bottom: 0.5px solid #cccccc;
 }
-.users_wrapper .modal-parent-wrap figure::before {
-  font-weight: bold;
-  color: navy;
-  content: "✕";
-  font-size: 1.8rem;
-}
 .users_wrapper .modal-parent-wrap .modal_content_wrapper {
   display: flex;
   flex-direction: column;
@@ -212,8 +205,5 @@
 @media screen and (max-width: 29.9375em) {
   .users_wrapper {
     padding: 0 2rem;
-  }
-  .table {
-    width: 150% !important;
   }
 }/*# sourceMappingURL=styles.css.map */

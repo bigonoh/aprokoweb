@@ -4,8 +4,12 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: 90% center;
-  background-image: url('../../src/assets/img/banner.png');
+  background-image: url("../../src/assets/img/banner.png");
 }
 .invite_banner h5 {
   text-transform: uppercase;
-} /*# sourceMappingURL=style.css.map */
+}
+
+.img-box svg.img.dull-bright-filter {
+  stroke: black;
+}/*# sourceMappingURL=style.css.map */

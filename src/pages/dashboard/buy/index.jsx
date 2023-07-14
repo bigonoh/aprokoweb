@@ -8,7 +8,7 @@ import { getLocations } from '../../../redux/home'
 import { reactSelectStyleTable } from '../../../utils/Helpers'
 import './style.css'
 import { createInfo } from '../../../redux/info'
-function Buy() {
+function Ask() {
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -245,4 +245,4 @@ function Buy() {
   )
 }
 
-export default Buy
+export default Ask

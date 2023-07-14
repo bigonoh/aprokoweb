@@ -29,7 +29,7 @@ function Sidebar() {
           Dashboard
         </div>
         <div
-          onClick={() => navigate('/buy')}
+          onClick={() => navigate('/ask')}
           className="p-15 curved text-md menu-item text-white"
         >
           Ask Aprokopay
@@ -51,6 +51,12 @@ function Sidebar() {
           className="p-15 curved text-md menu-item text-white"
         >
           Information
+        </div>
+        <div
+          onClick={() => navigate('/place-an-ad')}
+          className="p-15 curved text-md menu-item text-white"
+        >
+          Place Ad
         </div>
         <div
           onClick={() => navigate('/transaction')}

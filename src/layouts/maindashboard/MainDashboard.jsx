@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
 import React from 'react'
 require('./style.css')
 import Balance from '../../components/balance/Balance'
@@ -6,26 +7,14 @@ import { useSelector } from 'react-redux'
 import { formatNumWithCommaNaira } from '../../utils/Helpers'
 import { useState } from 'react'
 import { RavenModal } from 'raven-bank-ui'
+import { useNavigate } from 'react-router-dom'
+import Feed from '../../components/mobile/timeline/Feed'
 
 const MainDashboard = ({ trx }) => {
-  const styles = {
-    button: {
-      backgroundColor: 'blue',
-    },
-  }
-
-  const data = [
-    {
-      name: 'Purchase of information from jack',
-      age: 28,
-      address: 'some where',
-      key: '1',
-    },
-    { name: 'Rose', age: 36, address: 'some where', key: '2' },
-  ]
-
   const { infos } = useSelector((state) => state.info)
   const posts = infos?.results
+
+  const navigate = useNavigate()
 
   return (
     <div className="mainDashboard">
@@ -37,22 +26,37 @@ const MainDashboard = ({ trx }) => {
         <div className="bottom_wrapper">
           <p className="text-md font-600 ">Quick Actions</p>
           <div className="flex gap-10  mt-20 justify-between">
-            <div className="p-20 flex align-start actions justify center">
+            <div
+              onClick={() => navigate('/sell')}
+              className="p-20 flex align-start actions justify  cursor-pointer center"
+            >
               Sell info
             </div>
-            <div className="p-20 flex align-start actions justify center">
-              Buy info
+
+            <div
+              onClick={() => navigate('/ask')}
+              className="p-20 flex align-start actions  cursor-pointer justify cursor-pointer  center"
+            >
+              Ask Aprokopay
             </div>
-            <div className="p-20 flex align-start actions justify center">
-              Withdraw
+
+            <div
+              onClick={() => navigate('/place-an-ad')}
+              className="p-20 flex align-start actions  cursor-pointer justify cursor-pointer  center"
+            >
+              Place Ad
             </div>
-            <div className="p-20 flex align-start actions justify center">
-              Deposit
+
+            <div
+              onClick={() => navigate('/informations')}
+              className="p-20 flex align-start actions  cursor-pointer justify center"
+            >
+              Information
             </div>
           </div>
 
           <p className="text-md font-600 mt-50 ">Recent Transaction</p>
-          <div className=" mt-20">
+          <div className="table-wrapper mt-20">
             <table cellSpacing="0" cellPadding="0" className="table">
               <thead>
                 <tr>
@@ -88,13 +92,7 @@ const MainDashboard = ({ trx }) => {
             {posts?.map((chi, idx) => {
               return (
                 <div key={idx} className="comment">
-                  <p>{chi?.title}</p>
-                  <div className="button">
-                    <button>
-                      {formatNumWithCommaNaira(String(chi?.price))}
-                    </button>
-                    <button className="info">More info</button>
-                  </div>
+                  <Feed dash item={chi} />
                 </div>
               )
             })}

@@ -65,7 +65,7 @@ export const updateUser = createAsyncThunk(
           theme: 'colored',
           position: 'top-center',
         })
-        console.log(data, 'from this point')
+
         // await thunkAPI.dispatch(setUsers(data?.data));
         return data
       }
@@ -92,7 +92,7 @@ export const getAllInformations = createAsyncThunk(
         }&populate=user`,
         payload
       )
-      console.log('admin', data)
+
       if (data.status !== 'success') {
         toast.error(data.message, {
           theme: 'colored',
@@ -128,7 +128,7 @@ export const deleteInformation = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const data = await axios.delete(`/admin/info/${payload.id}`, payload)
-      console.log('admin', data)
+
       if (data?.data?.status !== 'success') {
         toast.error(data.response.data.message, {
           theme: 'colored',
@@ -164,7 +164,7 @@ export const updateInformation = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const data = await axios.patch(`/admin/info/${payload.id}`, payload)
-      console.log('admin-info', data)
+
       if (data?.data?.status !== 'success') {
         toast.error(data.response.data.message, {
           theme: 'colored',
@@ -205,7 +205,7 @@ export const getAllWithdrawals = createAsyncThunk(
         }&populate=user`,
         payload
       )
-      console.log('admin', data)
+
       if (data.status !== 'success') {
         toast.error(data.message, {
           theme: 'colored',
@@ -241,7 +241,7 @@ export const approveWithdrawal = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const data = await axios.patch(`/admin/withdrawal/${payload.id}`, payload)
-      console.log('admin-info', data)
+
       if (data?.data?.status !== 'success') {
         toast.error(data.response.data.message, {
           theme: 'colored',

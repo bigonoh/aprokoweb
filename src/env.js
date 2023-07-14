@@ -5,7 +5,7 @@ const vars = {
       ? 'http://localhost:3500/v1' //change this for development only
       : 'https://api.aprokopay.com/v1', // leave this for production
 
-  paystack_key: 'pk_test_4a0df9b17a1bc9f3dfe3d00103eaa5f01fe91c8b',
+  paystack_key: 'pk_live_5adb3f8cca7fd8cf239105be2060270147ffbe8e',
 }
 function config() {
   return vars

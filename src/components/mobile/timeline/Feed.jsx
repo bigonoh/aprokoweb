@@ -9,7 +9,7 @@ import './style.css'
 import { formatNumWithoutCommaNaira } from '../../../utils/Helpers'
 import { sendProposal } from '../../../redux/info'
 
-function Feed({ item }) {
+function Feed({ item, dash }) {
   const dispatch = useDispatch()
   const { user } = useSelector((state) => state?.user)
 
@@ -27,8 +27,6 @@ function Feed({ item }) {
     message: '',
   })
 
-  console.log(proposal)
-
   let makePay = async (e, data) => {
     await setPayData(data)
     onView({
@@ -40,10 +38,10 @@ function Feed({ item }) {
   }
 
   let makeProposal = async (chi) => {
-   const data = {
+    const data = {
       ...proposal,
       buyer: chi.user.id,
-      info_title: chi.title
+      info_title: chi.title,
     }
     const response = await dispatch(sendProposal(data))
 
@@ -57,13 +55,12 @@ function Feed({ item }) {
         message: '',
       })
     }
-   
+
     if (!user.email) toast.error('Please login to send proposal')
   }
 
   let trigger = false
   if (reference) {
-    console.log('ref', payData)
     const payload = {
       title: payData.title,
       amount: payData.price,
@@ -81,12 +78,26 @@ function Feed({ item }) {
     // toast.success("Your purchase was successful")
   }
 
-  // console.log(item)
+  function handleFreeItem(payData) {
+    const payload = {
+      title: payData.title,
+      amount: payData.price,
+      info_id: payData.id,
+      information: JSON.stringify(payData),
+      seller: payData.user.id,
+      ref: '-',
+      payment_ref: '-',
+      isAd: true,
+    }
+
+    dispatch(makePurchase(payload))
+    trigger = true
+  }
 
   return (
     <>
       {/* desktop cards start here */}
-      <div className="desktop-timeline">
+      <div className={`desktop-timeline ${dash && 'dashboard-view'}`}>
         <div className="profile">
           <div className="avatar">
             <img
@@ -97,14 +108,25 @@ function Feed({ item }) {
 
           <div className="name">
             <p>{item?.user?.name} </p>
-            <span>{item.selling ? 'Selling' : 'Asking'} &#x2022; {item?.location?.state}</span>
-          </div>
-
-          <div className="info_price">
             <span>
-              <h6>{formatNaira(item.price)}</h6>
+              {item.selling ? 'Selling' : 'Asking'} &#x2022;{' '}
+              {item?.location?.state}
             </span>
           </div>
+
+          {item.price === 0 ? (
+            <div className="advert">
+              <p>Advert</p>
+            </div>
+          ) : (
+            <div className="info_price">
+              <span>
+                <h6 style={{ color: !item.selling && '#0b8376' }}>
+                  {formatNaira(item.price)}
+                </h6>
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="modal_content_wrapper">
@@ -129,7 +151,7 @@ function Feed({ item }) {
           <div className="author_section">
             <span>
               <h6>Verified {icons.verified}: </h6>
-              <p>No</p>
+              <p>{item?.verified ? 'Yes' : 'No'}</p>
             </span>
 
             <div className="mobile_act_btn">
@@ -137,12 +159,21 @@ function Feed({ item }) {
                 size="small"
                 color={item.selling ? 'orange-dark' : 'green-dark'}
                 onClick={() => {
-                  item.selling ? makePay(item?.price, item) : onView({
-                    active: true,
-                    content: item
-                  })}}
+                  item.price === 0
+                    ? handleFreeItem(item)
+                    : item.selling
+                    ? makePay(item?.price, item)
+                    : onView({
+                        active: true,
+                        content: item,
+                      })
+                  setProposal({
+                    ...proposal,
+                    info_id: item.id,
+                  })
+                }}
               >
-                {item.selling ? 'Buy' : 'Answer'}
+                {item.price === 0 ? 'Save Ad' : item.selling ? 'Buy' : 'Answer'}
               </RavenButton>
             </div>
           </div>
@@ -162,14 +193,25 @@ function Feed({ item }) {
 
           <div className="name">
             <p>{item?.user?.name} </p>
-            <span>{item.selling ? 'Selling' : 'Asking'} &#x2022; {item?.location?.state}</span>
-          </div>
-
-          <div className="info_price">
             <span>
-              <h6>{formatNaira(item.price)}</h6>
+              {item.selling ? 'Selling' : 'Asking'} &#x2022;{' '}
+              {item?.location?.state}
             </span>
           </div>
+
+          {item?.price === 0 ? (
+            <div className="advert">
+              <p>Advert</p>
+            </div>
+          ) : (
+            <div className="info_price">
+              <span>
+                <h6 style={{ color: !item.selling && '#0b8376' }}>
+                  {formatNaira(item.price)}
+                </h6>
+              </span>
+            </div>
+          )}
         </div>
 
         <div className="modal_content_wrapper">
@@ -194,7 +236,7 @@ function Feed({ item }) {
           <div className="author_section">
             <span>
               <h6>Verified {icons.verified}: </h6>
-              <p>No</p>
+              <p>{item?.verified ? 'Yes' : 'No'}</p>
             </span>
 
             <div className="mobile_act_btn">
@@ -202,13 +244,21 @@ function Feed({ item }) {
                 size="small"
                 color={item.selling ? 'orange-dark' : 'green-dark'}
                 onClick={() => {
-                  item.selling ? makePay(item?.price, item) : onView({
-                    active: true,
-                    content: item
-                  })
+                  item.price === 0
+                    ? handleFreeItem(item)
+                    : item.selling
+                    ? makePay(item?.price, item)
+                    : onView({
+                        active: true,
+                        content: item,
+                      })
                 }}
               >
-                {item.selling ? 'Buy' : 'Answer'}
+                {item?.price === 0
+                  ? 'Save Ad'
+                  : item.selling
+                  ? 'Buy'
+                  : 'Answer'}
               </RavenButton>
             </div>
           </div>
@@ -220,9 +270,16 @@ function Feed({ item }) {
         visble={view.active}
         btnColor="orange-dark"
         btnLabel={'Submit Proposal'}
-        onBtnClick={() => makeProposal(content)}
+        onClose={() =>
+          onView({
+            active: false,
+            content: '',
+          })
+        }
+        onBtnClick={() => {
+          makeProposal(content)
+        }}
       >
-        {console.log(content)}
         <div className="modal_content_wrapper">
           <div className="modal_title">
             <p>{`Send a Proposal`}</p>
@@ -233,35 +290,37 @@ function Feed({ item }) {
           </div>
 
           <div className="ask_input_container">
-             
-              <RavenInputField 
-              label={"Information ID"}
-              color={"orange-dark"}
-              labelSpanText='What this ?'
+            <RavenInputField
+              label={'Information ID'}
+              color={'orange-dark'}
+              labelSpanText="What this ?"
               labelColor={'orange-dark'}
-              value={proposal.info_id}
-              onChange={e => {setProposal({
-                ...proposal,
-                info_id: e.target.value
-              })}}
-              placeholder='i.e 644b95bbd9b4e71cf40a01dc'
-              type={"text"} />
+              value={content.id}
+              // onChange={e => {setProposal({
+              //   ...proposal,
+              //   info_id: e.target.value
+              // })}}
+              placeholder="i.e 644b95bbd9b4e71cf40a01dc"
+              type={'text'}
+            />
             <span>
-              <RavenInputField 
-              color={'orange-dark'} 
-              label={"Proposal Message"}
-              value={proposal.message}
-              placeholder='This plumber am going to introduce you to is very good at what....'
-              labelSpanText='What this ?'
-              onChange={e => {setProposal({
-                ...proposal,
-                message: e.target.value
-              })}}
-              labelColor={'orange-dark'}
-              type={"textarea"} />
+              <RavenInputField
+                color={'orange-dark'}
+                label={'Proposal Message'}
+                value={proposal.message}
+                placeholder="This plumber am going to introduce you to is very good at what...."
+                labelSpanText="What this ?"
+                onChange={(e) => {
+                  setProposal({
+                    ...proposal,
+                    message: e.target.value,
+                  })
+                }}
+                labelColor={'orange-dark'}
+                type={'textarea'}
+              />
             </span>
           </div>
-
         </div>
       </RavenModal>
     </>

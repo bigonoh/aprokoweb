@@ -20,7 +20,7 @@ const SalesTerminal = () => {
             <div className="left">
               {icons.salary}
               <h2>NGN 15,000</h2>
-              <p>Aporoko Pay Balance</p>
+              <p>Aproko Pay Balance</p>
             </div>
             <div className="right">{icons.vector}</div>
           </div>

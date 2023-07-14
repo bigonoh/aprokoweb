@@ -21,7 +21,7 @@ body {
   position: absolute;
   width: 0;
   height: 2px;
-  content: '';
+  content: "";
   background: #fff;
   top: -2px;
   left: -2px;
@@ -32,7 +32,7 @@ body {
   position: absolute;
   width: 2px;
   height: 0;
-  content: '';
+  content: "";
   background: #fff;
   top: -2px;
   right: -2px;
@@ -43,7 +43,7 @@ body {
   position: absolute;
   width: 0;
   height: 2px;
-  content: '';
+  content: "";
   background: #fff;
   bottom: -2px;
   right: -2px;
@@ -54,7 +54,7 @@ body {
   position: absolute;
   width: 2px;
   height: 0;
-  content: '';
+  content: "";
   background: #fff;
   bottom: -2px;
   left: -2px;
@@ -84,4 +84,4 @@ body {
   height: auto2px;
   transition: 100ms height ease 300ms;
   -web-kit-transition: 100ms height ease 300ms;
-} /*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

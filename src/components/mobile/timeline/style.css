@@ -39,6 +39,21 @@
   display: flex;
   justify-content: space-between;
 }
+.desktop-timeline .advert {
+  display: flex;
+  width: auto;
+  margin-left: auto;
+  align-self: flex-end;
+  justify-self: flex-end;
+  padding: 0.5rem 1rem;
+  border-radius: 0.8rem;
+  background-color: rgba(128, 0, 128, 0.207);
+}
+.desktop-timeline .advert p {
+  color: rgb(125, 7, 125);
+  font-size: 1.4rem;
+  font-weight: 700;
+}
 .desktop-timeline .info_price {
   display: flex;
   height: 4rem;
@@ -69,6 +84,28 @@
 }
 .desktop-timeline .profile .avatar img {
   border-radius: 50%;
+}
+
+.dashboard-view {
+  border: none;
+  width: 100%;
+}
+
+.advert {
+  display: flex;
+  width: auto;
+  margin-left: auto;
+  align-self: flex-end;
+  justify-self: flex-end;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border-radius: 0.8rem;
+  background-color: rgba(128, 0, 128, 0.207);
+}
+.advert p {
+  color: rgb(125, 7, 125);
+  font-size: 1.4rem;
+  font-weight: 700;
 }
 
 @media screen and (max-width: 29.9375em) {

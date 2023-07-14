@@ -35,8 +35,7 @@
   width: 90%;
   height: 100%;
   background: #ffffff;
-  box-shadow: 0px 0px 18.4818px rgba(170, 170, 170, 0.16),
-    0px 6.16058px 12.3212px rgba(194, 194, 194, 0.16);
+  box-shadow: 0px 0px 18.4818px rgba(170, 170, 170, 0.16), 0px 6.16058px 12.3212px rgba(194, 194, 194, 0.16);
   border-radius: 6.16058px;
   padding: 2rem;
 }
@@ -65,131 +64,64 @@
   overflow: hidden;
   height: 100%;
 }
-.settings_wrapper
-  .page_body
-  .settings_card_wrapper
-  .settings_main_wrapper
-  section {
+.settings_wrapper .page_body .settings_card_wrapper .settings_main_wrapper section {
   display: flex;
   padding-top: 3rem;
   overflow: auto;
   height: 90%;
   padding-bottom: 3rem;
 }
-.settings_wrapper
-  .page_body
-  .settings_card_wrapper
-  .settings_main_wrapper
-  .account_setting {
+.settings_wrapper .page_body .settings_card_wrapper .settings_main_wrapper .account_setting {
   flex-direction: column;
   width: 100%;
   gap: 3rem;
   padding-bottom: 3rem;
 }
-.settings_wrapper
-  .page_body
-  .settings_card_wrapper
-  .settings_main_wrapper
-  .account_setting
-  .profile_img {
+.settings_wrapper .page_body .settings_card_wrapper .settings_main_wrapper .account_setting .profile_img {
   width: 30%;
 }
-.settings_wrapper
-  .page_body
-  .settings_card_wrapper
-  .settings_main_wrapper
-  .account_setting
-  .title_wrapper {
+.settings_wrapper .page_body .settings_card_wrapper .settings_main_wrapper .account_setting .title_wrapper {
   display: flex;
   flex-direction: column;
 }
-.settings_wrapper
-  .page_body
-  .settings_card_wrapper
-  .settings_main_wrapper
-  .account_setting
-  .title_wrapper
-  .title {
+.settings_wrapper .page_body .settings_card_wrapper .settings_main_wrapper .account_setting .title_wrapper .title {
   font-size: 1.6rem;
   font-weight: 600;
   color: rgb(45, 45, 45);
 }
-.settings_wrapper
-  .page_body
-  .settings_card_wrapper
-  .settings_main_wrapper
-  .account_setting
-  .title_wrapper
-  .sub_title {
+.settings_wrapper .page_body .settings_card_wrapper .settings_main_wrapper .account_setting .title_wrapper .sub_title {
   font-size: 1.2rem;
   font-weight: 300;
   color: #717b8c;
 }
-.settings_wrapper
-  .page_body
-  .settings_card_wrapper
-  .settings_main_wrapper
-  .account_setting
-  .form_group {
+.settings_wrapper .page_body .settings_card_wrapper .settings_main_wrapper .account_setting .form_group {
   width: 100%;
   display: flex;
   gap: 3rem;
   justify-content: space-between;
 }
-.settings_wrapper
-  .page_body
-  .settings_card_wrapper
-  .settings_main_wrapper
-  .account_setting
-  .form_group
-  .left,
-.settings_wrapper
-  .page_body
-  .settings_card_wrapper
-  .settings_main_wrapper
-  .account_setting
-  .form_group
-  .right {
+.settings_wrapper .page_body .settings_card_wrapper .settings_main_wrapper .account_setting .form_group .left,
+.settings_wrapper .page_body .settings_card_wrapper .settings_main_wrapper .account_setting .form_group .right {
   width: 50%;
   display: flex;
   flex-direction: column;
   gap: 3rem;
 }
-.settings_wrapper
-  .page_body
-  .settings_card_wrapper
-  .settings_main_wrapper
-  .account_setting
-  .btn_group {
+.settings_wrapper .page_body .settings_card_wrapper .settings_main_wrapper .account_setting .btn_group {
   display: flex;
   gap: 3rem;
   align-items: center;
 }
-.settings_wrapper
-  .page_body
-  .settings_card_wrapper
-  .settings_main_wrapper
-  .account_setting
-  .btn_group
-  .reset_btn {
+.settings_wrapper .page_body .settings_card_wrapper .settings_main_wrapper .account_setting .btn_group .reset_btn {
   cursor: pointer;
   font-weight: 500;
   font-size: 1.4rem;
   color: rgb(45, 45, 45);
 }
-.settings_wrapper
-  .page_body
-  .settings_card_wrapper
-  .settings_main_wrapper
-  .security {
+.settings_wrapper .page_body .settings_card_wrapper .settings_main_wrapper .security {
   gap: 2rem;
 }
-.settings_wrapper
-  .page_body
-  .settings_card_wrapper
-  .settings_main_wrapper
-  .security
-  .btn_group {
+.settings_wrapper .page_body .settings_card_wrapper .settings_main_wrapper .security .btn_group {
   margin-top: 1rem;
 }
 
@@ -203,24 +135,11 @@
   .settings_wrapper .page_body .settings_card_wrapper {
     width: 100%;
   }
-  .settings_wrapper
-    .page_body
-    .settings_card_wrapper
-    .account_setting
-    .form-group,
-  .settings_wrapper
-    .page_body
-    .settings_card_wrapper
-    .account_setting
-    .form_group {
+  .settings_wrapper .page_body .settings_card_wrapper .account_setting .form-group,
+  .settings_wrapper .page_body .settings_card_wrapper .account_setting .form_group {
     width: 100% !important;
   }
-  .settings_wrapper
-    .page_body
-    .settings_card_wrapper
-    .account_setting
-    .form_group
-    .left {
+  .settings_wrapper .page_body .settings_card_wrapper .account_setting .form_group .left {
     width: 100% !important;
   }
-} /*# sourceMappingURL=styles.css.map */
+}/*# sourceMappingURL=styles.css.map */

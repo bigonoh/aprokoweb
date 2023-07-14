@@ -60,11 +60,11 @@ function AdminPanel() {
 
           <div className="stat_minimal">
             <span>
-              <p>Informations Sold:</p>
+              <p>Information Sold:</p>
               <h6>{sales?.totalResults}</h6>
             </span>
             <span>
-              <p>Informations Bought:</p>
+              <p>Information Bought:</p>
               <h6>{`10`}</h6>
             </span>
           </div>

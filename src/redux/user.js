@@ -8,25 +8,26 @@ export const registerUser = createAsyncThunk(
   '/register',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.post('/auth/register', payload)
-      // console.log("login", data);
-      if (data.status !== 'success') {
-        toast.error(data.message, {
+      const data = await axios.post('/auth/register', payload)
+      console.log(data, 'thunk')
+      if (data.data.status !== 'success') {
+        toast.error(data.data.message, {
           theme: 'colored',
           position: 'center-top',
         })
         return data
       }
 
-      if (data.status === 'success') {
-        toast.success(data.message, {
+      if (data.data.status === 'success') {
+        toast.success(data.data.message, {
           theme: 'colored',
           position: 'top-center',
         })
-        // console.log(data, 'from this point');
-        await thunkAPI.dispatch(login(data?.data?.tokens?.access?.token))
+
+        await thunkAPI.dispatch(login(data?.data?.data?.tokens?.access?.token))
         await localStorage.setItem('user', JSON.stringify(data?.data.data.user))
-        return data
+        // return thunkAPI.rejectWithValue(data)
+        return data.data
       }
       // return thunkAPI.rejectWithValue(data);
     } catch (err) {
@@ -82,7 +83,7 @@ export const updateUserProfile = createAsyncThunk(
     try {
       // console.log(payload);
       const { data } = await axios.post('/update_user', payload)
-      console.log(data)
+
       if (data.status === 'fail') {
         toast.error(data.message, {
           theme: 'colored',
@@ -156,7 +157,6 @@ export const getUser = createAsyncThunk(
           theme: 'colored',
         })
 
-        console.log(data)
         // return thunkAPI.rejectWithValue(data);
       }
       if (data.status === 'success') {
@@ -189,7 +189,7 @@ export const loginUser = createAsyncThunk(
     }
     try {
       const data = await axios.post('auth/login', payload)
-      // console.log("we gere", data);
+      // console.log('we gere', data)
       if (data?.response?.data?.status === 'fail') {
         toast.error(data?.response?.data?.message, {
           theme: 'colored',
@@ -224,13 +224,12 @@ export const loginUser = createAsyncThunk(
         return data?.data
       }
     } catch (err) {
-      // console.log(err);
       if (
         err.response.data.status === 'fail' &&
         err.response.data.message !==
           'Your email address is yet to be verified. A mail has been sent to your email address. Please check and follow the instruction in the mail to verify account.'
       ) {
-        toast.error(err.response.data.message, {
+        toast.error(err.response?.data?.message?.message, {
           theme: 'colored',
           position: 'top-right',
         })

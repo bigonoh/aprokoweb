@@ -1,6 +1,7 @@
 .create_post_wrapper {
   display: flex;
   width: 100%;
+  flex: 1;
   height: -moz-max-content;
   height: max-content;
   justify-content: center;
@@ -48,4 +49,4 @@
   align-items: flex-start;
   justify-content: flex-start;
   text-align: start;
-} /*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
