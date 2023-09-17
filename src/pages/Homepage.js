@@ -1,7 +1,5 @@
 import React from 'react'
 const heroBg = require('../assets/img/hero-bg.png')
-import logo from '../assets/img/logo.svg'
-import { ButtonPrimary } from '../components/buttons/ButtonReuse'
 import Select from 'react-select'
 import { icons } from '../assets/icons/icons'
 import Footer from '../components/global/footer/Footer'
@@ -174,7 +172,7 @@ function Homepage() {
               </div>
             </div>
 
-            <div className="col-12-xs curved bg-white  col-5-sm col-2-xl">
+            <div className="col-12-xs curved bg-white col-5-sm col-2-xl">
               <div className="card pt-20 justify-center align-center wp-100 flex flex-column gap-20">
                 <span className="rounded bg-primary text-white font-500 text-sm w-30 h-30 flex center">
                   2
@@ -273,7 +271,10 @@ function Homepage() {
             know.
           </p>
 
-          <button className="btn-primary mb-30 text-white">
+          <button
+            onClick={() => navigate('/register?r=seller')}
+            className="btn-primary mb-30 text-white"
+          >
             Start Selling
           </button>
         </div>

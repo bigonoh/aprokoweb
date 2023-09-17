@@ -53,7 +53,7 @@ function UserInfos() {
     dispatch(getUserInfos(payload))
   }, [])
 
-  const userInfos = useSelector((state) => state?.info?.infos)
+  const userInfos = useSelector((state) => state?.info?.userInfos)
 
   let infos = userInfos?.results
 

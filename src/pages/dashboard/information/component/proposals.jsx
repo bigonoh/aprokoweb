@@ -1,32 +1,35 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 import React, { useEffect, useState } from 'react'
-import DashboardLayout from '../../../../layouts/DashboardLayout'
+
 import './styles.css'
 import { icons } from '../../../../assets/icons/icons'
 import {
-  RavenButton,
+
   RavenModal,
   RavenPagination,
   RavenTable,
   RavenTableRow,
+  toast,
 } from 'raven-bank-ui'
 import { useDispatch, useSelector } from 'react-redux'
 import { DateTime } from 'luxon'
 import {
   deleteInformation,
-  getAllInformations,
+
   updateInformation,
 } from '../../../../redux/admin'
 import { formatNumWithCommaNaira } from '../../../../utils/Helpers'
 import ErrorModal from '../../../../components/modal/ErrorModal'
-import { getBoughtInfo } from '../../../../redux/info'
+import {  acceptRejectProposal, getProposal } from '../../../../redux/info'
 
 function Proposal() {
   const dispatch = useDispatch()
   const [page, setPage] = useState(1)
   const [showAction, setShowAction] = useState()
   const [refresh, setRefresh] = useState(0)
+
+const loggedIn = useSelector((state) => state.user)?.user
 
   const [modal, setModal] = useState({
     edit: false,
@@ -39,23 +42,24 @@ function Proposal() {
       page: page,
       limit: 20,
     }
-    dispatch(getBoughtInfo(payload))
+    dispatch(getProposal(payload))
   }, [page, refresh])
 
   useEffect(() => {
     let payload = {
       page: page,
       limit: 20,
+      asker: loggedIn?.id
     }
-    dispatch(getBoughtInfo(payload))
+    dispatch(getProposal(payload))
   }, [])
 
-  const { boughtInfos } = useSelector((state) => state?.info)
+  const { proposals } = useSelector((state) => state?.info)
 
-  let infos = boughtInfos?.results
+  let infos = proposals?.results
   const headerList = [
-    'TITLE',
-    'PRICE',
+    'REQUESTED INFO',
+    'PROPOSAL PRICE',
     'LOCATION',
     'AUTHOR',
     'CREATED AT',
@@ -63,9 +67,8 @@ function Proposal() {
   ]
 
   const userVerification = (e) => {
-    if (e === false) return <div className="unverified">unverified</div>
+    return <div className={e}>{e && e?.toUpperCase()}</div>
 
-    return <div className="verified">verified information</div>
   }
 
   const deleteInfo = async (id, e) => {
@@ -94,13 +97,13 @@ function Proposal() {
     }
   }
 
-  const verifyInfo = async (id, e) => {
+  const updateProposal = async (id, e) => {
     const payload = {
-      id: id,
-      verified: e,
+      proposal_id: id,
+      status: e,
     }
 
-    let response = await dispatch(updateInformation(payload))
+    let response = await dispatch(acceptRejectProposal(payload))
 
     if (response?.payload?.success === 'success') {
       setModal({
@@ -121,6 +124,9 @@ function Proposal() {
     }
   }
 
+
+  console.log(proposals, 'prps')
+
   return (
     <div className="purchased_info_wrapper">
       <div className="information_wrapper">
@@ -130,15 +136,8 @@ function Proposal() {
             <RavenTable headerList={headerList} action>
               {infos?.map((chi, idx) => {
                 const {
-                  title,
-                  created_at,
-                  user,
-                  information,
-                  verified,
-                  phone,
-                  info_id,
-                  price,
-                  location,
+                  createdAt,
+                  status,
                 } = chi
 
                 // console.log(JSON.parse(information), 'this is')
@@ -147,22 +146,22 @@ function Proposal() {
                   <RavenTableRow
                     key={idx}
                     one={`${
-                      info_id?.title?.length > 30
-                        ? info_id?.title?.slice(0, 30) + '...'
-                        : info_id?.title
+                      chi?.ask_info_id?.title?.length > 30
+                        ?  chi?.ask_info_id?.title?.slice(0, 30) + '...'
+                        :  chi?.ask_info_id?.title
                     }`}
                     two={formatNumWithCommaNaira(
-                      String(info_id?.price ? info_id?.price : 0)
+                      String(chi?.answered_info_id?.price ? chi?.answered_info_id?.price : 0)
                     )}
-                    three={phone}
+                    three={(chi?.answered_info_id?.location?.city || '--') + ' - ' + (chi?.answered_info_id?.location?.state || '--')}
                     onRowClick={() => setShowAction(false)}
-                    four={info_id?.location?.city + ' - ' + location?.state}
-                    five={user?.name}
+                    four={chi?.answerer?.name}
+                    five={chi?.answered_info_id?.verified}
                     className={showAction === idx ? 'zUp' : 'zDown'}
-                    six={DateTime.fromISO(created_at).toLocaleString(
+                    six={DateTime.fromISO(createdAt).toLocaleString(
                       DateTime.DATE_MED
                     )}
-                    seven={userVerification(verified)}
+                    seven={userVerification(status)}
                     ManualAddActions={() => {
                       return (
                         <div className="action_contain">
@@ -182,39 +181,40 @@ function Proposal() {
                           >
                             <span
                               onClick={() =>
-                                setModal({
+                               { chi.accepted ? setModal({
                                   view: true,
                                   edit: false,
                                   content: chi,
-                                })
+                                }): toast.error('You must accept the proposal before you can view the information')
+                              } 
                               }
                             >
-                              View Info
+                              View Proposal Info
                             </span>
-                            <span>Edit Info</span>
+
                             <span
                               onClick={() =>
-                                setModal({
+                                {chi.accepted ?  toast.info('You already accepted this proposal') :  setModal({
                                   view: false,
                                   edit: false,
                                   verify: true,
                                   content: chi,
-                                })
+                                })}
                               }
                             >
-                              {chi?.verified ? 'Unverify Info' : 'Verify Info'}
+                              Accept Proposal
                             </span>
                             <span
                               onClick={() =>
-                                setModal({
+                                { chi.accepted ?  toast.info('You already accepted this proposal') : setModal({
                                   view: false,
                                   edit: false,
                                   delete: true,
                                   content: chi,
-                                })
+                                })}
                               }
                             >
-                              Destroy Info
+                              Decline Proposal
                             </span>
                           </div>
                         </div>
@@ -233,7 +233,7 @@ function Proposal() {
               blackHover
               onNumView={(d) => setPage(d)}
               currentPage={page}
-              totalPage={boughtInfos?.totalPages}
+              totalPage={proposals?.totalPages}
             />
           </div>
           {/* pagination end */}
@@ -269,43 +269,43 @@ function Proposal() {
                 <tbody style={{ fontSize: '80%' }}>
                   <tr>
                     <td>Title</td>
-                    <td>{modal.content?.info_id?.title}</td>
+                    <td>{modal.content?.answered_info_id?.title}</td>
                   </tr>
                   <tr>
                     <td>Description</td>
-                    <td>{modal.content?.info_id?.description}</td>
+                    <td>{modal.content?.answered_info_id?.description}</td>
                   </tr>
                   <tr>
                     <td>Location</td>
                     <td>
-                      {modal.content?.info_id?.city +
+                      {modal.content?.answered_info_id?.location?.city +
                         ' - ' +
-                        modal.content?.state}
+                        modal.content?.answered_info_id?.location?.state}
                     </td>
                   </tr>
                   <tr>
                     <td>Info ID</td>
-                    <td>{modal.content?.info_id?.id}</td>
+                    <td>{modal.content?.answered_info_id?.id}</td>
                   </tr>
                   <tr>
                     <td>Price</td>
                     <td>
                       {formatNumWithCommaNaira(
-                        String(modal.content?.info_id?.price)
+                        String(modal.content?.answered_info_id?.price)
                       )}
                     </td>
                   </tr>
                   <tr>
                     <td>Author</td>
-                    <td> {modal.content?.user?.name} </td>
+                    <td> {modal.content?.answerer?.name} </td>
                   </tr>
                   <tr>
                     <td>Author Phone No.</td>
-                    <td> {modal.content?.user?.phone} </td>
+                    <td> {modal.content?.answerer?.phone} </td>
                   </tr>
                   <tr>
                     <td>Author Email.</td>
-                    <td> {modal.content?.user?.email} </td>
+                    <td> {modal.content?.answerer?.email} </td>
                   </tr>
                   <tr>
                     <td>Verified</td>
@@ -313,32 +313,32 @@ function Proposal() {
                       {' '}
                       <div
                         className={
-                          modal.content?.verified ? 'verified' : 'unverified'
+                          modal.content?.answered_info_id?.verified ? 'verified' : 'unverified'
                         }
                       >
-                        {modal.content?.verified ? 'Verified' : 'Unverified'}
+                        {modal.content?.answered_info_id?.verified ? 'Verified' : 'Unverified'}
                       </div>{' '}
                     </td>
                   </tr>
                   <tr>
                     <td>Status</td>
-                    <td>{modal.content?.status}</td>
+                    <td>{modal.content?.answered_info_id?.status}</td>
                   </tr>
                   <tr>
                     <td>Probation</td>
-                    <td>{String(modal.content?.probation)}</td>
+                    <td>{String(modal.content?.answered_info_id?.probation)}</td>
                   </tr>
                   <tr>
                     <td>Reported</td>
-                    <td>{String(modal.content?.reported)}</td>
+                    <td>{String(modal.content?.answered_info_id?.reported)}</td>
                   </tr>
 
                   <tr>
                     <td>Created</td>
                     <td>
-                      <time dateTime={modal.content?.created_at}>
+                      <time dateTime={modal.content?.answered_info_id?.createdAt}>
                         {DateTime.fromISO(
-                          modal.content?.created_at
+                          modal.content?.answered_info_id?.createdAt
                         ).toLocaleString(DateTime.DATE_MED)}
                       </time>
                     </td>
@@ -364,9 +364,9 @@ function Proposal() {
         }
       >
         <ErrorModal
-          bigText={'Destroy this information'}
+          bigText={'Decline this proposal'}
           smallText={
-            'If you destroy this information, it will be permanently deleted and will no longer be available on this platform, and this action cannot be reversed.'
+            'Are you sure you want to decline this proposal, declining this proposal will remove it from your list of proposals'
           }
           onCancel={() =>
             setModal({
@@ -374,8 +374,8 @@ function Proposal() {
               edit: false,
             })
           }
-          onClick={() => deleteInfo(modal?.content?.id)}
-          btnText={'Destroy'}
+          onClick={() =>  updateProposal(modal?.content?.id, 'rejected')}
+          btnText={'Yes, Decline'}
         ></ErrorModal>
       </RavenModal>
       {/* end caution modal */}
@@ -393,13 +393,9 @@ function Proposal() {
         }
       >
         <ErrorModal
-          bigText={`${
-            modal?.content?.verified
-              ? 'Unverify this information'
-              : 'Verify this information'
-          }`}
+          bigText={`Accept Proposal`}
           smallText={
-            'If you verify this information, it means you have checked and confirmed that the information contained is correct and legit, do you want to proceed ?.'
+            'If you accept this proposal the proposal price will be deducted from your account balance are you sure you want to proceed?'
           }
           fillColor={'green'}
           onCancel={() =>
@@ -409,11 +405,9 @@ function Proposal() {
             })
           }
           onClick={() =>
-            verifyInfo(modal?.content?.id, !modal?.content?.verified)
+            updateProposal(modal?.content?.id, 'accepted')
           }
-          btnText={`${
-            modal?.content?.verified ? 'Yes, Unverify' : 'Yes, Verify'
-          }`}
+          btnText={`Yes, Accept`}
         ></ErrorModal>
       </RavenModal>
       {/* end caution modal */}
