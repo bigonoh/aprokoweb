@@ -130,7 +130,7 @@ function proposalExists(e){
 
   if (proposals?.results){
     for (let item of proposals.results){
-      if(item.ask_info_id === e){
+      if(item.ask_info_id?.id === e){
         return true;
       } else return false
      }
@@ -298,11 +298,7 @@ function proposalExists(e){
                       }), getAUserInfo(item.seller))
                 }}
               >
-                {item?.price === 0
-                  ? 'Save Ad'
-                  : item.selling
-                  ? 'Buy'
-                  : 'Answer'}
+                {item.price === 0 ? 'Save Ad' : item.selling ? 'Buy' : proposalExists(item.id) ? 'Proposal Submitted': 'Answer'}
               </RavenButton>
             </div>
           </div>

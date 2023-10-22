@@ -191,7 +191,7 @@ export const getUserInfos = createAsyncThunk(
         //   position: "top-center",
         // });
         // console.log(data?.data, 'from this point');
-        await thunkAPI.dispatch(setInfos(data?.data))
+        // await thunkAPI.dispatch(setInfos(data?.data))
         await thunkAPI.dispatch(setUserInfos(data?.data))
         return data
       }
@@ -202,7 +202,7 @@ export const getUserInfos = createAsyncThunk(
           theme: 'colored',
           position: 'top-right',
         })
-        return thunkAPI.rejectWithValue(err)
+        return thunkAPI.rejectWithValue(err)  
       }
     }
   }

@@ -28,12 +28,12 @@ function Sidebar() {
         >
           Dashboard
         </div>
-        <div
+        {/* <div
           onClick={() => navigate('/ask')}
           className="p-15 curved text-md menu-item text-white"
         >
           Ask Aprokopay
-        </div>
+        </div> */}
         <div
           onClick={() => navigate('/sell')}
           className="p-15 curved text-md menu-item text-white"

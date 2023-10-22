@@ -17,7 +17,7 @@ function Header(props) {
 
   const handleLogout = () => {
     localStorage.clear()
-    toast.success('You have been logged out successfully') 
+    toast.success('You have been logged out successfully')
     setTimeout(() => {
       window.location.reload()
     }, 5000)
@@ -27,7 +27,7 @@ function Header(props) {
     <div className={props.bg && 'bg-black'}>
       {/* mobile header starts here */}
       <header className="mobile_header">
-        <figure onClick={() => navigate('/')} >
+        <figure onClick={() => navigate('/')}>
           <img src={logo} alt="" />
         </figure>
 
@@ -58,7 +58,7 @@ function Header(props) {
               <li>
                 <a href="#about">FAQs</a>
               </li>
-              <li onClick={() => navigate('/dashboard')}>Ask Aprokopay</li>
+              {/* <li onClick={() => navigate('/dashboard')}>Ask Aprokopay</li> */}
               <li onClick={() => navigate('/sell')}>Sell info</li>
             </ul>
           )}
@@ -122,12 +122,12 @@ function Header(props) {
         </div>
 
         <div className="flex nav-right gap-10">
-          <button
+          {/* <button
             onClick={() => navigate('/ask')}
             className="col-30 btn-outlined-primary-sm text-white"
           >
             Ask Aprokopay
-          </button>
+          </button> */}
           <button
             onClick={() => navigate('/sell')}
             className="col-30 btn-outlined-primary-sm text-white"
