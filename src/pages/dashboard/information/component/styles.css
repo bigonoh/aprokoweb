@@ -155,6 +155,24 @@
   width: -moz-fit-content;
   width: fit-content;
 }
+.information_wrapper .pending {
+  padding: 0.5rem 2rem;
+  border-radius: 5rem;
+  background-color: rgba(244, 159, 0, 0.0862745098);
+  color: #ff872c;
+  font-weight: 600;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.information_wrapper .accepted {
+  padding: 0.5rem 2rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: rgb(0, 202, 0);
+  background: rgba(100, 255, 115, 0.228);
+}
 .information_wrapper .verified {
   padding: 0.5rem 2rem;
   border-radius: 1rem;
@@ -193,6 +211,24 @@
   font-weight: 600;
   width: -moz-fit-content;
   width: fit-content;
+}
+.information_wrapper .modal-parent-wrap .pending {
+  padding: 0.5rem 2rem;
+  border-radius: 5rem;
+  background-color: rgba(244, 0, 0, 0.0509803922);
+  color: #ff2c2c;
+  font-weight: 600;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+.information_wrapper .modal-parent-wrap .accepted {
+  padding: 0.5rem 2rem;
+  border-radius: 1rem;
+  font-weight: 600;
+  width: -moz-fit-content;
+  width: fit-content;
+  color: rgb(0, 202, 0);
+  background: rgba(100, 255, 115, 0.228);
 }
 .information_wrapper .modal-parent-wrap .verified {
   padding: 0.5rem 2rem;

@@ -229,7 +229,7 @@ export const loginUser = createAsyncThunk(
         err.response.data.message !==
           'Your email address is yet to be verified. A mail has been sent to your email address. Please check and follow the instruction in the mail to verify account.'
       ) {
-        toast.error(err.response?.data?.message?.message, {
+        toast.error(err.response?.data?.message, {
           theme: 'colored',
           position: 'top-right',
         })

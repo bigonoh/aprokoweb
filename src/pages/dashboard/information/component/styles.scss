@@ -195,6 +195,25 @@
       width: fit-content;
   }
 
+  .pending {
+    padding: 0.5rem 2rem;
+    border-radius: 5rem;
+    background-color: #f49f0016;
+    color: #ff872c;
+    font-weight: 600;
+    width: fit-content;
+}
+
+.accepted {
+    padding: 0.5rem 2rem;
+    border-radius: 1rem;
+    font-weight: 600;
+    width: fit-content;
+    color: rgb(0, 202, 0);
+    background: rgba(100, 255, 115, 0.228);
+}
+
+
   .verified {
       padding: 0.5rem 2rem;
       border-radius: 1rem;
@@ -251,6 +270,24 @@
          font-weight: 600;
          width: fit-content;
      }
+
+     .pending {
+        padding: 0.5rem 2rem;
+        border-radius: 5rem;
+        background-color: #f400000d;
+        color: #ff2c2c;
+        font-weight: 600;
+        width: fit-content;
+    }
+
+    .accepted {
+        padding: 0.5rem 2rem;
+        border-radius: 1rem;
+        font-weight: 600;
+        width: fit-content;
+        color: rgb(0, 202, 0);
+        background: rgba(100, 255, 115, 0.228);
+    }
  
      .verified {
          padding: 0.5rem 2rem;

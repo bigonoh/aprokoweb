@@ -33,12 +33,12 @@ const MainDashboard = ({ trx }) => {
               Sell info
             </div>
 
-            <div
+            {/* <div
               onClick={() => navigate('/ask')}
               className="p-20 flex align-start actions  cursor-pointer justify cursor-pointer  center"
             >
               Ask Aprokopay
-            </div>
+            </div> */}
 
             <div
               onClick={() => navigate('/place-an-ad')}

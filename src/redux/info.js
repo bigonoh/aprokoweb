@@ -42,6 +42,127 @@ export const getInfos = createAsyncThunk(
     }
   }
 )
+export const getProposal = createAsyncThunk(
+  '/proposals',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.get(
+        `/proposal?limit=${payload.limit || 10}&page=${
+          payload.page || 1
+        }&populate=asker,answerer,ask_info_id, answered_info_id&sortBy=${payload.sortBy || 'createdAt:desc'}${payload.answerer ? `&answerer=${payload.answerer}` : ''}${payload.asker ? `&asker=${payload.asker}` : ''}&status=pending&status=accepted`,
+        payload
+      )
+      // console.log("response", data?.data?.results);
+      if (data.status !== 'success') {
+        toast.error(data.message, {
+          theme: 'colored',
+          position: 'center-top',
+        })
+        return data
+      }
+
+      if (data.status === 'success') {
+        // toast.success(data.message, {
+        //   theme: "colored",
+        //   position: "top-center",
+        // });
+        // console.log(data?.data, 'from this point');
+        await thunkAPI.dispatch(setProposals(data?.data))
+        return data
+      }
+      // return thunkAPI.rejectWithValue(data);
+    } catch (err) {
+      if (err.response.data.status === 'fail' && err.response.status !== 401) {
+        toast.error(err.response.data.message, {
+          theme: 'colored',
+          position: 'top-right',
+        })
+        return thunkAPI.rejectWithValue(err)
+      }
+    }
+  }
+)
+
+
+export const getSentProposal = createAsyncThunk(
+  '/proposals',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.get(
+        `/proposal?limit=${payload.limit || 10}&page=${
+          payload.page || 1
+        }&populate=asker,answerer,ask_info_id, answered_info_id&sortBy=${payload.sortBy || 'createdAt:desc'}${payload.answerer ? `&answerer=${payload.answerer}` : ''}${payload.asker ? `&asker=${payload.asker}` : ''}`,
+        payload
+      )
+      // console.log("response", data?.data?.results);
+      if (data.status !== 'success') {
+        toast.error(data.message, {
+          theme: 'colored',
+          position: 'center-top',
+        })
+        return data
+      }
+
+      if (data.status === 'success') {
+        // toast.success(data.message, {
+        //   theme: "colored",
+        //   position: "top-center",
+        // });
+        // console.log(data?.data, 'from this point');
+        await thunkAPI.dispatch(setProposals(data?.data))
+        return data
+      }
+      // return thunkAPI.rejectWithValue(data);
+    } catch (err) {
+      if (err.response.data.status === 'fail' && err.response.status !== 401) {
+        toast.error(err.response.data.message, {
+          theme: 'colored',
+          position: 'top-right',
+        })
+        return thunkAPI.rejectWithValue(err)
+      }
+    }
+  }
+)
+
+export const acceptRejectProposal = createAsyncThunk(
+  '/accept-proposals',
+  async (payload, thunkAPI) => {
+    try {
+      const { data } = await axios.put(
+        `proposal/accept`,
+        payload
+      )
+      console.log("response", data);
+      if (data.status !== 'success') {
+        toast.error(data.message, {
+          theme: 'colored',
+          position: 'center-top',
+        })
+        return data
+      }
+
+      if (data.status === 'success') {
+        toast.success(data.message, {
+          theme: "colored",
+          position: "top-center",
+        });
+        // console.log(data?.data, 'from this point');
+
+        return data
+      }
+      // return thunkAPI.rejectWithValue(data);
+    } catch (err) {
+      if (err.response.data.status === 'fail' && err.response.status !== 401) {
+        toast.error(err.response.data.message, {
+          theme: 'colored',
+          position: 'top-right',
+        })
+        return thunkAPI.rejectWithValue(err)
+      }
+    }
+  }
+)
 
 export const getUserInfos = createAsyncThunk(
   '/register',
@@ -70,7 +191,8 @@ export const getUserInfos = createAsyncThunk(
         //   position: "top-center",
         // });
         // console.log(data?.data, 'from this point');
-        await thunkAPI.dispatch(setInfos(data?.data))
+        // await thunkAPI.dispatch(setInfos(data?.data))
+        await thunkAPI.dispatch(setUserInfos(data?.data))
         return data
       }
       // return thunkAPI.rejectWithValue(data);
@@ -80,7 +202,7 @@ export const getUserInfos = createAsyncThunk(
           theme: 'colored',
           position: 'top-right',
         })
-        return thunkAPI.rejectWithValue(err)
+        return thunkAPI.rejectWithValue(err)  
       }
     }
   }
@@ -236,19 +358,61 @@ export const sendProposal = createAsyncThunk(
   }
 )
 
+export const deleteProposal = createAsyncThunk(
+  '/delete/proposal',
+  async (payload, thunkAPI) => {
+    try {
+      const data = await axios.delete(`proposal/${payload.id}`, payload)
+
+      if (data?.data?.status !== 'success') {
+        toast.error(data.response.data.message, {
+          theme: 'colored',
+          position: 'center-top',
+        })
+        return data
+      }
+
+      if (data?.data?.status === 'success') {
+        toast.success(data.data.message, {
+          theme: 'colored',
+          position: 'top-center',
+        })
+        // console.log(data, 'from this point');
+        // await thunkAPI.dispatch(setUsers(data?.data));
+        return data.data
+      }
+      // return thunkAPI.rejectWithValue(data);
+    } catch (err) {
+      if (err.response.data.status === 'fail' && err.response.status !== 401) {
+        toast.error(err.response.data.message, {
+          theme: 'colored',
+          position: 'top-right',
+        })
+        return thunkAPI.rejectWithValue(err)
+      }
+    }
+  }
+)
+
 export const info = createSlice({
   name: 'user',
   initialState: {
     infos: [],
+    userInfos: [],
     isAuth: false,
     loading: false,
     boughtInfos: [],
     sales: [],
+    proposals: [],
     token: localStorage?.getItem('token'),
   },
   reducers: {
     setInfos: (state, action) => {
       state.infos = action.payload
+      state.isAuth = true
+    },
+    setUserInfos: (state, action) => {
+      state.userInfos = action.payload
       state.isAuth = true
     },
     setSales: (state, action) => {
@@ -258,6 +422,11 @@ export const info = createSlice({
 
     setBoughtInfo: (state, action) => {
       state.boughtInfos = action.payload
+      state.isAuth = true
+    },
+
+    setProposals: (state, action) => {
+      state.proposals = action.payload
       state.isAuth = true
     },
   },
@@ -278,6 +447,6 @@ export const info = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setInfos, setSales, setBoughtInfo } = info.actions
+export const { setInfos, setSales, setBoughtInfo, setProposals, setUserInfos } = info.actions
 
 export default info.reducer

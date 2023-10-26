@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { makePurchase } from '../../../redux/transaction'
 import './style.css'
 import { formatNumWithoutCommaNaira } from '../../../utils/Helpers'
-import { sendProposal } from '../../../redux/info'
+import { getProposal, getUserInfos, sendProposal } from '../../../redux/info'
 
 function Feed({ item, dash }) {
   const dispatch = useDispatch()
@@ -39,9 +39,10 @@ function Feed({ item, dash }) {
 
   let makeProposal = async (chi) => {
     const data = {
-      ...proposal,
-      buyer: chi.user.id,
-      info_title: chi.title,
+      asker: chi.user.id,
+      ask_info_id: chi.id,
+      answered_info_id: proposal.info_id,
+      message: proposal.message
     }
     const response = await dispatch(sendProposal(data))
 
@@ -94,6 +95,48 @@ function Feed({ item, dash }) {
     trigger = true
   }
 
+
+
+const loggedIn = useSelector((state) => state.user)?.user
+const {userInfos, proposals} = useSelector((state) => state.info)
+
+function getAUserInfo() {
+  const payload = {
+   user: loggedIn?.id,
+  }
+
+  loggedIn && dispatch(getUserInfos(payload))
+  loggedIn && dispatch(getProposal({
+    answerer: loggedIn?.id,
+    limit: 5000,
+  }))
+}
+
+React.useEffect(() => {
+  getAUserInfo()
+}, [])
+
+
+const formatSelectOption = (param) => {
+  param = param ? param : [{}]
+  const list = param?.map((chi) => {
+    const { id, title } = chi
+    return { label: title, value: id }
+  })
+  return list
+}
+
+function proposalExists(e){
+
+  if (proposals?.results){
+    for (let item of proposals.results){
+      if(item.ask_info_id?.id === e){
+        return true;
+      } else return false
+     }
+  } else return false
+
+}
   return (
     <>
       {/* desktop cards start here */}
@@ -159,11 +202,12 @@ function Feed({ item, dash }) {
                 size="small"
                 color={item.selling ? 'orange-dark' : 'green-dark'}
                 onClick={() => {
+                  proposalExists(item.id) ? '' :
                   item.price === 0
                     ? handleFreeItem(item)
                     : item.selling
                     ? makePay(item?.price, item)
-                    : onView({
+                    : !loggedIn ? toast.error('You must be logged in, to answer.') : onView({
                         active: true,
                         content: item,
                       })
@@ -173,7 +217,7 @@ function Feed({ item, dash }) {
                   })
                 }}
               >
-                {item.price === 0 ? 'Save Ad' : item.selling ? 'Buy' : 'Answer'}
+                {item.price === 0 ? 'Save Ad' : item.selling ? 'Buy' : proposalExists(item.id) ? 'Proposal Submitted': 'Answer'}
               </RavenButton>
             </div>
           </div>
@@ -248,17 +292,13 @@ function Feed({ item, dash }) {
                     ? handleFreeItem(item)
                     : item.selling
                     ? makePay(item?.price, item)
-                    : onView({
+                    : (onView({
                         active: true,
                         content: item,
-                      })
+                      }), getAUserInfo(item.seller))
                 }}
               >
-                {item?.price === 0
-                  ? 'Save Ad'
-                  : item.selling
-                  ? 'Buy'
-                  : 'Answer'}
+                {item.price === 0 ? 'Save Ad' : item.selling ? 'Buy' : proposalExists(item.id) ? 'Proposal Submitted': 'Answer'}
               </RavenButton>
             </div>
           </div>
@@ -289,19 +329,23 @@ function Feed({ item, dash }) {
             </span>
           </div>
 
-          <div className="ask_input_container">
+          <div style={{zIndex: 100000}} className="ask_input_container">
             <RavenInputField
-              label={'Information ID'}
-              color={'orange-dark'}
+              label={'Corresponding Information'}
+              color={'deep-green-dark'}
+              style={{zIndex: 100000}}
               labelSpanText="What this ?"
               labelColor={'orange-dark'}
-              value={content.id}
-              // onChange={e => {setProposal({
-              //   ...proposal,
-              //   info_id: e.target.value
-              // })}}
-              placeholder="i.e 644b95bbd9b4e71cf40a01dc"
-              type={'text'}
+              value={content?.info}
+              type="select"
+              onChange={e => {setProposal({
+                ...proposal,
+                info: e,
+                info_id: e.value
+              })}}
+              placeholder="Select an info that matches."
+              selectOption={formatSelectOption(userInfos?.results)}
+
             />
             <span>
               <RavenInputField
