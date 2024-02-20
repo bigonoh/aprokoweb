@@ -10,7 +10,12 @@ export const getInfos = createAsyncThunk(
         `/infos?limit=${payload.limit || 10}&page=${
           payload.page || 1
         }&populate=user&sortBy=${payload.sortBy || 'createdAt:desc'}`,
-        payload
+        {
+          params: {
+            title: payload.title,
+            location: payload.location,
+          },
+        }
       )
       // console.log("login", data);
       if (data.status !== 'success') {
@@ -49,7 +54,11 @@ export const getProposal = createAsyncThunk(
       const { data } = await axios.get(
         `/proposal?limit=${payload.limit || 10}&page=${
           payload.page || 1
-        }&populate=asker,answerer,ask_info_id, answered_info_id&sortBy=${payload.sortBy || 'createdAt:desc'}${payload.answerer ? `&answerer=${payload.answerer}` : ''}${payload.asker ? `&asker=${payload.asker}` : ''}&status=pending&status=accepted`,
+        }&populate=asker,answerer,ask_info_id, answered_info_id&sortBy=${
+          payload.sortBy || 'createdAt:desc'
+        }${payload.answerer ? `&answerer=${payload.answerer}` : ''}${
+          payload.asker ? `&asker=${payload.asker}` : ''
+        }&status=pending&status=accepted`,
         payload
       )
       // console.log("response", data?.data?.results);
@@ -83,7 +92,6 @@ export const getProposal = createAsyncThunk(
   }
 )
 
-
 export const getSentProposal = createAsyncThunk(
   '/proposals',
   async (payload, thunkAPI) => {
@@ -91,7 +99,11 @@ export const getSentProposal = createAsyncThunk(
       const { data } = await axios.get(
         `/proposal?limit=${payload.limit || 10}&page=${
           payload.page || 1
-        }&populate=asker,answerer,ask_info_id, answered_info_id&sortBy=${payload.sortBy || 'createdAt:desc'}${payload.answerer ? `&answerer=${payload.answerer}` : ''}${payload.asker ? `&asker=${payload.asker}` : ''}`,
+        }&populate=asker,answerer,ask_info_id, answered_info_id&sortBy=${
+          payload.sortBy || 'createdAt:desc'
+        }${payload.answerer ? `&answerer=${payload.answerer}` : ''}${
+          payload.asker ? `&asker=${payload.asker}` : ''
+        }`,
         payload
       )
       // console.log("response", data?.data?.results);
@@ -129,11 +141,8 @@ export const acceptRejectProposal = createAsyncThunk(
   '/accept-proposals',
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.put(
-        `proposal/accept`,
-        payload
-      )
-      console.log("response", data);
+      const { data } = await axios.put(`proposal/accept`, payload)
+      console.log('response', data)
       if (data.status !== 'success') {
         toast.error(data.message, {
           theme: 'colored',
@@ -144,9 +153,9 @@ export const acceptRejectProposal = createAsyncThunk(
 
       if (data.status === 'success') {
         toast.success(data.message, {
-          theme: "colored",
-          position: "top-center",
-        });
+          theme: 'colored',
+          position: 'top-center',
+        })
         // console.log(data?.data, 'from this point');
 
         return data
@@ -202,7 +211,7 @@ export const getUserInfos = createAsyncThunk(
           theme: 'colored',
           position: 'top-right',
         })
-        return thunkAPI.rejectWithValue(err)  
+        return thunkAPI.rejectWithValue(err)
       }
     }
   }
@@ -447,6 +456,7 @@ export const info = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setInfos, setSales, setBoughtInfo, setProposals, setUserInfos } = info.actions
+export const { setInfos, setSales, setBoughtInfo, setProposals, setUserInfos } =
+  info.actions
 
 export default info.reducer
