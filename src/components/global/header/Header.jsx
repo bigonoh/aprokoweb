@@ -99,7 +99,7 @@ function Header(props) {
       {/* desktop header starts here */}
       <header className="hero-navbar desktop-header flex justify-between pt-10 pb-10 container-140">
         <div className="nav-right gap-10 text-sm just ify-center align-center flex">
-          <figure>
+          <figure onClick={() => navigate('/')}>
             <img src={logo} alt="" />
           </figure>
 
