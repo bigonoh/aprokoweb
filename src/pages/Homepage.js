@@ -3,7 +3,7 @@ const heroBg = require('../assets/img/hero-bg.png')
 import Select from 'react-select'
 import { icons } from '../assets/icons/icons'
 import Footer from '../components/global/footer/Footer'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { getLocations } from '../redux/home'
@@ -17,9 +17,15 @@ import { makePurchase } from '../redux/transaction'
 import { getUser } from '../redux/user'
 import Feed from '../components/mobile/timeline/Feed'
 import Header from '../components/global/header/Header'
+import useDebounce from '../helper/useDebounce'
 require('./style.css')
+import { Audio, Oval } from 'react-loader-spinner'
+
 function Homepage() {
   const navigate = useNavigate()
+  const [searchParam, setSearchParam] = useSearchParams()
+  const searchQuery = searchParam.get('q')
+  const locationQuery = searchParam.get('loc')
 
   const dispatch = useDispatch()
 
@@ -64,12 +70,12 @@ function Homepage() {
 
   useEffect(() => {
     dispatch(getLocations())
-    dispatch(getInfos({ limit: '5' }))
+    dispatch(getInfos({ limit: '5', title: searchQuery }))
     // dispatch(getUser())
   }, [])
 
   const { location } = useSelector((state) => state?.home)
-  const { infos } = useSelector((state) => state?.info)
+  const { infos, loading } = useSelector((state) => state?.info)
   const { user } = useSelector((state) => state?.user)
 
   const posts = infos?.results
@@ -85,6 +91,41 @@ function Homepage() {
 
   const author = (e) => {
     dispatch(getUser(e))
+  }
+
+  // handle search
+  const debouncedSearchTerm = useDebounce(searchQuery, 1000)
+
+  useEffect(() => {
+    let isMount = true
+    if (isMount && debouncedSearchTerm?.length >= 2) {
+      // debounce
+      dispatch(
+        getInfos({
+          limit: '5',
+          title: searchQuery,
+          location: locationQuery,
+        })
+      )
+    }
+    if (isMount && debouncedSearchTerm?.length < 1) {
+      /// fetch all
+      dispatch(getInfos({ limit: '5' }))
+    }
+
+    return () => {
+      isMount = false
+    }
+  }, [debouncedSearchTerm])
+
+  function SubmitLoc() {
+    dispatch(
+      getInfos({
+        limit: '5',
+        title: searchQuery,
+        location: locationQuery,
+      })
+    )
   }
 
   return (
@@ -109,6 +150,11 @@ function Homepage() {
             </p>
             <div className="flex search-container  mt-50 wp-60 flex-row gap-10">
               <input
+                onChange={(e) =>
+                  setSearchParam({
+                    q: e.target.value,
+                  })
+                }
                 className="text-xs font-100"
                 placeholder="Search for..."
                 type="text"
@@ -117,10 +163,39 @@ function Homepage() {
                 placeholder="Choose your location"
                 styles={reactSelectStyleTable}
                 className="select-react"
-                options={formatSelectOption(location)}
+                onChange={(e) => {
+                  if (e.label === 'All') {
+                    setSearchParam({
+                      loc: '',
+                    })
+                  } else {
+                    setSearchParam({
+                      loc: JSON.stringify({ label: e.label, value: e.value }),
+                    })
+                  }
+                }}
+                options={[
+                  { label: 'All', value: '' },
+                  ...formatSelectOption(location),
+                ]}
               />
-              <div className="grid-center bg-white cursor-pointer curved p-10">
-                {icons.search}
+              <div
+                onClick={SubmitLoc}
+                className="grid-center bg-white cursor-pointer curved p-10"
+              >
+                {loading ? (
+                  <Oval
+                    visible={true}
+                    height="25"
+                    width="25"
+                    color="orange"
+                    ariaLabel="oval-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                  />
+                ) : (
+                  icons.search
+                )}
               </div>
             </div>
           </section>

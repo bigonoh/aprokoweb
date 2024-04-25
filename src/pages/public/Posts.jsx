@@ -4,11 +4,14 @@ import logo from '../../assets/img/logo.svg'
 import Select from 'react-select'
 import { icons } from '../../assets/icons/icons'
 import Footer from '../../components/global/footer/Footer'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { RavenPagination, toast } from 'raven-bank-ui'
 import { useDispatch, useSelector } from 'react-redux'
 import { getLocations } from '../../redux/home'
-import { formatNumWithoutCommaNaira } from '../../utils/Helpers'
+import {
+  formatNumWithoutCommaNaira,
+  reactSelectStyleTable,
+} from '../../utils/Helpers'
 import { getInfos } from '../../redux/info'
 import { usePaystackPayment } from 'react-paystack'
 import env from '../../env'
@@ -16,6 +19,8 @@ import usePay from '../../hooks/usePay'
 import { makePurchase } from '../../redux/transaction'
 import Feed from '../../components/mobile/timeline/Feed'
 import Header from '../../components/global/header/Header'
+import { Oval } from 'react-loader-spinner'
+import useDebounce from '../../helper/useDebounce'
 require('./style.css')
 
 function PublicPosts() {
@@ -25,6 +30,7 @@ function PublicPosts() {
   const [page, setPage] = useState(1)
 
   useEffect(() => {
+    dispatch(getLocations())
     dispatch(getInfos({ page: page }))
   }, [page])
 
@@ -66,6 +72,47 @@ function PublicPosts() {
     // toast.success("Your purchase was successful")
   }
 
+  const [searchParam, setSearchParam] = useSearchParams()
+
+  const searchQuery = searchParam.get('q')
+  const locationQuery = searchParam.get('loc')
+  function SubmitLoc() {
+    dispatch(
+      getInfos({
+        limit: '20',
+        title: searchQuery,
+        location: locationQuery,
+      })
+    )
+  }
+  const { loading } = useSelector((state) => state?.info)
+  const { location } = useSelector((state) => state?.home)
+
+  // handle search
+  const debouncedSearchTerm = useDebounce(searchQuery, 1000)
+
+  useEffect(() => {
+    let isMount = true
+    if (isMount && debouncedSearchTerm?.length >= 2) {
+      // debounce
+      dispatch(
+        getInfos({
+          limit: '5',
+          title: searchQuery,
+          location: locationQuery,
+        })
+      )
+    }
+    if (isMount && debouncedSearchTerm?.length < 1) {
+      /// fetch all
+      dispatch(getInfos({ limit: '20' }))
+    }
+
+    return () => {
+      isMount = false
+    }
+  }, [debouncedSearchTerm])
+
   return (
     <div style={{ overflow: 'auto' }}>
       <Header bg />
@@ -74,17 +121,71 @@ function PublicPosts() {
         {/* cards start here */}
 
         <div className="latest_feed_container mt-20 p-10  flex flex-column">
-        <div className="latest_header">
-          <p>Latest Feeds</p>
+          <div className="latest_header">
+            <p>Latest Feeds</p>
+          </div>
+
+          <div className="align-center wp-100 flex justify-center ">
+            <div className="flex search-container  mt-50 wp-60 flex-row gap-10 align-center">
+              <input
+                onChange={(e) =>
+                  setSearchParam({
+                    q: e.target.value,
+                  })
+                }
+                className="text-xs font-100"
+                placeholder="Search for..."
+                type="text"
+              />
+              <Select
+                placeholder="Choose your location"
+                styles={reactSelectStyleTable}
+                className="select-react"
+                onChange={(e) => {
+                  if (e.label === 'All') {
+                    setSearchParam({
+                      loc: '',
+                    })
+                  } else {
+                    setSearchParam({
+                      loc: JSON.stringify({ label: e.label, value: e.value }),
+                    })
+                  }
+                }}
+                options={[
+                  { label: 'All', value: '' },
+                  ...formatSelectOption(location),
+                ]}
+              />
+              <div
+                onClick={SubmitLoc}
+                className="grid-center bg-white cursor-pointer curved p-10"
+              >
+                {loading ? (
+                  <Oval
+                    visible={true}
+                    height="25"
+                    width="25"
+                    color="orange"
+                    ariaLabel="oval-loading"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                  />
+                ) : (
+                  icons.search
+                )}
+              </div>
+            </div>
+          </div>
+
+          {posts?.map((chi, idx) => {
+            return (
+              <section className="flex flex-column  mt-20 p-10 " key={idx}>
+                <Feed item={chi} />
+              </section>
+            )
+          })}
         </div>
-        {posts?.map((chi, idx) => {
-          return (
-            <section className="flex flex-column  mt-20 p-10 " key={idx}>
-              <Feed item={chi} />
-            </section>
-          )
-        })}
-      </div>
 
         {/* cards end here here */}
 
@@ -105,3 +206,12 @@ function PublicPosts() {
 }
 
 export default PublicPosts
+
+const formatSelectOption = (param) => {
+  param = param ? param : [{}]
+  const list = param?.map((chi) => {
+    const { locals, name } = chi.states
+    return { label: name, value: name, locals: locals }
+  })
+  return list
+}
