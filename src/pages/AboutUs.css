@@ -1,0 +1,13 @@
+.abou {
+    width: 90%;
+    height: 370px;
+    padding: 30px;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    margin: 0 auto;
+    overflow: auto;
+}
+
+.para {
+    font-weight: 500;
+}

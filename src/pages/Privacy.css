@@ -1,0 +1,23 @@
+.pri {
+    width: 90%;
+    background-color: whitesmoke;
+    height: fit-content;
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 60px;
+}
+
+.vac {
+    text-align: center;
+    color: white;
+}
+
+.pol {
+    text-align: left;
+    font-size: 500;
+}
+
+.foo {
+    padding-top: 400px;
+}

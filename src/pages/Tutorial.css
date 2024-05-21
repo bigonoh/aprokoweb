@@ -1,0 +1,28 @@
+.ori {
+    text-align: center;
+    color: white;
+}
+
+.tut {
+    width: 90%;
+    background-color: whitesmoke;
+    height: 370px;
+    margin: 0 auto;
+    border-radius: 5px;
+    padding: 15px;
+    margin-top: 10px;
+    overflow: auto;
+}
+
+.al {
+    text-align: left;
+    font-size: 500;
+    margin-left: 20px;
+}
+
+/* mobile */
+@media ( max-width: 785px) {
+    .tut {
+        height: 400px;
+    }
+}

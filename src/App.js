@@ -11,8 +11,12 @@ import PrivateRoute from './components/auth/PrivateRoute'
 import { Helmet } from 'react-helmet'
 import { RavenToast } from 'raven-bank-ui'
 import Homepage from './pages/Homepage'
+import ContactUs from './pages/ContactUs'
+import Privacy from './pages/Privacy'
 import DashboardHome from './pages/dashboard/DashboardHome'
 import { admin_panel_route_group } from './routes/admin/index'
+import AboutUs from './pages/AboutUs'
+import Tutorial from './pages/Tutorial'
 require('./App.css')
 function App() {
   const location = useLocation()
@@ -72,6 +76,14 @@ function App() {
             path="*"
             element={<Navigate to="/" />}
           ></Route>
+          {/* contactus page */}
+          <Route location={location} path="/contactus" element={<ContactUs />}></Route>
+          {/* about us page */}
+          <Route location={location} path="/aboutus" element={<AboutUs />}></Route>
+          {/* privacy policy */}
+          <Route location={location} path="/privacypolicy" element={<Privacy />}></Route>
+          {/* tutorial */}
+          <Route location={location} path="/tutorial" element={<Tutorial />}></Route>
 
           {/*  */}
           {/* auth route group start */}

@@ -1,0 +1,13 @@
+.con {
+    text-align: center;
+    color: white;
+}
+
+.numa {
+    width: 50%;
+    height: fit-content;
+    background-color: rgb(255, 81, 0);
+    text-align: center;
+    border-radius: 5px;
+    margin: 0 auto;
+}

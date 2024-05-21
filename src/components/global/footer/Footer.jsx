@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 import { icons } from '../../../assets/icons/icons'
 import('./style.css')
 function Footer() {
@@ -16,26 +17,26 @@ function Footer() {
         </div>
         <div className="flex content-items flex-column gap-10">
           <p className="text-xsm footer-header">Product</p>
-          <p className="text-md pt-10 item">Tutorials</p>
+          <NavLink to="/tutorial"><p className="text-md pt-10 item">Tutorials</p></NavLink>
           <p className="text-md item">Pricing</p>
         </div>
         <div className="flex content-items flex-column gap-10">
           <p className="text-xsm footer-header ">Company</p>
-          <p className="text-md pt-10 item">About us</p>
-          <p className="text-md item">Contact us</p>
+          <NavLink to="/aboutus"><p className="text-md pt-10 item">About us</p></NavLink>
+          <NavLink to="/contactus"><p className="text-md item">Contact us</p></NavLink>
         </div>
         <div className="flex content-items flex-column gap-10">
           <p className="text-xsm footer-header">Resources</p>
           <p className="text-md item pt-10">Blog</p>
           <p className="text-md item">Newsletter</p>
           <p className="text-md item">Help center</p>
-          <p className="text-md item">Tutorials</p>
+          <NavLink to="/tutorial"><p className="text-md item">Tutorials</p></NavLink>
           <p className="text-md item">Support</p>
         </div>
         <div className="flex content-items flex-column gap-10 ">
           <p className="text-xsm footer-header">Legal</p>
           <p className="text-md item pt-10">Terms</p>
-          <p className="text-md item">Privacy Policy</p>
+          <NavLink to="/privacypolicy"><p className="text-md item">Privacy Policy</p></NavLink>
           <p className="text-md item">Cookies</p>
         </div>
       </div>
