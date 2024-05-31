@@ -30,8 +30,8 @@
     "webpack-dev-server": "^5.0.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "react-scripts start --openssl-legacy-provider",
+    "build": "react-scripts build --openssl-legacy-provider",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier \"**/*.{ts,tsx,js,jsx,css,scss,sass,less,md}\"",
@@ -71,6 +71,6 @@
     "prettier": "2.7.1",
     "resize-observer-polyfill": "^1.5.1",
     "web-vitals": "^3.1.0",
-    "webpack": "^5.91.0"
+    "webpack": "^4.44.2"
   }
 }
