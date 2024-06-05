@@ -1,5 +1,5 @@
 const vars = {
-   base_url: "https://aprokobackend.onrender.com/v1/api",
+   base_url: "https://aprokobackend.onrender.com/v1",
   // base_url:
   //   process.env.NODE_ENV === 'production'
   //     ? 'http://localhost:3500/v1' //change this for development only
