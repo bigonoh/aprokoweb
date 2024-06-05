@@ -1,7 +1,7 @@
 const vars = {
   // base_url: "http://businessapi.getraventest.com",
   base_url:
-    process.env.NODE_ENV === 'development'
+    process.env.NODE_ENV === 'production'
       ? 'http://localhost:3500/v1' //change this for development only
       : 'https://api.aprokopay.com/v1', // leave this for production
 
