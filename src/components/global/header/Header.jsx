@@ -46,7 +46,7 @@ function Header(props) {
 
           {!props.dashboard && (
             <ul className="menu">
-              <li>
+              {/* <li>
                 <a href="#work">Services</a>
               </li>
               <li>
@@ -54,7 +54,7 @@ function Header(props) {
               </li>
               <li>
                 <a href="#about">About</a>
-              </li>
+              </li> */}
               <li>
                 <a href="#about">FAQs</a>
               </li>
@@ -105,7 +105,7 @@ function Header(props) {
 
           <div className="nav-menu">
             <ul className="flex">
-              <li className="ml-10 text-4 text-white text-xs text-hover-secondary">
+              {/* <li className="ml-10 text-4 text-white text-xs text-hover-secondary">
                 <a onClick={() => navigate('/information')}>Informations</a>
               </li>
               <li className="ml-10  text-4 text-white  text-xs text-hover-secondary">
@@ -113,7 +113,7 @@ function Header(props) {
               </li>
               <li className="ml-10  text-4 text-white text-xs text-hover-secondary">
                 <a href="#about">About</a>
-              </li>
+              </li> */}
               <li className="ml-10  text-4 text-white text-xs text-hover-secondary">
                 <a href="#about">FAQs</a>
               </li>

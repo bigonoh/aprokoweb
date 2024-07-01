@@ -17,7 +17,7 @@ function Footer() {
         </div>
         <div className="flex content-items flex-column gap-10">
           <p className="text-xsm footer-header">Product</p>
-          <NavLink to="/tutorial"><p className="text-md pt-10 item">Tutorials</p></NavLink>
+          {/* <NavLink to="/tutorial"><p className="text-md pt-10 item">Tutorials</p></NavLink> */}
           <p className="text-md item">Pricing</p>
         </div>
         <div className="flex content-items flex-column gap-10">
