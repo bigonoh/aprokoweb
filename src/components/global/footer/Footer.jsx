@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Link } from 'react-router-dom'
 import { icons } from '../../../assets/icons/icons'
 import('./style.css')
 function Footer() {
@@ -9,11 +9,11 @@ function Footer() {
         <div className="flex flex-column ">{icons.logo_white}</div>
         <div className="flex content-items flex-column gap-10">
           <p className="text-xsm footer-header text-700">Social</p>
-          <link to="https://twitter.com/aprokopay"><p className="text-md item pt-10">Twitter</p></link>
-          <link to="https://www.instagram.com/therealaprokopay?igsh=Y216OWRhZmRiNm9v"><p className="text-md item">Instagram</p></link>
-          <NavLink to="https://www.linkedin.com/company/aprokopay/?lipi=urn%3Ali%3Apage%3Aorganization_admin_admin_feed_index%3Be197d0eb-ced8-4736-a25e-c2a42445a30c"><p className="text-md item">Linkedin</p></NavLink>
-          <NavLink to="https://wa.me/qr/ILKFMRF4ZAEAA1"><p className="text-md item">Whatsapp</p></NavLink>
-          <NavLink to="https://www.facebook.com/profile.php?id=61558559893434&mibextid=ZbWKwL"><p className="text-md item">Facebook</p></NavLink>
+          <a href="https://twitter.com/aprokopay"><p className="text-md item pt-10">Twitter</p></a>
+          <a href="https://www.instagram.com/therealaprokopay?igsh=Y216OWRhZmRiNm9v"><p className="text-md item">Instagram</p></a>
+          <a href="https://www.linkedin.com/company/aprokopay/?lipi=urn%3Ali%3Apage%3Aorganization_admin_admin_feed_index%3Be197d0eb-ced8-4736-a25e-c2a42445a30c"><p className="text-md item">Linkedin</p></a>
+          <a href="https://wa.me/qr/ILKFMRF4ZAEAA1"><p className="text-md item">Whatsapp</p></a>
+          <a href="https://www.facebook.com/profile.php?id=61558559893434&mibextid=ZbWKwL"><p className="text-md item">Facebook</p></a>
         </div>
         <div className="flex content-items flex-column gap-10">
           <p className="text-xsm footer-header">Product</p>
